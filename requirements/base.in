@@ -1,0 +1,17 @@
+# Core requirements for using this application
+-c constraints.txt
+
+Django             # Web application framework
+djangoql
+django-extensions
+django-filter
+django-simple-history
+edx-django-utils
+edx-django-release-util
+edx-rbac
+jsonfield2
+mysqlclient
+openedx-events
+pytz
+redis
+rules
