@@ -50,6 +50,8 @@ class TimeStampedModelWithUuid(TimeStampedModel):
 class Ledger(TimeStampedModelWithUuid):
     """
     A ledger you can credit and debit, associated with a single subsidy plan.
+
+    .. no_pii:
     """
     # also note: if you do something that raises an exception and causes the record to not persist,
     # idempotency is not preserved (i.e. you could do an action with the same key in a way that
@@ -111,6 +113,8 @@ class BaseTransaction(TimeStampedModelWithUuid):
 class Transaction(BaseTransaction):
     """
     Represents a quantity moving in or out of the ledger.  It's purely in USD-cents for now.
+
+    .. no_pii:
     """
     class Meta:
         unique_together = [('ledger', 'idempotency_key')]
@@ -146,6 +150,8 @@ class Transaction(BaseTransaction):
 class Reversal(BaseTransaction):
     """
     Represents a reversal of some or all of a transaction, but no more.
+
+    .. no_pii:
     """
     class Meta:
         unique_together = [('transaction', 'idempotency_key')]
