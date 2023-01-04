@@ -1,3 +1,6 @@
+"""
+edx_ledger Django application initialization.
+"""
 from django.apps import AppConfig
 
 

@@ -1,18 +1,13 @@
-import collections
+"""
+edx_ledger models.
+"""
 from uuid import uuid4
 
-from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.functions import Coalesce
 from django.db.transaction import atomic
-from django.dispatch import receiver
-from django.utils.translation import gettext_lazy as _
-from jsonfield.encoder import JSONEncoder
 from jsonfield.fields import JSONField
-from model_utils.models import SoftDeletableModel, TimeStampedModel
-from simple_history.models import HistoricalRecords
-from simple_history.utils import bulk_update_with_history
+from model_utils.models import TimeStampedModel
 
 # Units on the ledger model - probably yes. TODO: say why
 # Unit conversion - price/seat is captured somewhere, is it in here?
@@ -21,6 +16,7 @@ from simple_history.utils import bulk_update_with_history
 # moves between those two accounts?
 # Are transactions immutable? Yes.
 # Let's not persist aggregates - the transactions are the only truth. TODO: say why
+
 
 class UnitChoices:
     USD_CENTS = 'usd_cents'
@@ -32,11 +28,17 @@ class UnitChoices:
         (JPY, 'Japanese Yen'),
     )
 
-# https://docs.djangoproject.com/en/3.2/ref/databases/#mysql-character-fields
-# is why max_length is 255 for the fields below.
 
 class TimeStampedModelWithUuid(TimeStampedModel):
+    """
+    Base timestamped model adding a UUID field.
+    """
+
     class Meta:
+        """
+        Metaclass for TimeStampedModelWithUuid.
+        """
+
         abstract = True
 
     uuid = models.UUIDField(
@@ -53,6 +55,10 @@ class Ledger(TimeStampedModelWithUuid):
 
     .. no_pii:
     """
+
+    # https://docs.djangoproject.com/en/3.2/ref/databases/#mysql-character-fields
+    # is why max_length is 255 for the fields below.
+
     # also note: if you do something that raises an exception and causes the record to not persist,
     # idempotency is not preserved (i.e. you could do an action with the same key in a way that
     # _does not_ raise an exception and get a different, non exception, output).
@@ -76,6 +82,9 @@ class Ledger(TimeStampedModelWithUuid):
     )
 
     def balance(self):
+        """
+        Return the current balance of the ledger as an integer.
+        """
         with atomic():
             transactions = Transaction.objects.filter(
                 ledger=self,
@@ -87,11 +96,22 @@ class Ledger(TimeStampedModelWithUuid):
             return agg['total_quantity']
 
     def __str__(self):
+        """
+        Return string representation of this ledger, visible in logs, django admin, etc.
+        """
         return self.idempotency_key
 
 
 class BaseTransaction(TimeStampedModelWithUuid):
+    """
+    Base class for all models that resemble transactions.
+    """
+
     class Meta:
+        """
+        Metaclass for BaseTransaction.
+        """
+
         abstract = True
 
     idempotency_key = models.CharField(
@@ -116,7 +136,12 @@ class Transaction(BaseTransaction):
 
     .. no_pii:
     """
+
     class Meta:
+        """
+        Metaclass for Transaction.
+        """
+
         unique_together = [('ledger', 'idempotency_key')]
 
     ledger = models.ForeignKey(
@@ -153,7 +178,12 @@ class Reversal(BaseTransaction):
 
     .. no_pii:
     """
+
     class Meta:
+        """
+        Metaclass for Reversal.
+        """
+
         unique_together = [('transaction', 'idempotency_key')]
 
     transaction = models.OneToOneField(

@@ -1,10 +1,15 @@
-# The python API.
+"""
+The edx_ledger python API.
+"""
 from django.db.transaction import atomic
+
 from edx_ledger import models
 
 
 def create_transaction(ledger, quantity, idempotency_key, **metadata):
     """
+    Create a transaction.
+
     Should throw an exception when transaction would exceed balance of the ledger.
     Locking and DB transactions?
     (course id, ledger, user) are unique.
@@ -30,7 +35,9 @@ def create_transaction(ledger, quantity, idempotency_key, **metadata):
 
 def reverse_full_transaction(transaction, idempotency_key, **metadata):
     """
-    Idempotency of reversals - reversing the same transaction twice 
+    Reverse a transaction, in full.
+
+    Idempotency of reversals - reversing the same transaction twice
     produces the same output and has no side effect on the second invocation.
     Support idempotency key here, too.
     """
@@ -62,5 +69,7 @@ def create_ledger(unit, idempotency_key, **metadata):
     return ledger
 
 
-def update_ledger(ledger, **metadata):
-    pass
+def update_ledger(ledger, **metadata):  # pylint: disable=unused-argument
+    """
+    TODO.
+    """

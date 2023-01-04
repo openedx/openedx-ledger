@@ -1,22 +1,24 @@
-from django.test import TestCase
+"""
+Tests for the edx_ledger Python API.
+"""
 import pytest
 
 from edx_ledger import api
-from edx_ledger.models import Ledger, Transaction, Reversal, UnitChoices
-# Create your tests here.
+from edx_ledger.models import UnitChoices
+
 
 @pytest.mark.django_db
 def test_create_ledger_happy_path():
     ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
     assert ledger.balance() == 0
 
-    tx_1 = api.create_transaction(ledger, quantity=5000, idempotency_key='tx-1')
+    api.create_transaction(ledger, quantity=5000, idempotency_key='tx-1')
     assert ledger.balance() == 5000
 
     tx_2 = api.create_transaction(ledger, quantity=5000, idempotency_key='tx-2')
     assert ledger.balance() == 10000
 
-    reversal = api.reverse_full_transaction(tx_2, idempotency_key='reversal-1')
+    api.reverse_full_transaction(tx_2, idempotency_key='reversal-1')
     assert ledger.balance() == 5000
 
     other_ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
@@ -29,11 +31,11 @@ def test_no_negative_balance():
     assert ledger.balance() == 0
 
     with pytest.raises(Exception, match="d'oh!"):
-        tx_1 = api.create_transaction(ledger, quantity=-1, idempotency_key='tx-1')
+        api.create_transaction(ledger, quantity=-1, idempotency_key='tx-1')
 
-    tx_2 = api.create_transaction(ledger, quantity=999, idempotency_key='tx-2')
+    api.create_transaction(ledger, quantity=999, idempotency_key='tx-2')
     with pytest.raises(Exception, match="d'oh!"):
-        tx_3 = api.create_transaction(ledger, quantity=-1000, idempotency_key='tx-3')
+        api.create_transaction(ledger, quantity=-1000, idempotency_key='tx-3')
 
 
 @pytest.mark.django_db
@@ -48,7 +50,7 @@ def test_multiple_reversals():
     assert ledger.balance() == 0
 
     with pytest.raises(Exception):
-        second_reversal = api.reverse_full_transaction(tx_1, idempotency_key='reversal-2')
+        api.reverse_full_transaction(tx_1, idempotency_key='reversal-2')
 
     third_reversal = api.reverse_full_transaction(tx_1, idempotency_key='reversal-1')
     assert ledger.balance() == 0
