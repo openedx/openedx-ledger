@@ -1,5 +1,5 @@
-edx-ledger
-#############################
+openedx-ledger
+##############
 
 .. note::
 
@@ -33,13 +33,13 @@ One Time Setup
 .. code-block::
 
   # Clone the repository
-  git clone git@github.com:iloveagent57/edx-ledger.git
-  cd edx-ledger
+  git clone git@github.com:iloveagent57/openedx-ledger.git
+  cd openedx-ledger
 
   # Set up a virtualenv using virtualenvwrapper with the same name as the repo and activate it
-  mkvirtualenv -p python3.8 edx-ledger
+  mkvirtualenv -p python3.8 openedx-ledger
   # or with pyenv
-  pyenv virtualenv 3.8 edx-ledger
+  pyenv virtualenv 3.8 openedx-ledger
 
 
 Every time you develop something in this repo
@@ -47,9 +47,9 @@ Every time you develop something in this repo
 .. code-block::
 
   # Activate the virtualenv
-  workon edx-ledger
+  workon openedx-ledger
   # or with pyenv
-  pyenv activate edx-ledger
+  pyenv activate openedx-ledger
 
   # Grab the latest code
   git checkout main
@@ -90,7 +90,7 @@ commands? Is there a larger how-to that should be linked here?
 
 PLACEHOLDER: For details on how to deploy this component, see the `deployment how-to`_
 
-.. _deployment how-to: https://docs.openedx.org/projects/edx-ledger/how-tos/how-to-deploy-this-component.html
+.. _deployment how-to: https://docs.openedx.org/projects/openedx-ledger/how-tos/how-to-deploy-this-component.html
 
 Getting Help
 ************
@@ -100,7 +100,7 @@ Documentation
 
 PLACEHOLDER: Start by going through `the documentation`_.  If you need more help see below.
 
-.. _the documentation: https://docs.openedx.org/projects/edx-ledger
+.. _the documentation: https://docs.openedx.org/projects/openedx-ledger
 
 (TODO: `Set up documentation <https://openedx.atlassian.net/wiki/spaces/DOC/pages/21627535/Publish+Documentation+on+Read+the+Docs>`_)
 
@@ -118,7 +118,7 @@ For anything non-trivial, the best path is to open an issue in this
 repository with as many details about the issue you are facing as you
 can provide.
 
-https://github.com/openedx/edx-ledger/issues
+https://github.com/openedx/openedx-ledger/issues
 
 For more information about these options, see the `Getting Help`_ page.
 
@@ -161,35 +161,35 @@ The assigned maintainers for this component and other project details may be
 found in `Backstage`_. Backstage pulls this data from the ``catalog-info.yaml``
 file in this repo.
 
-.. _Backstage: https://open-edx-backstage.herokuapp.com/catalog/default/component/edx-ledger
+.. _Backstage: https://open-edx-backstage.herokuapp.com/catalog/default/component/openedx-ledger
 
 Reporting Security Issues
 *************************
 
 Please do not report security issues in public. Please email security@tcril.org.
 
-.. |pypi-badge| image:: https://img.shields.io/pypi/v/edx-ledger.svg
-    :target: https://pypi.python.org/pypi/edx-ledger/
+.. |pypi-badge| image:: https://img.shields.io/pypi/v/openedx-ledger.svg
+    :target: https://pypi.python.org/pypi/openedx-ledger/
     :alt: PyPI
 
-.. |ci-badge| image:: https://github.com/openedx/edx-ledger/workflows/Python%20CI/badge.svg?branch=main
-    :target: https://github.com/openedx/edx-ledger/actions
+.. |ci-badge| image:: https://github.com/openedx/openedx-ledger/workflows/Python%20CI/badge.svg?branch=main
+    :target: https://github.com/openedx/openedx-ledger/actions
     :alt: CI
 
-.. |codecov-badge| image:: https://codecov.io/github/openedx/edx-ledger/coverage.svg?branch=main
-    :target: https://codecov.io/github/openedx/edx-ledger?branch=main
+.. |codecov-badge| image:: https://codecov.io/github/openedx/openedx-ledger/coverage.svg?branch=main
+    :target: https://codecov.io/github/openedx/openedx-ledger?branch=main
     :alt: Codecov
 
-.. |doc-badge| image:: https://readthedocs.org/projects/edx-ledger/badge/?version=latest
-    :target: https://edx-ledger.readthedocs.io/en/latest/
+.. |doc-badge| image:: https://readthedocs.org/projects/openedx-ledger/badge/?version=latest
+    :target: https://openedx-ledger.readthedocs.io/en/latest/
     :alt: Documentation
 
-.. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/edx-ledger.svg
-    :target: https://pypi.python.org/pypi/edx-ledger/
+.. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/openedx-ledger.svg
+    :target: https://pypi.python.org/pypi/openedx-ledger/
     :alt: Supported Python versions
 
-.. |license-badge| image:: https://img.shields.io/github/license/openedx/edx-ledger.svg
-    :target: https://github.com/openedx/edx-ledger/blob/main/LICENSE.txt
+.. |license-badge| image:: https://img.shields.io/github/license/openedx/openedx-ledger.svg
+    :target: https://github.com/openedx/openedx-ledger/blob/main/LICENSE.txt
     :alt: License
 
 .. TODO: Choose one of the statuses below and remove the other status-badge lines.

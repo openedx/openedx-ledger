@@ -1,9 +1,9 @@
 """
-Admin configuration for edx_ledger models.
+Admin configuration for openedx_ledger models.
 """
 from django.contrib import admin
 
-from edx_ledger import models
+from openedx_ledger import models
 
 
 @admin.register(models.Ledger)

@@ -1,10 +1,10 @@
 """
-Tests for the edx_ledger Python API.
+Tests for the openedx_ledger Python API.
 """
 import pytest
 
-from edx_ledger import api
-from edx_ledger.models import UnitChoices
+from openedx_ledger import api
+from openedx_ledger.models import UnitChoices
 
 
 @pytest.mark.django_db

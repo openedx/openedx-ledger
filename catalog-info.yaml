@@ -4,7 +4,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: ""
 metadata:
-  name: 'edx-ledger'
+  name: 'openedx-ledger'
   description: "Records transactions against a ledger, denominated in units of value."
   annotations:
     # (Optional) Annotation keys and values can be whatever you want.

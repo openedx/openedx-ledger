@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('lms_user_id', models.IntegerField(blank=True, db_index=True, null=True)),
                 ('content_uuid', models.UUIDField(blank=True, db_index=True, null=True)),
                 ('reference_id', models.CharField(blank=True, db_index=True, help_text='The identifier of the item acquired via the transaction.e.g. a course enrollment ID, an entitlement ID, a subscription license ID.', max_length=255, null=True)),
-                ('ledger', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='transactions', to='edx_ledger.ledger')),
+                ('ledger', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='transactions', to='openedx_ledger.ledger')),
             ],
             options={
                 'unique_together': {('ledger', 'idempotency_key')},
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('idempotency_key', models.CharField(db_index=True, max_length=255)),
                 ('quantity', models.BigIntegerField()),
                 ('metadata', jsonfield.fields.JSONField(blank=True, null=True)),
-                ('transaction', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reversal', to='edx_ledger.transaction')),
+                ('transaction', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reversal', to='openedx_ledger.transaction')),
             ],
             options={
                 'unique_together': {('transaction', 'idempotency_key')},

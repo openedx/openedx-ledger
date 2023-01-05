@@ -32,14 +32,14 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
-    'edx_ledger',
+    'openedx_ledger',
 )
 
 LOCALE_PATHS = [
-    root('edx_ledger', 'conf', 'locale'),
+    root('openedx_ledger', 'conf', 'locale'),
 ]
 
-ROOT_URLCONF = 'edx_ledger.urls'
+ROOT_URLCONF = 'openedx_ledger.urls'
 
 SECRET_KEY = 'insecure-secret-key'
 

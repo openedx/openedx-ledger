@@ -1,9 +1,9 @@
 """
-The edx_ledger python API.
+The openedx_ledger python API.
 """
 from django.db.transaction import atomic
 
-from edx_ledger import models
+from openedx_ledger import models
 
 
 def create_transaction(ledger, quantity, idempotency_key, **metadata):

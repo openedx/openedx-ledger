@@ -1,5 +1,5 @@
 """
-Views for the edx_ledger app.
+Views for the openedx_ledger app.
 """
 # from django.shortcuts import render
 

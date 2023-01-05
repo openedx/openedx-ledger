@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Tests for the `edx-ledger` models module.
+Tests for the `openedx-ledger` models module.
 """
 
 

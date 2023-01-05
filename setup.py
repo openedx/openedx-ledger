@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Package metadata for edx_ledger.
+Package metadata for openedx_ledger.
 """
 import os
 import re
@@ -89,7 +89,7 @@ def is_requirement(line):
     return line and line.strip() and not line.startswith(("-r", "#", "-e", "git+", "-c"))
 
 
-VERSION = get_version('edx_ledger', '__init__.py')
+VERSION = get_version('openedx_ledger', '__init__.py')
 
 if sys.argv[-1] == 'tag':
     print("Tagging the version on github:")
@@ -101,15 +101,15 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding="u
 CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst'), encoding="utf8").read()
 
 setup(
-    name='edx-ledger',
+    name='openedx-ledger',
     version=VERSION,
     description="""Records transactions against a ledger, denominated in units of value.""",
     long_description=README + '\n\n' + CHANGELOG,
     author='edX',
     author_email='oscm@edx.org',
-    url='https://github.com/openedx/edx-ledger',
+    url='https://github.com/openedx/openedx-ledger',
     packages=find_packages(
-        include=['edx_ledger', 'edx_ledger.*'],
+        include=['openedx_ledger', 'openedx_ledger.*'],
         exclude=["*tests"],
     ),
 
