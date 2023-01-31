@@ -58,6 +58,7 @@ TEMPLATES = [{
         'context_processors': [
             'django.contrib.auth.context_processors.auth',  # this is required for admin
             'django.contrib.messages.context_processors.messages',  # this is required for admin
+            'django.template.context_processors.request',  # this is required for admin
         ],
     },
 }]

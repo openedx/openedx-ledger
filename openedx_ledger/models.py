@@ -10,14 +10,6 @@ from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
 
-# Units on the ledger model - probably yes. TODO: say why
-# Unit conversion - price/seat is captured somewhere, is it in here?
-# This is currently single-entry - should it be double-entry?
-# Do we need an account representing SF, one representing entitlements or enrollments, and the transaction
-# moves between those two accounts?
-# Are transactions immutable? Yes.
-# Let's not persist aggregates - the transactions are the only truth. TODO: say why
-
 
 class UnitChoices:
     USD_CENTS = 'usd_cents'
@@ -27,6 +19,46 @@ class UnitChoices:
         (USD_CENTS, 'U.S. Dollar (Cents)'),
         (SEATS, 'Seats in a course'),
         (JPY, 'Japanese Yen'),
+    )
+
+
+class TransactionStateChoices:
+    """
+    Lifecycle states for a ledger transaction.
+
+    CREATED
+        Indicates that the transaction has only just been created, and should be the default state.
+
+    PENDING
+        Indicates that an attempt is being made to redeem the content in the target LMS.
+
+    COMMITTED
+        Indicates that the content has been redeemed, and a reference to the redemption result (often an enrollment ID)
+        is stored in the reference_id field of the transaction.
+    """
+
+    CREATED = 'created'
+    PENDING = 'pending'
+    COMMITTED = 'committed'
+    CHOICES = (
+        (CREATED, 'Created'),
+        (PENDING, 'Pending'),
+        (COMMITTED, 'Committed'),
+    )
+
+
+class TransactionReferenceTypeChoices:
+    """
+    Enumerate different choices for the type of Transaction reference_id.
+
+    The reference_id of a Transaction may refer to different things depending on the type of content being enrolled and
+    the time of enrollment.  These options allow us to be explicit about the type of identifier used for that redeption
+    result.
+    """
+
+    LEARNER_CREDIT_ENTERPRISE_COURSE_ENROLLMENT_ID = 'learner_credit_enterprise_course_enrollment_id'
+    CHOICES = (
+        (LEARNER_CREDIT_ENTERPRISE_COURSE_ENROLLMENT_ID, 'LearnerCreditEnterpriseCourseEnrollment ID'),
     )
 
 
@@ -52,7 +84,11 @@ class TimeStampedModelWithUuid(TimeStampedModel):
 
 class Ledger(TimeStampedModelWithUuid):
     """
-    A ledger you can credit and debit, associated with a single subsidy plan.
+    A ledger to which you can add or remove value, associated with a single subsidy plan.
+
+    All value quantities associated with this ledger uniformly share the same unit, established in the `unit` field of
+    the ledger.  This enables simple balancing using `sum()` functions, helping to prevent bugs caused by unit
+    conversions, and improving performance on the critical balance() method.
 
     .. no_pii:
     """
@@ -130,11 +166,26 @@ class BaseTransaction(TimeStampedModelWithUuid):
         blank=True,
         null=True,
     )
+    state = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        choices=TransactionStateChoices.CHOICES,
+        default=TransactionStateChoices.CREATED,
+        db_index=True,
+    )
 
 
 class Transaction(BaseTransaction):
     """
-    Represents a quantity moving in or out of the ledger.  It's purely in USD-cents for now.
+    Represents value moving in or out of the ledger.
+
+    Transactions (and reversals) are immutable after entering the committed state.  This immutability helps maintain a
+    complete and robust history of value changes to the ledger, a trait which we rely on to calculate the ledger
+    balance.
+
+    Relatedly, we intentionally avoid persisting aggregates, reinforcing the transactions themselves as the
+    only source of truth.
 
     .. no_pii:
     """
@@ -157,10 +208,14 @@ class Transaction(BaseTransaction):
         blank=True,
         db_index=True,
     )
-    content_uuid = models.UUIDField(
-        null=True,
+    content_key = models.CharField(
+        max_length=255,
         blank=True,
+        null=True,
         db_index=True,
+        help_text=(
+            "The globally unique content identifier.  Joinable with ContentMetadata.content_key in enterprise-catalog."
+        )
     )
     reference_id = models.CharField(
         max_length=255,
@@ -168,9 +223,24 @@ class Transaction(BaseTransaction):
         null=True,
         db_index=True,
         help_text=(
-            "The identifier of the item acquired via the transaction."
-            "e.g. a course enrollment ID, an entitlement ID, a subscription license ID."
+            "The identifier of the item acquired via the transaction. "
+            "e.g. a LearnerCreditEnterpriseCourseEnrollment ID."
         ),
+    )
+    reference_type = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        # Since null=True we do not need a default choice.  Furthermore, a default doesn't make sense anyway because
+        # there's no reasonable heuristic to guess the type before runtime.
+        choices=TransactionReferenceTypeChoices.CHOICES,
+        db_index=True,
+        help_text="The type of identifier used for `reference_id`.",
+    )
+    subsidy_access_policy_uuid = models.UUIDField(
+        blank=True,
+        null=True,
+        help_text="A reference to the subsidy access policy which was used to create a transaction for the content."
     )
     history = HistoricalRecords()
 
