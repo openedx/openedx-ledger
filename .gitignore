@@ -1,6 +1,7 @@
 *.py[cod]
 __pycache__
 .pytest_cache
+default.db
 
 # C extensions
 *.so

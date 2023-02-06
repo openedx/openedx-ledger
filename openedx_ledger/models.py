@@ -8,6 +8,7 @@ from django.db.models.functions import Coalesce
 from django.db.transaction import atomic
 from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
+from simple_history.models import HistoricalRecords
 
 # Units on the ledger model - probably yes. TODO: say why
 # Unit conversion - price/seat is captured somewhere, is it in here?
@@ -80,6 +81,7 @@ class Ledger(TimeStampedModelWithUuid):
         blank=True,
         null=True,
     )
+    history = HistoricalRecords()
 
     def balance(self):
         """
@@ -170,6 +172,7 @@ class Transaction(BaseTransaction):
             "e.g. a course enrollment ID, an entitlement ID, a subscription license ID."
         ),
     )
+    history = HistoricalRecords()
 
 
 class Reversal(BaseTransaction):
@@ -192,5 +195,6 @@ class Reversal(BaseTransaction):
         null=True,
         on_delete=models.SET_NULL,
     )
+    history = HistoricalRecords()
     # Reversal quantities should always have the opposite sign of the transaction (i.e. negative)
     # We have to enforce this somehow...

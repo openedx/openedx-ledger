@@ -19,6 +19,12 @@ auth.User:
   ".. pii_retirement": "consumer_api"
 contenttypes.ContentType:
   ".. no_pii:": "This model has no PII"
+openedx_ledger.HistoricalLedger:
+  ".. no_pii:": "This model has no PII"
+openedx_ledger.HistoricalReversal:
+  ".. no_pii:": "This model has no PII"
+openedx_ledger.HistoricalTransaction:
+  ".. no_pii:": "This model has no PII"
 sessions.Session:
   ".. no_pii:": "This model has no PII"
 social_django.Association:

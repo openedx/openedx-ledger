@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'openedx_ledger',
+    'simple_history',
 )
 
 LOCALE_PATHS = [
@@ -47,6 +48,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 )
 
 TEMPLATES = [{
