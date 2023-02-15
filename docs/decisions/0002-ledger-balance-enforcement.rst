@@ -4,17 +4,13 @@
 Status
 ******
 
-**Provisional**
-
-.. TODO: When ready, update the status to Accepted.
+**Accepted** *2023-02-15*
 
 .. Standard statuses
     - **Draft** if the decision is newly proposed and in active discussion
     - **Provisional** if the decision is still preliminary and in experimental phase
     - **Accepted** *(date)* once it is agreed upon
     - **Superseded** *(date)* with a reference to its replacement if a later ADR changes or reverses the decision
-
-    If an ADR has Draft status and the PR is under review, you can either use the intended final status (e.g. Provisional, Accepted, etc.), or you can clarify both the current and intended status using something like the following: "Draft (=> Provisional)". Either of these options is especially useful if the merged status is not intended to be Accepted.
 
 Context
 *******
@@ -32,7 +28,8 @@ balance, which is enforced via the following code pattern:
       # create a transaction with the given quantity
 
 However, without leveraging any database or other guardrails to prevent race conditions, the sample code alone does not
-guarantee an always-positive balance.  For example, two requests may attempt a subsidy redemption close in time:
+guarantee an always-positive balance.  For example, two requests may attempt a subsidy redemption close in time,
+resulting in a negative ledger balance:
 
 +-----------------+-----------------------+-----------------------+
 | Ledger Balance  |  Request 1            | Request 2             |
@@ -47,15 +44,63 @@ guarantee an always-positive balance.  For example, two requests may attempt a s
 +-----------------+-----------------------+-----------------------+
 |              3  |                                               |
 +-----------------+-----------------------+-----------------------+
-|                 |                       | create -4 transaction |
+|                 |                       | create -5 transaction |
 +-----------------+-----------------------+-----------------------+
-|             -1  |                       |                       |
+|             -2  |                       |                       |
 +-----------------+-----------------------+-----------------------+
 
+Here's a real-life recreation using two separate MySQL sessions, and using InnoDB with Repeatable Read isolation level.
+I prefixed each prompt with (A) or (B) to distinguish the two shells:
+
+.. code-block::
+
+  (A) mysql> BEGIN;
+  Query OK, 0 rows affected (0.00 sec)
+
+  (A) mysql> select sum(quantity) from openedx_ledger_transaction where ledger_id = '53d0ebb507714106820006410fd6ab33';
+  +---------------+
+  | sum(quantity) |
+  +---------------+
+  |            10 |
+  +---------------+
+  1 row in set (0.00 sec)
+
+  (B) mysql> BEGIN;
+  Query OK, 0 rows affected (0.00 sec)
+
+  (B) mysql> select sum(quantity) from openedx_ledger_transaction where ledger_id = '53d0ebb507714106820006410fd6ab33';
+  +---------------+
+  | sum(quantity) |
+  +---------------+
+  |            10 |
+  +---------------+
+  1 row in set (0.00 sec)
+
+  (A) mysql> insert into openedx_ledger_transaction values (now(),now(),'97a26e85170f4866a6dacbe60bf3d9ae','idempotency-key-tx-a1',-7,NULL,1,'content-key-1','enrollment-id','53d0ebb507714106820006410fd6ab33');
+  Query OK, 1 row affected (0.00 sec)
+
+  (B) mysql> insert into openedx_ledger_transaction values (now(),now(),'8b7025e7be974419a7f20b3c1621fe1f','idempotency-key-tx-a2',-5,NULL,1,'content-key-1','enrollment-id','53d0ebb507714106820006410fd6ab33');
+  Query OK, 1 row affected (0.01 sec)
+
+  (A) mysql> COMMIT;
+  Query OK, 0 rows affected (0.00 sec)
+
+  (B) mysql> COMMIT;
+  Query OK, 0 rows affected (0.00 sec)
+
+  (B) mysql> select sum(quantity) from openedx_ledger_transaction where ledger_id = '53d0ebb507714106820006410fd6ab33';
+  +---------------+
+  | sum(quantity) |
+  +---------------+
+  |            -2 |
+  +---------------+
+  1 row in set (0.00 sec)
+
 Guardrails provided by Django and MySQL by default are insufficient to prevent this scenario.  Django may implicitly
-wrap the request in a MySQL database transaction (or we may explicitly do so via `atomic()` context manager), but a
-MySQL transaction will at most implicitly grab a row-level lock.  Simple row-level locks, however, are insufficient in
-this case because we must actually defend against the creation of a new transaction entirely.
+wrap the request in a MySQL database transaction (or we may explicitly do so via ``atomic()`` context manager), but a
+MySQL transaction will *at most* implicitly grab a row-level lock (such as in the case of an ``UPDATE`` or ``DELETE``,
+as described in `InnoDB Transaction Isolation Levels`_).  Simple row-level locks, however, are insufficient in this case
+because we must actually defend against the insertion of a new record (ledger transaction) entirely.
 
 Another relevant base fact is that our expected data volume for the Transaction table is on the order of 10s of thousands of
 records for most installations, and queries against the table will always leverage an indexed column with low
@@ -86,7 +131,7 @@ Here's one possible implementation of atomic_with_table_lock(), inspired by a `S
       until the first transaction commits or rolls back.
       """
       skip_locking = False
-      if connection.vendor == "mysql":
+      if connection.vendor != "mysql":
           logger.warn(
               "Failed to grab row lock due to the detected database not being mysql. Explicit locking will not be used "
               "in this transaction."
@@ -144,19 +189,20 @@ complete, which is made possible by locking the entire table.
 
 The `MySQL Transaction Isolation Levels`_ are not relevant in this case because table locking is so coarse that no two
 ledger transaction reads in the same DB transaction have any opportunity to read different values.  That said, it may
-benefit us to upgrade from the Django default of `read committed` to `repeatable read` which may protect against phantom
-reads in other code paths that don't leverage explicit table locking.  It's worth noting that under `repeatable read` a
-snapshot of the records are made at the first read rather than the beginning of the transaction, so in the above
-sequence diagram request 2 takes a snapshot after the COMMIT of request 1, thus reading a ledger balance of 3.
+benefit us to upgrade from the Django default of ``read committed`` to ``repeatable read`` which may protect against
+phantom reads in other code paths that don't leverage explicit table locking.  It's worth noting that under
+``repeatable read`` a snapshot of the records are made at the first read rather than the beginning of the transaction,
+so in the above sequence diagram request 2 takes a snapshot after the COMMIT of request 1, thus reading a ledger balance
+of 3.
 
 Approach 2: Proxy Row Locking
 *****************************
 
 This approach also leverages MySQL locking features, but locks only Transactions related to a single Subsidy/Ledger
 rather than ALL Transactions.  This approach uses a row in a table other than the one being modified to hold a lock,
-hence the made-up term "proxy row locking".  This is definitely a hack because it leverages a MySQL feture `SELECT *
-FROM ... FOR UPDATE` which is intended for updating rows being selected, as the command name suggests, but we will never
-update rows being explicitly read-locked.
+hence the made-up term "proxy row locking".  This is definitely a hack because it leverages a MySQL feture
+``SELECT * FROM ... FOR UPDATE`` which is intended for updating rows being selected, as the command name suggests, but
+we will never update rows being explicitly read-locked.
 
 This is similar to whole-table locking described in approach 1, except a row in the Subsidy model is used for locking
 during a Transaction insert:
@@ -186,7 +232,7 @@ Here's one possible implementation of atomic_with_table_lock():
               "{model._meta.object_name}.{field_name}.  Explicit locking will not be used in this transaction."
           )
           skip_locking = True
-      if connection.vendor == "mysql":
+      if connection.vendor != "mysql":
           logger.warn(
               "Failed to grab row lock due to the detected database not being mysql. Explicit locking will not be used "
               "in this transaction."
@@ -283,8 +329,8 @@ Here's one possible implementation of atomic_with_redis_lock() using `python-red
           with transaction.atomic(durable=True):
               yield
 
-Overview
-********
+Advantages/Disadvantages
+************************
 
 Table Locking Advantages:
 
@@ -308,7 +354,11 @@ Proxy Row Locking Disadvantages:
 Distributed Locks Using Redis Advantages:
 
 * Good performance, but sensitive to Redis response time.
-* Simple code.  Easy for future engineers to understand.
+* Simple code.  Easy for future engineers to understand, and easier to debug in the wild (with simple logging).
+* Easier to configure the behavior of via Django settings (e.g. we could change expire or auto_renewal on the fly if the
+  values were stored in Django settings variables).
+* Potentially easier to break out of deadlock: straightforward to introduce a convenience function/command to clear all
+  ``lock-subsidy-*`` redis locks if things ever went sideways, vs. working in the MySQL shell to clear low-level locks.
 
 Distributed Locks Using Redis Disadvantages:
 
@@ -320,6 +370,12 @@ Distributed Locks Using Redis Disadvantages:
 
 * Not available during unit tests. (Common disadvantage)
 
+Decision
+********
+
+We shall move forward with implementing distributed locks using redis to enforce a non-negative ledger balance (Approach
+3).
+
 Consequences
 ************
 
@@ -329,18 +385,45 @@ cardinality, and the database should be deployed to a dedicated DB instance.  Al
 tolerate a slight performance hit.  We may be able to tolerate the performance of the full table locking approach, but
 there's no doubt the 2nd and 3rd approaches will have adequate performance.
 
-Alternatives
-************
+Rejected Alternatives
+*********************
 
-I'm not aware of any more alternatives aside from the 3 approaches described above.
+Approaches 1 and 2 described in this document are both rejected.  There are two more approaches rejected far earlier in
+the process of research:
+
+Explicit row-level locking read with gap locking
+------------------------------------------------
+
+One non-working solution which must be mentioned is to use explicit row-level locking read with gap locking.  This
+solution would leverage ``SELECT ... FOR UPDATE`` in combination with a generous ``WHERE`` clause to read-lock a range of
+ledger transactions that encapsulate all current and future transactions for a given subsidy ("future" transactions
+being the "gap").  According to `InnoDB Transaction Isolation Levels`_, Repeatable Read and Read Committed isolation
+levels make this pattern available.  Conceptually this sounds like exactly what we need.
+
+Unfortunately, gap locking only works when the database can predict the gaps using basic greater-than or less-than
+comparisons on a field.  However, future ledger transactions are creating using unpredictable UUIDs.  Even if we used an
+auto-incrementing integer ID, there's no way to craft a ``WHERE`` condition on that field alone while also narrowing the
+results to just one specific linked Subisdy.  Furthermore, crafting a locking read gap clause of
+``ledger_id = '<specific UUID>'`` does not magically work, which I know only from experimentation.  I'm led to believe
+that row-level locking reads only work with unique integer fields.
+
+DynamoDB
+--------
+
+We already use DynamoDB to store Atlantis locks.  DynamoDB is well suited as a lock backend, but it is unavailable
+within edX Devstack which makes it a poor choice because devstack should be as prod-like as possible to allow us to
+catch as many bugs as possible before they get merged, or to be able to reproduce as many bugs as possible without
+merging fix attempts.
 
 References
 **********
 
+* `InnoDB Transaction Isolation Levels`_
 * `MySQL Transaction Isolation Levels`_
 * `StackOverflow question about table locking via Django ORM`_
 * `python-redis-lock`_
 
+.. _InnoDB Transaction Isolation Levels: https://dev.mysql.com/doc/refman/5.7/en/innodb-locking-reads.html
 .. _MySQL Transaction Isolation Levels: https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html
 .. _StackOverflow question about table locking via Django ORM: https://stackoverflow.com/questions/19686204/django-orm-and-locking-table
 .. _python-redis-lock: https://github.com/ionelmc/python-redis-lock
