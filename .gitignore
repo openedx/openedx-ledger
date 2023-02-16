@@ -63,3 +63,9 @@ requirements/private.txt
 
 # IDEs and Editors
 *~
+
+# pyenv
+.python-version
+
+# reporting for PII in models
+pii_report/
