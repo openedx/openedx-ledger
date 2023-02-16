@@ -2,12 +2,13 @@
 Admin configuration for openedx_ledger models.
 """
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 
 from openedx_ledger import models
 
 
 @admin.register(models.Ledger)
-class LedgerAdmin(admin.ModelAdmin):
+class LedgerAdmin(SimpleHistoryAdmin):
     """
     Admin configuration for the Ledger model.
     """
@@ -39,7 +40,7 @@ class LedgerAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Transaction)
-class TransactionAdmin(admin.ModelAdmin):
+class TransactionAdmin(SimpleHistoryAdmin):
     """
     Admin configuration for the Transaction model.
     """
@@ -54,7 +55,7 @@ class TransactionAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Reversal)
-class ReversalAdmin(admin.ModelAdmin):
+class ReversalAdmin(SimpleHistoryAdmin):
     """
     Admin configuration for the Reversal model.
     """
