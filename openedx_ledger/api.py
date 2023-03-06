@@ -6,7 +6,9 @@ from django.db.transaction import atomic
 from openedx_ledger import models
 
 
-def create_transaction(ledger, quantity, idempotency_key, **metadata):
+def create_transaction(
+    ledger, quantity, idempotency_key, lms_user_id=None, content_key=None, subsidy_access_policy_uuid=None, **metadata
+):
     """
     Create a transaction.
 
@@ -26,8 +28,11 @@ def create_transaction(ledger, quantity, idempotency_key, **metadata):
             ledger=ledger,
             idempotency_key=idempotency_key,
             defaults={
-                'quantity': quantity,
-                'metadata': metadata,
+                "quantity": quantity,
+                "content_key": content_key,
+                "lms_user_id": lms_user_id,
+                "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
+                "metadata": metadata,
             },
         )
         return transaction

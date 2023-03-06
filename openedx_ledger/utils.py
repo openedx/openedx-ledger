@@ -4,7 +4,7 @@ Common utility functions that don't create/update/destroy business objects.
 import hashlib
 from uuid import uuid4
 
-TRANSACTION_METADATA_KEYS = ['opportunity_id', 'request_user', 'request_timestamp', 'etc...']
+TRANSACTION_METADATA_KEYS = ['opportunity_id', 'request_user', 'request_timestamp', 'initial', 'etc...']
 
 
 def create_idempotency_key_for_subsidy(subsidy_record):
