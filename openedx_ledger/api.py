@@ -22,7 +22,8 @@ def create_transaction(
     with atomic(durable=True):
         balance = ledger.balance()
         if (quantity < 0) and ((balance + quantity) < 0):
-            raise Exception("d'oh!")
+            # TODO: we definitely have to revisit this logic later to implement ADR 0002.
+            raise Exception("d'oh!")  # pylint: disable=broad-exception-raised
 
         transaction, _ = models.Transaction.objects.get_or_create(
             ledger=ledger,
