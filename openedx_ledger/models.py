@@ -10,15 +10,15 @@ from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
 
+from .utils import create_idempotency_key_for_ledger
+
 
 class UnitChoices:
     USD_CENTS = 'usd_cents'
     SEATS = 'seats'
-    JPY = 'jpy'
     CHOICES = (
         (USD_CENTS, 'U.S. Dollar (Cents)'),
         (SEATS, 'Seats in a course'),
-        (JPY, 'Japanese Yen'),
     )
 
 
@@ -101,7 +101,7 @@ class Ledger(TimeStampedModelWithUuid):
     # _does not_ raise an exception and get a different, non exception, output).
     idempotency_key = models.CharField(
         max_length=255,
-        blank=False,
+        blank=True,
         null=False,
         unique=True,
     )
@@ -133,11 +133,19 @@ class Ledger(TimeStampedModelWithUuid):
             agg = agg.aggregate(total_quantity=Coalesce(models.Sum('row_total'), 0))
             return agg['total_quantity']
 
+    def save(self, *args, **kwags):
+        """
+        Sets the idempotency_key for the ledger if it is currently null.
+        """
+        if not self.idempotency_key:
+            self.idempotency_key = create_idempotency_key_for_ledger()
+        super().save(*args, **kwags)
+
     def __str__(self):
         """
         Return string representation of this ledger, visible in logs, django admin, etc.
         """
-        return self.idempotency_key
+        return f'<Ledger uuid={self.uuid},\nidempotency_key={self.idempotency_key}>'
 
 
 class BaseTransaction(TimeStampedModelWithUuid):

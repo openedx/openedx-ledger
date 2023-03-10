@@ -32,55 +32,29 @@ One Time Setup
 --------------
 .. code-block::
 
-  # Clone the repository
-  git clone git@github.com:iloveagent57/openedx-ledger.git
-  cd openedx-ledger
-
-  # Set up a virtualenv using virtualenvwrapper with the same name as the repo and activate it
-  mkvirtualenv -p python3.8 openedx-ledger
-  # or with pyenv
-  pyenv virtualenv 3.8 openedx-ledger
+  # Clone the repository into your devstack src/ directory
+  cd $DEVSTACK_WORKSPACE/src
+  git clone git@github.com:openedx/openedx-ledger.git
 
 
 Every time you develop something in this repo
 ---------------------------------------------
 .. code-block::
 
-  # Activate the virtualenv
-  workon openedx-ledger
-  # or with pyenv
-  pyenv activate openedx-ledger
+   # shell into a running enterprise-subsidy container
+   make app-shell
 
-  # Grab the latest code
-  git checkout main
-  git pull
+   # inside the container shell now
+   # TODO find a better permanent place to put this git config call
+   git config --global --add safe.directory /edx/src/openedx-ledger
+   pip install -e /edx/src/openedx-ledger
+   pip freeze | grep ledger # should give output pointing at a file and git hash
 
-  # Install/update the dev requirements
-  make requirements
+   # Now, to run tests and validation against openedx-ledger:
+   pushd /edx/src/openedx-ledger
+   source venv/bin/activate
+   make validate
 
-  # Run just the tests
-  make test
-
-  # Run the tests and quality checks (to verify the status before you make any changes)
-  make validate
-
-  # Make a new branch for your changes
-  git checkout -b <your_github_username>/<short_description>
-
-  # Using your favorite editor, edit the code to make your change.
-  vim ...
-
-  # Run your new tests
-  pytest ./tests/new_tests.py
-
-  # Run all the tests and quality checks
-  make validate
-
-  # Commit all your changes
-  git commit ...
-  git push
-
-  # Open a PR and ask for review.
 
 Deploying
 =========
