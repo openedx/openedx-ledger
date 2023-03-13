@@ -5,7 +5,7 @@ from uuid import uuid4
 
 import factory
 
-from openedx_ledger.models import Ledger, Transaction, UnitChoices
+from openedx_ledger.models import Ledger, Transaction, TransactionStateChoices, UnitChoices
 
 
 class LedgerFactory(factory.django.DjangoModelFactory):
@@ -30,9 +30,7 @@ class TransactionFactory(factory.django.DjangoModelFactory):
         model = Transaction
 
     uuid = factory.LazyFunction(uuid4)
-    idempotency_key = factory.Faker(
-        "lexify",
-        text=factory.LazyAttribute(lambda tx: f"{tx.ledger.idempotency_key}-{tx.quantity}-????"),
-    )
+    idempotency_key = factory.LazyFunction(uuid4)
+    state = TransactionStateChoices.CREATED
     quantity = factory.Faker("random_int", min=-100000, max=-100)
     ledger = factory.Iterator(Ledger.objects.all())
