@@ -34,3 +34,4 @@ class TransactionFactory(factory.django.DjangoModelFactory):
     state = TransactionStateChoices.CREATED
     quantity = factory.Faker("random_int", min=-100000, max=-100)
     ledger = factory.Iterator(Ledger.objects.all())
+    lms_user_id = factory.Faker("random_int", min=1, max=1000)
