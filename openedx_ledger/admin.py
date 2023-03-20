@@ -1,10 +1,15 @@
 """
 Admin configuration for openedx_ledger models.
 """
+from django.conf import settings
 from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
 
 from openedx_ledger import models
+
+
+def can_modify():
+    getattr(settings, 'ALLOW_LEDGER_MODIFICATION', False)
 
 
 @admin.register(models.Ledger)
@@ -17,20 +22,16 @@ class LedgerAdmin(SimpleHistoryAdmin):
         """
         Metaclass for LedgerAdmin.
         """
-
         model = models.Ledger
 
-    readonly_fields = ('idempotency_key', 'unit', 'balance')
-    list_display = ('idempotency_key', 'unit', 'uuid')
-    fieldsets = (
-        (None, {
-            'fields': ('idempotency_key', 'unit',)
-        }),
-        ('Advanced options, yo!', {
-            'classes': ('collapse',),
-            'fields': ('balance', 'metadata'),
-        }),
-    )
+    fields = ('uuid', 'idempotency_key', 'unit', 'balance', 'metadata')
+    if can_modify():
+        readonly_fields = ('uuid', 'balance')
+    else:
+        readonly_fields = fields
+
+    # Do not add balance here, it's a computed value.
+    list_display = ('uuid', 'unit', 'idempotency_key')
 
     def balance(self, obj):
         """
@@ -52,6 +53,16 @@ class TransactionAdmin(SimpleHistoryAdmin):
 
         model = models.Transaction
         fields = '__all__'
+
+    _all_fields = [field.name for field in models.Transaction._meta.get_fields()]
+    list_display = ('uuid', 'idempotency_key', 'quantity', 'state',)
+    if can_modify():
+        readonly_fields = (
+            'created',
+            'modified',
+        )
+    else:
+        readonly_fields = _all_fields
 
 
 @admin.register(models.Reversal)

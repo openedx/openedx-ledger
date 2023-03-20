@@ -1,13 +1,16 @@
 """
 The openedx_ledger python API.
 """
-from django.db.transaction import atomic
+from django.db.transaction import atomic, get_connection
 
-from openedx_ledger import models
+from openedx_ledger import models, utils
 
 
 def create_transaction(
-    ledger, quantity, idempotency_key, lms_user_id=None, content_key=None, subsidy_access_policy_uuid=None, **metadata
+    ledger, quantity, idempotency_key,
+    lms_user_id=None, content_key=None,
+    subsidy_access_policy_uuid=None, state=models.TransactionStateChoices.CREATED,
+    **metadata
 ):
     """
     Create a transaction.
@@ -17,9 +20,8 @@ def create_transaction(
     (course id, ledger, user) are unique.
     Or support an idempotency key.
     """
-    # Note that the default isolation level for MySQL provided by Django is `repeatable read`.
-    # Therefore...this is good.  Because reasons.  TODO: better explanation.
-    with atomic(durable=True):
+    durable = not get_connection().in_atomic_block
+    with atomic(durable=durable):
         balance = ledger.balance()
         if (quantity < 0) and ((balance + quantity) < 0):
             # TODO: we definitely have to revisit this logic later to implement ADR 0002.
@@ -33,6 +35,7 @@ def create_transaction(
                 "content_key": content_key,
                 "lms_user_id": lms_user_id,
                 "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
+                "state": state,
                 "metadata": metadata,
             },
         )
@@ -63,19 +66,37 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
         return reversal
 
 
-def create_ledger(unit, idempotency_key, **metadata):
+def create_ledger(unit=None, idempotency_key=None, subsidy_uuid=None, initial_deposit=None, **metadata):
     """
-    Idempotency key here, too.
+    Primary interface for creating a Ledger record.
+
+    params:
+      unit: Optional unit for the ledger, defaults to the model default of USD_CENTS.
+      idempotency_key: Optional idempotency key, defaults to result of
+        the utility function for creating ledger idempotency key
+      subsidy_uuid: Optional subsidy uuid used in above utility function.
+      initial_deposit: Optional amount of value to initialize the ledger with.  In units specified by units
+        (units by default are USD_CENTS).
+      metadata: Optional additional information for the ledger.
     """
     ledger, _ = models.Ledger.objects.get_or_create(
-        unit=unit,
-        idempotency_key=idempotency_key,
-        metadata=metadata,
+        unit=unit or models.UnitChoices.USD_CENTS,
+        idempotency_key=idempotency_key or utils.create_idempotency_key_for_ledger(subsidy_uuid),
+        defaults={
+            'metadata': metadata,
+        },
     )
+    if initial_deposit:
+        initial_idpk = utils.create_idempotency_key_for_transaction(
+            ledger,
+            initial_deposit,
+            is_initial_deposit=True,
+        )
+        create_transaction(
+            ledger,
+            initial_deposit,
+            initial_idpk,
+            state=models.TransactionStateChoices.COMMITTED,
+        )
+
     return ledger
-
-
-def update_ledger(ledger, **metadata):  # pylint: disable=unused-argument
-    """
-    TODO.
-    """

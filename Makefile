@@ -64,7 +64,7 @@ requirements: piptools ## install development environment requirements
 	pip-sync -q requirements/dev.txt requirements/private.*
 
 test: clean ## run tests in the current virtualenv
-	pytest
+	DJANGO_SETTINGS_MODULE=test_settings pytest
 
 diff_cover: test ## find diff lines that need test coverage
 	diff-cover coverage.xml
@@ -77,6 +77,15 @@ validate: quality pii_check test ## run tests and quality checks
 
 selfcheck: ## check that the Makefile is well-formed
 	@echo "The Makefile is well-formed."
+
+isort:
+	isort tests openedx_ledger manage.py setup.py test_settings.py
+
+style:
+	pycodestyle openedx_ledger tests manage.py setup.py
+
+lint:
+	pylint openedx_ledger tests manage.py setup.py
 
 ## Localization targets
 

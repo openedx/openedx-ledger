@@ -16,8 +16,21 @@ Unreleased
 
 *
 
+[0.2.0]
+*******
+
+* Some small developer QOL stuff.
+* Better local development instructions in README.
+* Remove docs from quality checks and ci.yml.
+* Reasonable first pass at allowing for weak/strong admin editing ability depending on environment settings.
+* Simple, first attempt at an idempotency key utility methods for ledgers and transactions that optionally take a subsidy and initial deposit, resp.
+* Allow blank idp keys on the Ledger model, and set to a sane default if not provided on save().
+* Remove JPY as an allowed unit.
+* ``api.create_ledger()`` now seeds the ledger with an optional initial deposit.
+* Check if we're already inside a transaction when setting ``durable=True`` in ``create_transaction()``.
+
 [0.1.1] - 2023-01-05
-************************************************
+********************
 
 Added
 =====
