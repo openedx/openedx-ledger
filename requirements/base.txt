@@ -66,7 +66,7 @@ drf-jwt==1.19.2
     # via edx-drf-extensions
 edx-django-release-util==1.2.0
     # via -r requirements/base.in
-edx-django-utils==5.2.0
+edx-django-utils==5.3.0
     # via
     #   -r requirements/base.in
     #   edx-drf-extensions
@@ -78,7 +78,7 @@ edx-opaque-keys[django]==2.3.0
     #   openedx-events
 edx-rbac==1.7.0
     # via -r requirements/base.in
-fastavro==1.7.2
+fastavro==1.7.3
     # via openedx-events
 future==0.18.3
     # via pyjwkest
@@ -88,9 +88,9 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.1.1
     # via -r requirements/base.in
-newrelic==8.7.0
+newrelic==8.7.1
     # via edx-django-utils
-openedx-events==6.0.0
+openedx-events==7.0.0
     # via -r requirements/base.in
 pbr==5.11.1
     # via stevedore
@@ -121,7 +121,7 @@ pytz==2022.7.1
     #   djangorestframework
 pyyaml==6.0
     # via edx-django-release-util
-redis==4.5.1
+redis==4.5.2
     # via -r requirements/base.in
 requests==2.28.2
     # via
@@ -144,5 +144,5 @@ stevedore==5.0.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys
-urllib3==1.26.14
+urllib3==1.26.15
     # via requests

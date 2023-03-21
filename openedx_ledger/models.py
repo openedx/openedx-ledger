@@ -10,7 +10,7 @@ from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
 
-from .utils import create_idempotency_key_for_ledger
+from openedx_ledger.utils import create_idempotency_key_for_ledger
 
 
 class UnitChoices:
@@ -119,19 +119,37 @@ class Ledger(TimeStampedModelWithUuid):
     )
     history = HistoricalRecords()
 
-    def balance(self):
+    def subset_balance(self, transactions_queryset):
         """
-        Return the current balance of the ledger as an integer.
+        Calculate the current balance of the ledger, optionally on a subset of transactions.
+
+        WARNING: The queryset must be a strict subset of self.transactions.  If not, then the return value will
+        represent only the set intersection of the given transactions_queryset and self.transactions.
+
+        Args:
+            transaction_subset (queryset of openedx_ledger.models.Transaction):
+                Transactions to evaluate for the balance calculation.
+
+        Returns:
+            int: The total balance of all or a subset of transactions in this ledger.  Possibly a negative value if the
+            only transactions evaluated are ones that represent un-reversed enrollment fulfillments.
         """
         with atomic():
-            transactions = Transaction.objects.filter(
-                ledger=self,
-            ).select_related('reversal')
-            agg = transactions.annotate(
+            transactions_queryset = transactions_queryset.filter(ledger=self).select_related('reversal')
+            agg = transactions_queryset.annotate(
                 row_total=Coalesce(models.Sum('quantity'), 0) + Coalesce(models.Sum('reversal__quantity'), 0)
             )
             agg = agg.aggregate(total_quantity=Coalesce(models.Sum('row_total'), 0))
             return agg['total_quantity']
+
+    def balance(self):
+        """
+        Calculate the current balance of the ledger.
+
+        Returns:
+            int: The total balance of all transactions in this ledger.  Always positive.
+        """
+        return self.subset_balance(Transaction.objects.filter(ledger=self))
 
     def save(self, *args, **kwags):
         """
