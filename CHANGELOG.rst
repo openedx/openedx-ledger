@@ -13,12 +13,16 @@ Change Log
 
 Unreleased
 **********
+Nothing
 
-*
+[0.2.2]
+*******
+* Add many help_text fields to model fields.
+* Add some useful composite table indices.
+* Add a "failed" transaction state.
 
 [0.2.0]
 *******
-
 * Some small developer QOL stuff.
 * Better local development instructions in README.
 * Remove docs from quality checks and ci.yml.

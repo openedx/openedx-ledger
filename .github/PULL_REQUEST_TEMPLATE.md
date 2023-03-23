@@ -1,24 +1,9 @@
-**Description:** Describe in a couple of sentences what this PR adds
-
-**JIRA:** Link to JIRA ticket
-
-**Dependencies:** dependencies on other outstanding PRs, issues, etc. 
-
-**Merge deadline:** List merge deadline (if any)
-
-**Installation instructions:** List any non-trivial installation 
-instructions.
+**Description:**
+Describe in a couple of sentences what this PR adds
+Link to the Jira ticket, if applicable.
 
 **Testing instructions:**
-
-1. Open page A
-2. Do thing B
-3. Expect C to happen
-4. If D happened instead - check failed.
-
-**Reviewers:**
-- [ ] tag reviewer 
-- [ ] tag reviewer 
+Add some.
 
 **Merge checklist:**
 - [ ] All reviewers approved
@@ -33,7 +18,3 @@ instructions.
 - [ ] Check new version is pushed to PyPI after tag-triggered build is 
       finished.
 - [ ] Delete working branch (if not needed anymore)
-
-**Author concerns:** List any concerns about this PR - inelegant 
-solutions, hacks, quick-and-dirty implementations, concerns about 
-migrations, etc.
