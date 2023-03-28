@@ -5,7 +5,15 @@ from uuid import uuid4
 
 import factory
 
-from openedx_ledger.models import Ledger, Reversal, Transaction, TransactionStateChoices, UnitChoices
+from openedx_ledger.models import (
+    ExternalFulfillmentProvider,
+    ExternalTransactionReference,
+    Ledger,
+    Reversal,
+    Transaction,
+    TransactionStateChoices,
+    UnitChoices,
+)
 
 
 class LedgerFactory(factory.django.DjangoModelFactory):
@@ -35,6 +43,29 @@ class TransactionFactory(factory.django.DjangoModelFactory):
     quantity = factory.Faker("random_int", min=-100000, max=-100)
     ledger = factory.Iterator(Ledger.objects.all())
     lms_user_id = factory.Faker("random_int", min=1, max=1000)
+
+
+class ExternalFulfillmentProviderFactory(factory.django.DjangoModelFactory):
+    """
+    Test factory for the `ExternalFulfillmentProvider` model.
+    """
+    class Meta:
+        model = ExternalFulfillmentProvider
+
+    name = factory.Faker("company")
+    slug = factory.Faker("slug")
+
+
+class ExternalTransactionReferenceFactory(factory.django.DjangoModelFactory):
+    """
+    Test factory for the `ExternalTransactionReferenceFactory` model.
+    """
+    class Meta:
+        model = ExternalTransactionReference
+
+    external_reference_id = factory.Faker("lexify", text="????-????-????-????")
+    transaction = factory.Iterator(Transaction.objects.all())
+    external_fulfillment_provider = factory.Iterator(ExternalFulfillmentProvider.objects.all())
 
 
 class ReversalFactory(factory.django.DjangoModelFactory):
