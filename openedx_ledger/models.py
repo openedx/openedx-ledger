@@ -49,21 +49,6 @@ class TransactionStateChoices:
     )
 
 
-class TransactionReferenceTypeChoices:
-    """
-    Enumerate different choices for the type of Transaction reference_id.
-
-    The reference_id of a Transaction may refer to different things depending on the type of content being enrolled and
-    the time of enrollment.  These options allow us to be explicit about the type of identifier used for that redeption
-    result.
-    """
-
-    LEARNER_CREDIT_ENTERPRISE_COURSE_ENROLLMENT_ID = 'learner_credit_enterprise_course_enrollment_id'
-    CHOICES = (
-        (LEARNER_CREDIT_ENTERPRISE_COURSE_ENROLLMENT_ID, 'LearnerCreditEnterpriseCourseEnrollment ID'),
-    )
-
-
 class TimeStampedModelWithUuid(TimeStampedModel):
     """
     Base timestamped model adding a UUID field.
@@ -287,25 +272,15 @@ class Transaction(BaseTransaction):
             "The globally unique content identifier.  Joinable with ContentMetadata.content_key in enterprise-catalog."
         )
     )
-    reference_id = models.CharField(
+    fulfillment_identifier = models.CharField(
         max_length=255,
         blank=True,
         null=True,
         db_index=True,
         help_text=(
-            "The identifier of the item acquired via the transaction. "
-            "e.g. a LearnerCreditEnterpriseCourseEnrollment ID."
+            "The UUID identifier of the subsidized enrollment record for a learner generated durning the enrollment"
+            "call made to enterprise/edx platform e.g. a LearnerCreditEnterpriseCourseEnrollment UUID."
         ),
-    )
-    reference_type = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        # Since null=True we do not need a default choice.  Furthermore, a default doesn't make sense anyway because
-        # there's no reasonable heuristic to guess the type before runtime.
-        choices=TransactionReferenceTypeChoices.CHOICES,
-        db_index=True,
-        help_text="The type of identifier used for `reference_id`.",
     )
     subsidy_access_policy_uuid = models.UUIDField(
         blank=True,
@@ -313,6 +288,112 @@ class Transaction(BaseTransaction):
         help_text="A reference to the subsidy access policy which was used to create a transaction for the content."
     )
     history = HistoricalRecords()
+
+
+class ExternalFulfillmentProvider(TimeStampedModel):
+    """
+    Model of external fulfillment providers. This is used to track the external systems that are used to fulfill
+    transactions.
+
+    .. no_pii:
+    """
+
+    class Meta:
+        """
+        Metaclass for ExternalFulfillmentProvider.
+        """
+
+        verbose_name = 'External Fulfillment provider'
+        verbose_name_plural = 'External fulfillment providers'
+
+    name = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        unique=True,
+        db_index=True,
+        help_text="The name of the external reference type.",
+    )
+    slug = models.SlugField(
+        max_length=32,
+        unique=True,
+        help_text=(
+            "The slug of the external reference type. This is typically the slugified name of the system that the "
+            "reference is associated with."
+        )
+    )
+
+    def __str__(self):
+        """
+        Return string representation of this external fulfillment provider, visible in logs, django admin, etc.
+        """
+        msg = (
+            f'<ExternalFulfillmentProvider\n'
+            f'name={self.name}\n'
+            f'slug={self.slug}>'
+        )
+        return msg
+
+
+class ExternalTransactionReference(TimeStampedModel):
+    """
+    Model of references to transactions from an external system and their associated Transaction objects.
+
+    .. no_pii:
+    """
+
+    class Meta:
+        """
+        Metaclass for ExternalTransactionReference.
+        """
+
+        unique_together = [('external_reference_id', 'external_fulfillment_provider')]
+        verbose_name = 'External Transaction Reference'
+
+    transaction = models.ForeignKey(
+        Transaction,
+        related_name='external_reference',
+        null=True,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The Transaction to which this external reference is associated."
+        ),
+    )
+    external_reference_id = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        primary_key=True,
+        db_index=True,
+        help_text=(
+            "The identifier for the external reference operation. This is typically the name of the system that the "
+            "reference is associated with."
+        ),
+    )
+    external_fulfillment_provider = models.ForeignKey(
+        ExternalFulfillmentProvider,
+        related_name='reference',
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The provider (source) of the external reference."
+        )
+    )
+
+    def __str__(self):
+        """
+        Return string representation of this external reference, visible in logs, django admin, etc.
+        """
+        msg = (
+            f'<ExternalTransactionReference\n'
+            f'external_reference_id={self.external_reference_id}\n'
+            f'external_fulfillment_provider={self.external_fulfillment_provider}\n'
+        )
+        if self.transaction:
+            msg += f'associated with {self.transaction}\n'
+        msg += '>'
+        return msg
 
 
 class Reversal(BaseTransaction):

@@ -54,6 +54,7 @@ class TransactionAdmin(SimpleHistoryAdmin):
         model = models.Transaction
         fields = '__all__'
 
+    search_fields = ('content_key', 'lms_user_id', 'uuid', 'external_reference__external_reference_id',)
     _all_fields = [field.name for field in models.Transaction._meta.get_fields()]
     list_display = ('uuid', 'idempotency_key', 'quantity', 'state',)
     if can_modify():
