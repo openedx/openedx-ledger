@@ -1,16 +1,10 @@
-0001 Ledger Balance Enforcement
+0002 Ledger Balance Enforcement
 ###############################
 
 Status
 ******
 
-**Accepted** *2023-02-15*
-
-.. Standard statuses
-    - **Draft** if the decision is newly proposed and in active discussion
-    - **Provisional** if the decision is still preliminary and in experimental phase
-    - **Accepted** *(date)* once it is agreed upon
-    - **Superseded** *(date)* with a reference to its replacement if a later ADR changes or reverses the decision
+Superseded by ADR: 0004-ledger-balance-enforcement-revised.rst
 
 Context
 *******
