@@ -6,40 +6,70 @@ from django.db.transaction import atomic, get_connection
 from openedx_ledger import models, utils
 
 
+class LedgerBalanceExceeded(Exception):
+    """
+    Exception for when a transaction could not be created because it would exceed the ledger balance.
+    """
+
+
 def create_transaction(
-    ledger, quantity, idempotency_key,
-    lms_user_id=None, content_key=None,
-    subsidy_access_policy_uuid=None, state=models.TransactionStateChoices.CREATED,
+    ledger,
+    quantity,
+    idempotency_key,
+    lms_user_id=None,
+    content_key=None,
+    subsidy_access_policy_uuid=None,
+    state=models.TransactionStateChoices.CREATED,
     **metadata
 ):
     """
     Create a transaction.
 
-    Should throw an exception when transaction would exceed balance of the ledger.
-    Locking and DB transactions?
-    (course id, ledger, user) are unique.
-    Or support an idempotency key.
-    """
-    durable = not get_connection().in_atomic_block
-    with atomic(durable=durable):
-        balance = ledger.balance()
-        if (quantity < 0) and ((balance + quantity) < 0):
-            # TODO: we definitely have to revisit this logic later to implement ADR 0002.
-            raise Exception("d'oh!")  # pylint: disable=broad-exception-raised
+    Args:
+        ledger (openedx_ledger.models.Ledger): The ledger to which the transaction should be added.
+        quantity (int): Negative value representing the desired quantity of the new Transaction.
+        idempotency_key (str): The idempotency_key of the new Transaction.
+        lms_user_id (int, Optional):
+            The lms_user_id representing the learner who is enrolling. Skip if this does not represent a policy
+            enrolling a learner into content.
+        content_key (str, Optional):
+            The identifier of the content into which the learner is enrolling. Skip if this does not represent a policy
+            enrolling a learner into content.
+        subsidy_access_policy_uuid (str, Optional):
+            The policy which permitted the creation of the new Transaction. Skip if this does not represent a policy
+            enrolling a learner into content.
+        state (str, Optional):
+            The initial state of the new transaction. Choice of openedx_ledger.models.TransactionStateChoices.
+        **metadata (dict, Optional):
+            Optional metadata to add to the transaction, potentially useful for debugging, analytics, or other purposes
+            defined by the caller.
 
-        transaction, _ = models.Transaction.objects.get_or_create(
-            ledger=ledger,
-            idempotency_key=idempotency_key,
-            defaults={
-                "quantity": quantity,
-                "content_key": content_key,
-                "lms_user_id": lms_user_id,
-                "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
-                "state": state,
-                "metadata": metadata,
-            },
-        )
-        return transaction
+    Raises:
+        openedx_ledger.models.LedgerLockAttemptFailed:
+            Raises this if there's another attempt in process to add a transaction to this Ledger.
+        openedx_ledger.api.LedgerBalanceExceeded:
+            Raises this if the transaction would cause the balance of the ledger to become negative.
+    """
+    with ledger.lock():
+        durable = not get_connection().in_atomic_block
+        with atomic(durable=durable):
+            balance = ledger.balance()
+            if (quantity < 0) and ((balance + quantity) < 0):
+                raise LedgerBalanceExceeded("A Transaction was not created because it would exceed the ledger balance.")
+
+            transaction, _ = models.Transaction.objects.get_or_create(
+                ledger=ledger,
+                idempotency_key=idempotency_key,
+                defaults={
+                    "quantity": quantity,
+                    "content_key": content_key,
+                    "lms_user_id": lms_user_id,
+                    "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
+                    "state": state,
+                    "metadata": metadata,
+                },
+            )
+    return transaction
 
 
 def reverse_full_transaction(transaction, idempotency_key, **metadata):

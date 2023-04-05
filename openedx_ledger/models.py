@@ -1,16 +1,21 @@
 """
 edx_ledger models.
 """
+from contextlib import contextmanager
 from uuid import uuid4
 
+from django.core.cache import cache as django_cache
 from django.db import models
 from django.db.models.functions import Coalesce
 from django.db.transaction import atomic
+from edx_django_utils.cache.utils import get_cache_key
 from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
 
 from openedx_ledger.utils import create_idempotency_key_for_ledger
+
+LEDGER_LOCK_RESOURCE_NAME = 'ledger'
 
 
 class UnitChoices:
@@ -47,6 +52,12 @@ class TransactionStateChoices:
         (COMMITTED, 'Committed'),
         (FAILED, 'Failed'),
     )
+
+
+class LedgerLockAttemptFailed(Exception):
+    """
+    Raise when attempt to lock Ledger failed due to an already existing lock.
+    """
 
 
 class TimeStampedModelWithUuid(TimeStampedModel):
@@ -146,6 +157,49 @@ class Ledger(TimeStampedModelWithUuid):
             int: The total balance of all transactions in this ledger.  Always positive.
         """
         return self.subset_balance(Transaction.objects.filter(ledger=self))
+
+    @property
+    def lock_resource_key(self) -> str:
+        return get_cache_key(resource=LEDGER_LOCK_RESOURCE_NAME, uuid=self.uuid)
+
+    def acquire_lock(self) -> str:
+        """
+        Acquire an exclusive lock on this Ledger instance.
+
+        Memcached devs recommend using add() for locking instead of get()+set(), which rules out TieredCache which only
+        exposes get()+set() from django cache.  See: https://github.com/memcached/memcached/issues/163
+
+        Returns:
+            str: lock ID if a Ledger lock was successfully acquired, None otherwise.
+        """
+        lock_id = uuid4()
+        if django_cache.add(self.lock_resource_key, lock_id):
+            return lock_id
+        else:
+            return None
+
+    def release_lock(self) -> None:
+        """
+        Release an exclusive lock on this Ledger instance.
+        """
+        django_cache.delete(self.lock_resource_key)
+
+    @contextmanager
+    def lock(self):
+        """
+        Context manager for locking this Ledger instance.
+
+        Raises:
+            openedx_ledger.models.LedgerLockAttemptFailed:
+                Raises this if there's another distributed process locking this Ledger.
+        """
+        lock_id = self.acquire_lock()
+        if not lock_id:
+            raise LedgerLockAttemptFailed(f"Failed to acquire lock <{lock_id}> on Ledger {str(self)}.")
+        try:
+            yield lock_id
+        finally:
+            self.release_lock()
 
     def save(self, *args, **kwags):
         """

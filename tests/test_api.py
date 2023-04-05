@@ -30,11 +30,17 @@ def test_no_negative_balance():
     ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-other-ledger')
     assert ledger.balance() == 0
 
-    with pytest.raises(Exception, match="d'oh!"):
+    with pytest.raises(
+        api.LedgerBalanceExceeded,
+        match="A Transaction was not created because it would exceed the ledger balance."
+    ):
         api.create_transaction(ledger, quantity=-1, idempotency_key='tx-1')
 
     api.create_transaction(ledger, quantity=999, idempotency_key='tx-2')
-    with pytest.raises(Exception, match="d'oh!"):
+    with pytest.raises(
+        api.LedgerBalanceExceeded,
+        match="A Transaction was not created because it would exceed the ledger balance."
+    ):
         api.create_transaction(ledger, quantity=-1000, idempotency_key='tx-3')
 
 
