@@ -40,6 +40,30 @@ class LedgerAdmin(SimpleHistoryAdmin):
         return obj.balance()
 
 
+@admin.register(models.ExternalFulfillmentProvider)
+class ExternalFulfillmentProviderAdmin(SimpleHistoryAdmin):
+    """
+    Admin configuration for the ExternalFulfillmentProvider model.
+    """
+    class Meta:
+        """
+        Metaclass for ExternalFulfillmentProviderAdmin.
+        """
+
+        model = models.ExternalFulfillmentProvider
+        fields = '__all__'
+
+    search_fields = ('name', 'slug',)
+    list_display = ('name', 'slug',)
+
+
+class ExternalTransactionReferenceInlineAdmin(admin.TabularInline):
+    """
+    Inline admin configuration for the ExternalTransactionReference model.
+    """
+    model = models.ExternalTransactionReference
+
+
 @admin.register(models.Transaction)
 class TransactionAdmin(SimpleHistoryAdmin):
     """
@@ -55,7 +79,7 @@ class TransactionAdmin(SimpleHistoryAdmin):
         fields = '__all__'
 
     search_fields = ('content_key', 'lms_user_id', 'uuid', 'external_reference__external_reference_id',)
-    _all_fields = [field.name for field in models.Transaction._meta.get_fields()]
+    _all_fields = [field.name for field in models.Transaction._meta.get_fields() if field.name != 'external_reference']
     list_display = ('uuid', 'idempotency_key', 'quantity', 'state',)
     if can_modify():
         readonly_fields = (
@@ -64,6 +88,7 @@ class TransactionAdmin(SimpleHistoryAdmin):
         )
     else:
         readonly_fields = _all_fields
+    inlines = [ExternalTransactionReferenceInlineAdmin]
 
 
 @admin.register(models.Reversal)
