@@ -3,9 +3,12 @@ Admin configuration for openedx_ledger models.
 """
 from django.conf import settings
 from django.contrib import admin
+from django.http import HttpResponseRedirect
+from django.urls import re_path, reverse
+from django_object_actions import DjangoObjectActions
 from simple_history.admin import SimpleHistoryAdmin
 
-from openedx_ledger import models
+from openedx_ledger import models, views
 
 
 def can_modify():
@@ -65,7 +68,7 @@ class ExternalTransactionReferenceInlineAdmin(admin.TabularInline):
 
 
 @admin.register(models.Transaction)
-class TransactionAdmin(SimpleHistoryAdmin):
+class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
     """
     Admin configuration for the Transaction model.
     """
@@ -89,6 +92,34 @@ class TransactionAdmin(SimpleHistoryAdmin):
     else:
         readonly_fields = _all_fields
     inlines = [ExternalTransactionReferenceInlineAdmin]
+
+    change_actions = ('reverse_transaction',)
+
+    def reverse_transaction(self, request, obj):
+        """
+        Redirect to the reverse transaction view.
+        """
+        # url names coming from get_urls are prefixed with 'admin' namespace
+        reverse_transaction_url = reverse("admin:reverse_transaction", args=(obj.uuid,))
+        return HttpResponseRedirect(reverse_transaction_url)
+
+    reverse_transaction.label = "Unenroll & Refund"
+    reverse_transaction.short_description = (
+        "Reverse a transaction and unenroll the learner from the platform representation of the course."
+    )
+
+    def get_urls(self):
+        """
+        Returns the additional urls used by DjangoObjectActions.
+        """
+        customer_urls = [
+            re_path(
+                r"^([^/]+)/reverse_transaction$",
+                self.admin_site.admin_view(views.ReverseTransactionView.as_view()),
+                name="reverse_transaction"
+            )
+        ]
+        return customer_urls + super().get_urls()
 
 
 @admin.register(models.Reversal)

@@ -48,6 +48,8 @@ django-filter==23.1
     # via -r requirements/base.in
 django-model-utils==4.3.1
     # via edx-rbac
+django-object-actions==4.1.0
+    # via -r requirements/base.in
 django-simple-history==3.0.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt

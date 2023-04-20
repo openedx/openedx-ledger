@@ -5,6 +5,7 @@ Django             # Web application framework
 djangoql
 django-extensions
 django-filter
+django-object-actions
 django-simple-history
 edx-django-utils
 edx-django-release-util
