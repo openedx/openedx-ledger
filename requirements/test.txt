@@ -72,6 +72,8 @@ django-model-utils==4.3.1
     # via
     #   -r requirements/base.txt
     #   edx-rbac
+django-object-actions==4.1.0
+    # via -r requirements/base.txt
 django-simple-history==3.0.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
@@ -113,7 +115,7 @@ exceptiongroup==1.1.1
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==18.4.0
+faker==18.5.1
     # via factory-boy
 fastavro==1.7.3
     # via

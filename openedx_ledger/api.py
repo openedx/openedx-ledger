@@ -4,6 +4,7 @@ The openedx_ledger python API.
 from django.db.transaction import atomic, get_connection
 
 from openedx_ledger import models, utils
+from openedx_ledger.signals.signals import TRANSACTION_REVERSED
 
 
 class LedgerBalanceExceeded(Exception):
@@ -93,6 +94,7 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
                 'metadata': metadata,
             },
         )
+        TRANSACTION_REVERSED.send(sender=models.Reversal, reversal=reversal)
         return reversal
 
 

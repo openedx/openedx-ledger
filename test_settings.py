@@ -4,8 +4,10 @@ These settings are here to use during tests, because django requires them.
 In a real-world use case, apps in this project are installed into other
 Django applications, so these settings will not be used.
 """
-
+import os
 from os.path import abspath, dirname, join
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 def root(*args):
@@ -44,16 +46,24 @@ ROOT_URLCONF = 'openedx_ledger.urls'
 
 SECRET_KEY = 'insecure-secret-key'
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
+
 MIDDLEWARE = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
 )
 
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'APP_DIRS': False,
+    'DIRS': [os.path.join(BASE_DIR, "/templates")],
+    'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': [
             'django.contrib.auth.context_processors.auth',  # this is required for admin
