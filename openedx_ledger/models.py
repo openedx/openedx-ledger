@@ -362,10 +362,6 @@ class ExternalFulfillmentProvider(TimeStampedModel):
 
     name = models.CharField(
         max_length=255,
-        blank=False,
-        null=False,
-        unique=True,
-        db_index=True,
         help_text="The name of the external reference type.",
     )
     slug = models.SlugField(
