@@ -14,10 +14,14 @@ Change Log
 Unreleased
 **********
 
+
+[0.3.3]
+*******
+* drop `ExternalFulfillmentProvider` name constraints
 * Switch from ``edx-sphinx-theme`` to ``sphinx-book-theme`` since the former is
   deprecated.  See https://github.com/openedx/edx-sphinx-theme/issues/184 for
   more details.
-  
+
 [0.2.2]
 *******
 * Add many help_text fields to model fields.
