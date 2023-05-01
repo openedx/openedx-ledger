@@ -15,7 +15,7 @@ Unreleased
 **********
 
 
-[0.3.2]
+[0.3.3]
 *******
 * drop `ExternalFulfillmentProvider` name constraints
 * Switch from ``edx-sphinx-theme`` to ``sphinx-book-theme`` since the former is
