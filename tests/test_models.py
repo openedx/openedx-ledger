@@ -2,23 +2,30 @@
 """
 Tests for the `openedx-ledger` models.
 """
+import uuid
+
 import ddt
 import pytest
 from django.test import TestCase
 
-from openedx_ledger.models import LedgerLockAttemptFailed, Transaction
+from openedx_ledger import models
 from openedx_ledger.test_utils.factories import LedgerFactory, ReversalFactory, TransactionFactory
 
 
 @ddt.ddt
-class LedgerTests(TestCase):
+class LedgerBalanceTests(TestCase):
     """
-    Tests for the Ledger model.
+    Tests for the balance of the Ledger model.
     """
 
     def setUp(self):
+        super().setUp()
         self.ledger = LedgerFactory()
-        self.transaction_1 = TransactionFactory(ledger=self.ledger, quantity=100)
+        self.initial_transaction = TransactionFactory(
+            ledger=self.ledger,
+            quantity=100,
+            state=models.TransactionStateChoices.COMMITTED,
+        )
         self.transaction_2 = TransactionFactory(
             ledger=self.ledger, lms_user_id=1, content_key="course-v1:edX+test+course.1", quantity=-10
         )
@@ -32,9 +39,6 @@ class LedgerTests(TestCase):
             transaction=self.transaction_4,
             quantity=10,
         )
-
-        self.other_ledger = LedgerFactory()
-        self.other_transaction = TransactionFactory(ledger=self.other_ledger, quantity=100)
 
     def test_balance(self):
         """
@@ -70,7 +74,9 @@ class LedgerTests(TestCase):
         """
         Test Ledger.subset_balance().
         """
-        result = self.ledger.subset_balance(Transaction.objects.filter(ledger=self.ledger, **transaction_filters))
+        queryset = models.Transaction.objects.filter(ledger=self.ledger, **transaction_filters)
+        result = self.ledger.subset_balance(queryset)
+
         assert result == expected_balance
 
     def test_subset_balance_doesnt_fail_superset(self,):
@@ -78,7 +84,62 @@ class LedgerTests(TestCase):
         Test Ledger.subset_balance() doesn't fail when given a set of transactions that are a superset of
         Ledger.transactions.
         """
-        assert self.ledger.subset_balance(Transaction.objects.all()) == self.ledger.balance()
+        assert self.ledger.subset_balance(models.Transaction.objects.all()) == self.ledger.balance()
+
+    def test_balance_excludes_failed_transactions(self):
+        """
+        Failed transations should not be included in the balance calculation.
+        """
+        _ = TransactionFactory(
+            ledger=self.ledger,
+            lms_user_id=2,
+            content_key="course-v1:edX+test+course.2",
+            quantity=-55,
+            state=models.TransactionStateChoices.FAILED,
+        )
+        expected_balance = 100 - 10 - 10 - 10 + 10
+
+        self.assertEqual(self.ledger.balance(), expected_balance)
+
+    def test_balance_committed_only(self):
+        """
+        When balance() specifies `committed_only=True`, only committed transactions
+        should be included in the balance calculation.
+        """
+        # all the non-initial transactions from setUp() are only in the `created` state
+        self.assertEqual(self.ledger.balance(committed_only=True), self.initial_transaction.quantity)
+
+        committed_transaction = TransactionFactory(
+            ledger=self.ledger,
+            lms_user_id=2,
+            content_key="course-v1:edX+test+course.2",
+            quantity=-31,
+            state=models.TransactionStateChoices.COMMITTED,
+        )
+
+        expected_committed_balance = self.initial_transaction.quantity + committed_transaction.quantity
+        self.assertEqual(self.ledger.balance(committed_only=True), expected_committed_balance)
+
+    def test_idempotency_key_is_generated(self):
+        """
+        Tests that Ledger.save() will create an idempotency_key
+        if none exists.
+        """
+        my_ledger = LedgerFactory(idempotency_key=None)
+        my_ledger.save()
+
+        self.assertIsNotNone(my_ledger.idempotency_key)
+
+
+class LedgerLockTests(TestCase):
+    """
+    Test the locking mechanisms for ledgers.
+    """
+    def setUp(self):
+        super().setUp()
+
+        self.ledger = LedgerFactory()
+        self.other_ledger = LedgerFactory()
 
     def test_acquire_lock_release_lock(self):
         """
@@ -114,6 +175,52 @@ class LedgerTests(TestCase):
         Ensure the lock contextmanager raises LedgerLockAttemptFailed if the ledger is locked.
         """
         self.ledger.acquire_lock()
-        with pytest.raises(LedgerLockAttemptFailed, match=r"Failed to acquire lock.*"):
+        with pytest.raises(models.LedgerLockAttemptFailed, match=r"Failed to acquire lock.*"):
             with self.ledger.lock():
                 pass
+
+
+class TestExternalFulfillmentAndReference(TestCase):
+    """
+    Tests for the ExternalFulillmentProvider and ExternalTransactionReference models.
+    """
+    @classmethod
+    def setUpTestData(cls):
+        """
+        Set up some test objects.
+        """
+        super().setUpTestData()
+
+        cls.provider = models.ExternalFulfillmentProvider.objects.create(
+            name='My provider',
+            slug='my-provider',
+        )
+        cls.ledger = LedgerFactory()
+        cls.initial_transaction = TransactionFactory(
+            ledger=cls.ledger,
+            quantity=100,
+            state=models.TransactionStateChoices.COMMITTED,
+        )
+
+    def test_simple_provider_stuff(self):
+        """
+        Test we can str() these.
+        """
+        self.assertIn('my-provider', str(self.provider))
+        self.assertIn('My provider', str(self.provider))
+
+    def test_external_reference(self):
+        """
+        Test that we can create an external transaction reference.
+        """
+        transaction = TransactionFactory.create(
+            ledger=self.ledger,
+        )
+        external_id = str(uuid.uuid4())
+        external_reference = models.ExternalTransactionReference.objects.create(
+            transaction=transaction,
+            external_fulfillment_provider=self.provider,
+            external_reference_id=external_id,
+        )
+
+        self.assertIn(external_id, str(external_reference))

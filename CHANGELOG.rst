@@ -15,6 +15,10 @@ Unreleased
 **********
 
 
+[0.4.0]
+*******
+* include only non-failed transactions in ledger balance calculation by default
+
 [0.3.3]
 *******
 * drop `ExternalFulfillmentProvider` name constraints

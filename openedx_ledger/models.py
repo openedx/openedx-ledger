@@ -149,14 +149,21 @@ class Ledger(TimeStampedModelWithUuid):
             agg = agg.aggregate(total_quantity=Coalesce(models.Sum('row_total'), 0))
             return agg['total_quantity']
 
-    def balance(self):
+    def balance(self, committed_only=False):
         """
         Calculate the current balance of the ledger.
 
+        Args:
+            committed_only (boolean): If true, computes balance only for `committed` transations.  Defaults to False.
+
         Returns:
-            int: The total balance of all transactions in this ledger.  Always positive.
+            int: The total balance of non-failed transactions in this ledger.
         """
-        return self.subset_balance(Transaction.objects.filter(ledger=self))
+        if committed_only:
+            queryset = Transaction.objects.filter(ledger=self, state=TransactionStateChoices.COMMITTED)
+        else:
+            queryset = Transaction.objects.filter(ledger=self).exclude(state=TransactionStateChoices.FAILED)
+        return self.subset_balance(queryset)
 
     @property
     def lock_resource_key(self) -> str:
