@@ -153,6 +153,8 @@ class Ledger(TimeStampedModelWithUuid):
         """
         Calculate the current balance of the ledger.
 
+        TODO: propagate committed_only down into the reversals too.
+
         Args:
             committed_only (boolean): If true, computes balance only for `committed` transations.  Defaults to False.
 

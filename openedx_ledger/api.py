@@ -24,7 +24,7 @@ def create_transaction(
     **metadata
 ):
     """
-    Create a transaction.
+    Create a pending transaction.
 
     Args:
         ledger (openedx_ledger.models.Ledger): The ledger to which the transaction should be added.
@@ -93,6 +93,7 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
                 'quantity': transaction.quantity * -1,
                 'metadata': metadata,
             },
+            state=models.TransactionStateChoices.COMMITTED,
         )
         TRANSACTION_REVERSED.send(sender=models.Reversal, reversal=reversal)
         return reversal
