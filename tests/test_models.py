@@ -24,7 +24,6 @@ class LedgerBalanceTests(TestCase):
         self.initial_transaction = TransactionFactory(
             ledger=self.ledger,
             quantity=100,
-            state=models.TransactionStateChoices.COMMITTED,
         )
         self.transaction_2 = TransactionFactory(
             ledger=self.ledger, lms_user_id=1, content_key="course-v1:edX+test+course.1", quantity=-10
@@ -39,19 +38,37 @@ class LedgerBalanceTests(TestCase):
             transaction=self.transaction_4,
             quantity=10,
         )
+        self.transaction_5 = TransactionFactory(
+            ledger=self.ledger,
+            lms_user_id=3,
+            content_key="course-v1:edX+test+course.3",
+            quantity=-10,
+            state=models.TransactionStateChoices.PENDING,
+        )
 
     def test_balance(self):
         """
-        Test Ledger.balance().
+        Test ``Ledger.balance()``.
+
+        ``committed_only`` is implicitly False.
         """
         result = self.ledger.balance()
+        assert result == 100 - 10 - 10 - 10 + 10 - 10
+
+    def test_balance_committed_only(self):
+        """
+        Test ``Ledger.balance(committed_only=True)``.
+
+        One of the setUp transactions is still pending.
+        """
+        result = self.ledger.balance(committed_only=True)
         assert result == 100 - 10 - 10 - 10 + 10
 
     @ddt.data(
         # Test calculating the balance of the entire ledger.
         {
             "transaction_filters": {},
-            "expected_balance": 100 - 10 - 10 - 10 + 10,
+            "expected_balance": 100 - 10 - 10 - 10 + 10 - 10,
         },
         # Test calculating the balance of a user subset.
         {
@@ -97,28 +114,9 @@ class LedgerBalanceTests(TestCase):
             quantity=-55,
             state=models.TransactionStateChoices.FAILED,
         )
-        expected_balance = 100 - 10 - 10 - 10 + 10
+        expected_balance = 100 - 10 - 10 - 10 + 10 - 10
 
         self.assertEqual(self.ledger.balance(), expected_balance)
-
-    def test_balance_committed_only(self):
-        """
-        When balance() specifies `committed_only=True`, only committed transactions
-        should be included in the balance calculation.
-        """
-        # all the non-initial transactions from setUp() are only in the `created` state
-        self.assertEqual(self.ledger.balance(committed_only=True), self.initial_transaction.quantity)
-
-        committed_transaction = TransactionFactory(
-            ledger=self.ledger,
-            lms_user_id=2,
-            content_key="course-v1:edX+test+course.2",
-            quantity=-31,
-            state=models.TransactionStateChoices.COMMITTED,
-        )
-
-        expected_committed_balance = self.initial_transaction.quantity + committed_transaction.quantity
-        self.assertEqual(self.ledger.balance(committed_only=True), expected_committed_balance)
 
     def test_idempotency_key_is_generated(self):
         """
@@ -199,7 +197,6 @@ class TestExternalFulfillmentAndReference(TestCase):
         cls.initial_transaction = TransactionFactory(
             ledger=cls.ledger,
             quantity=100,
-            state=models.TransactionStateChoices.COMMITTED,
         )
 
     def test_simple_provider_stuff(self):
@@ -213,7 +210,7 @@ class TestExternalFulfillmentAndReference(TestCase):
         """
         Test that we can create an external transaction reference.
         """
-        transaction = TransactionFactory.create(
+        transaction = TransactionFactory(
             ledger=self.ledger,
         )
         external_id = str(uuid.uuid4())
