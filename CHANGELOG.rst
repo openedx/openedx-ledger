@@ -15,6 +15,10 @@ Unreleased
 **********
 
 
+[1.0.0]
+*******
+* Look for an ``lms_user_id`` key when generating transaction idempotency keys, not ``learner_id``.
+
 [0.4.0]
 *******
 * include only non-failed transactions in ledger balance calculation by default

@@ -11,7 +11,7 @@ from .constants import (
 )
 
 TRANSACTION_METADATA_KEYS = {
-    'learner_id',
+    'lms_user_id',
     'content_key',
     'subsidy_access_policy_uuid',
 }
