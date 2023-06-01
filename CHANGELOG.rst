@@ -13,7 +13,11 @@ Change Log
 
 Unreleased
 **********
+* Nothing unreleased
 
+[1.0.1]
+*******
+* make transaction and ledger admins friendlier
 
 [1.0.0]
 *******
