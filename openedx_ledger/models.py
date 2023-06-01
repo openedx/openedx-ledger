@@ -352,6 +352,16 @@ class Transaction(BaseTransaction):
     )
     history = HistoricalRecords()
 
+    def get_reversal(self):
+        """
+        Convenience method for fetching this transaction's related
+        reversal, or None if no such reversal exists.
+        """
+        try:
+            return self.reversal
+        except Reversal.DoesNotExist:
+            return None
+
 
 class ExternalFulfillmentProvider(TimeStampedModel):
     """
