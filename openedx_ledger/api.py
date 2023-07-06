@@ -13,6 +13,12 @@ class LedgerBalanceExceeded(Exception):
     """
 
 
+class NonCommittedTransactionError(Exception):
+    """
+    Raised when a transaction that is not in a COMMITTED state is used in a reversal.
+    """
+
+
 def create_transaction(
     ledger,
     quantity,
@@ -50,6 +56,8 @@ def create_transaction(
             Raises this if there's another attempt in process to add a transaction to this Ledger.
         openedx_ledger.api.LedgerBalanceExceeded:
             Raises this if the transaction would cause the balance of the ledger to become negative.
+        openedx_ledger.api.NonCommittedTransactionError:
+            Raises this if the transaction is not in a COMMITTED state.
     """
     with ledger.lock():
         durable = not get_connection().in_atomic_block
@@ -86,6 +94,12 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
         # if there is a reversal: return, no work to do here
         # if not, write a reversal for the transaction
         transaction.refresh_from_db()
+
+        if transaction.state != models.TransactionStateChoices.COMMITTED:
+            raise NonCommittedTransactionError(
+                "Cannot reverse transaction because it is not in a committed state."
+            )
+
         reversal, _ = models.Reversal.objects.get_or_create(
             transaction=transaction,
             idempotency_key=idempotency_key,

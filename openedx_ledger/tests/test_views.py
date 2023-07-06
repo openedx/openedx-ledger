@@ -9,7 +9,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APITestCase
 
-from openedx_ledger.models import Reversal
+from openedx_ledger.models import Reversal, TransactionStateChoices
 from openedx_ledger.signals.signals import TRANSACTION_REVERSED
 from openedx_ledger.test_utils.factories import LedgerFactory, ReversalFactory, TransactionFactory
 
@@ -112,3 +112,29 @@ class ReverseTransactionViewTests(ViewTestBases):
         self.assertEqual(response.status_code, 400)
         # Assert that the response contains the expected error message
         self.assertEqual(response.content, b'Transaction Reversal already exists')
+
+    def test_reverse_transaction_view_post_with_non_committed_transaction(self):
+        """
+        Test expected behaviors of POSTing to the reverse transaction view
+        when the transaction is not committed
+        """
+        signal_received = MagicMock()
+        TRANSACTION_REVERSED.connect(signal_received)
+
+        self.transaction.state = TransactionStateChoices.PENDING
+        self.transaction.save()
+
+        assert Reversal.objects.count() == 0
+
+        url = self.get_reverse_transaction_url(self.transaction.uuid)
+        response = self.client.post(url)
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(
+            response.content,
+            b'Transaction Reversal failed: '
+            b'Cannot reverse transaction because it is not in a committed state.'
+        )
+
+        signal_received.assert_not_called()
+        assert Reversal.objects.count() == 0

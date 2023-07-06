@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import View
 
-from openedx_ledger.api import reverse_full_transaction
+from openedx_ledger.api import NonCommittedTransactionError, reverse_full_transaction
 from openedx_ledger.models import Transaction
 
 logger = logging.getLogger(__name__)
@@ -69,5 +69,10 @@ class ReverseTransactionView(View):
                 f"ReverseTransactionView Error: transaction reversal already exists: {transaction_id}"
             )
             return HttpResponseBadRequest('Transaction Reversal already exists')
+        except NonCommittedTransactionError as error:
+            logger.exception(
+                f"ReverseTransactionView Error: transaction is not in a committed state: {transaction_id}"
+            )
+            return HttpResponseBadRequest(f'Transaction Reversal failed: {error}')
         url = reverse("admin:openedx_ledger_transaction_change", args=(transaction_id,))
         return HttpResponseRedirect(url)
