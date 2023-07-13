@@ -18,6 +18,9 @@ def test_create_ledger_happy_path():
     tx_2 = api.create_transaction(ledger, quantity=5000, idempotency_key='tx-2', state=TransactionStateChoices.CREATED)
     assert ledger.balance() == 10000
 
+    tx_2.state = TransactionStateChoices.COMMITTED
+    tx_2.save()
+
     api.reverse_full_transaction(tx_2, idempotency_key='reversal-1')
     assert ledger.balance() == 5000
 
@@ -51,6 +54,9 @@ def test_multiple_reversals():
 
     tx_1 = api.create_transaction(ledger, quantity=5000, idempotency_key='tx-1', state=TransactionStateChoices.CREATED)
     assert ledger.balance() == 5000
+
+    tx_1.state = TransactionStateChoices.COMMITTED
+    tx_1.save()
 
     reversal = api.reverse_full_transaction(tx_1, idempotency_key='reversal-1')
     assert ledger.balance() == 0
