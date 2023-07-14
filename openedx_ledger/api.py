@@ -56,8 +56,6 @@ def create_transaction(
             Raises this if there's another attempt in process to add a transaction to this Ledger.
         openedx_ledger.api.LedgerBalanceExceeded:
             Raises this if the transaction would cause the balance of the ledger to become negative.
-        openedx_ledger.api.NonCommittedTransactionError:
-            Raises this if the transaction is not in a COMMITTED state.
     """
     with ledger.lock():
         durable = not get_connection().in_atomic_block
@@ -88,6 +86,8 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
     Idempotency of reversals - reversing the same transaction twice
     produces the same output and has no side effect on the second invocation.
     Support idempotency key here, too.
+    openedx_ledger.api.NonCommittedTransactionError:
+        Raises this if the transaction is not in a COMMITTED state.
     """
     with atomic(durable=True):
         # select the transaction and any reversals
