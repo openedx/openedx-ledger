@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.0.2]
+*******
+* only allow reversals of committed transactions
+
 [1.0.1]
 *******
 * make transaction and ledger admins friendlier

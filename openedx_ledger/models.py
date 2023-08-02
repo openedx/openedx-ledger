@@ -358,7 +358,7 @@ class Transaction(BaseTransaction):
         reversal, or None if no such reversal exists.
         """
         try:
-            return self.reversal
+            return self.reversal  # pylint: disable=no-member
         except Reversal.DoesNotExist:
             return None
 
