@@ -136,6 +136,9 @@ class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
         queryset = super().get_queryset(request)
         return queryset.select_related('reversal')
 
+    @admin.action(
+        description="Reverse a transaction and unenroll the learner from the platform representation of the course."
+    )
     def reverse_transaction(self, request, obj):
         """
         Redirect to the reverse transaction view.
@@ -145,9 +148,6 @@ class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
         return HttpResponseRedirect(reverse_transaction_url)
 
     reverse_transaction.label = "Unenroll & Refund"
-    reverse_transaction.short_description = (
-        "Reverse a transaction and unenroll the learner from the platform representation of the course."
-    )
 
     def get_urls(self):
         """

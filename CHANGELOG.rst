@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.1.0]
+*******
+* Add support for Django 4.2
+
 [1.0.2]
 *******
 * only allow reversals of committed transactions
