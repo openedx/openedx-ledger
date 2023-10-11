@@ -6,6 +6,7 @@ from uuid import uuid4
 import factory
 
 from openedx_ledger.models import (
+    Adjustment,
     ExternalFulfillmentProvider,
     ExternalTransactionReference,
     Ledger,
@@ -80,3 +81,15 @@ class ReversalFactory(factory.django.DjangoModelFactory):
     idempotency_key = factory.LazyFunction(uuid4)
     state = TransactionStateChoices.COMMITTED
     quantity = factory.Faker("random_int", min=100, max=10000)
+
+
+class AdjustmentFactory(factory.django.DjangoModelFactory):
+    """
+    Test factory for the `Adjustment` model.
+    """
+    class Meta:
+        model = Adjustment
+
+    ledger = factory.SubFactory(LedgerFactory)
+    transaction = factory.SubFactory(TransactionFactory)
+    adjustment_quantity = factory.Faker("random_int", min=100, max=10000)

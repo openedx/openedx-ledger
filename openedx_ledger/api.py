@@ -1,10 +1,15 @@
 """
 The openedx_ledger python API.
 """
+import logging
+import uuid
+
 from django.db.transaction import atomic, get_connection
 
 from openedx_ledger import models, utils
 from openedx_ledger.signals.signals import TRANSACTION_REVERSED
+
+logger = logging.getLogger(__name__)
 
 
 class LedgerBalanceExceeded(Exception):
@@ -16,6 +21,19 @@ class LedgerBalanceExceeded(Exception):
 class NonCommittedTransactionError(Exception):
     """
     Raised when a transaction that is not in a COMMITTED state is used in a reversal.
+    """
+
+
+class CannotReverseAdjustmentError(Exception):
+    """
+    Raised when a caller attempts to reverse the transaction that comprises
+    an ``Adjustment`` record.
+    """
+
+
+class AdjustmentCreationError(Exception):
+    """
+    Raised when, for whatever reason, an adjustment could not be created.
     """
 
 
@@ -89,6 +107,12 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
     openedx_ledger.api.NonCommittedTransactionError:
         Raises this if the transaction is not in a COMMITTED state.
     """
+    # Do not allow the reversal of transactions that comprise an Adjustment
+    if transaction.get_adjustment():
+        raise CannotReverseAdjustmentError(
+            f"Transaction {transaction.uuid} comprises an Adjustment, can't reverse."
+        )
+
     with atomic(durable=True):
         # select the transaction and any reversals
         # if there is a reversal: return, no work to do here
@@ -97,7 +121,8 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
 
         if transaction.state != models.TransactionStateChoices.COMMITTED:
             raise NonCommittedTransactionError(
-                "Cannot reverse transaction because it is not in a committed state."
+                f"Cannot reverse transaction {transaction.uuid} "
+                "because it is not in a committed state."
             )
 
         reversal, _ = models.Reversal.objects.get_or_create(
@@ -147,3 +172,51 @@ def create_ledger(unit=None, idempotency_key=None, subsidy_uuid=None, initial_de
         )
 
     return ledger
+
+
+def create_adjustment(
+    ledger,
+    quantity,
+    adjustment_uuid=None,
+    reason=models.AdjustmentReasonChoices.TECHNICAL_CHALLENGES,
+    notes=None,
+    idempotency_key=None,
+    transaction_of_interest=None,
+    **metadata,
+):
+    """
+    Creates a new Transaction and related Adjustment record
+    to adjust the balance of the given ledger.
+    """
+    if idempotency_key is None:
+        tx_idempotency_key = f'{ledger.uuid}-adjustment-{quantity}-reason-{uuid.uuid4()}'
+    else:
+        tx_idempotency_key = idempotency_key
+
+    try:
+        with atomic():
+            transaction = create_transaction(
+                ledger,
+                quantity,
+                idempotency_key=tx_idempotency_key,
+                state=models.TransactionStateChoices.COMMITTED,
+                **metadata,
+            )
+            kwargs = {}
+            if adjustment_uuid:
+                kwargs['uuid'] = adjustment_uuid
+            adjustment = models.Adjustment.objects.create(
+                ledger=ledger,
+                adjustment_quantity=quantity,
+                transaction=transaction,
+                transaction_of_interest=transaction_of_interest,
+                reason=reason,
+                notes=notes,
+                **kwargs,
+            )
+    except Exception as exc:
+        message = f'Failed to create adjustment in ledger {ledger.uuid} for amount {quantity}'
+        logger.exception(message)
+        raise AdjustmentCreationError(str(exc)) from exc
+
+    return adjustment

@@ -54,6 +54,24 @@ class TransactionStateChoices:
     )
 
 
+class AdjustmentReasonChoices:
+    """
+    Allowed choices for the ``Adjustment.reason`` field.
+    """
+    UNAUTHROZIED_ENROLLMENT = 'unauthorized_enrollment'
+    POOR_CONTENT_FIT = 'poor_content_fit'
+    TECHNICAL_CHALLENGES = 'technical_challenges'
+    MISSED_REFUND_OR_DATE = 'missed_refund_or_date'
+    GOOD_FAITH = 'good_faith'
+    CHOICES = (
+        (UNAUTHROZIED_ENROLLMENT, 'Unauthorized enrollment'),
+        (POOR_CONTENT_FIT, 'Poor content fit'),
+        (TECHNICAL_CHALLENGES, 'Technical challenges'),
+        (MISSED_REFUND_OR_DATE, 'Missed refund or date'),
+        (GOOD_FAITH, 'Good faith/Relationship building'),
+    )
+
+
 class LedgerLockAttemptFailed(Exception):
     """
     Raise when attempt to lock Ledger failed due to an already existing lock.
@@ -362,6 +380,17 @@ class Transaction(BaseTransaction):
         except Reversal.DoesNotExist:
             return None
 
+    def get_adjustment(self):
+        """
+        Convenience method for fetching the ``Adjustment`` which
+        created this transaction, if one exists.  If one does not exist,
+        returns ``None``.
+        """
+        try:
+            return self.adjustment  # pylint: disable=no-member
+        except Adjustment.DoesNotExist:
+            return None
+
 
 class ExternalFulfillmentProvider(TimeStampedModel):
     """
@@ -491,3 +520,70 @@ class Reversal(BaseTransaction):
     history = HistoricalRecords()
     # Reversal quantities should always have the opposite sign of the transaction (i.e. negative)
     # We have to enforce this somehow...
+
+
+class Adjustment(TimeStampedModelWithUuid):
+    """
+    Represents some adjustment to the balance of a ledger via
+    a transaction (with quantity > 0) and some audit fields.
+
+    .. no_pii:
+    """
+    ledger = models.ForeignKey(
+        Ledger,
+        related_name='adjustments',
+        null=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The Ledger instance with which this Adjustment is associated."
+        )
+    )
+    adjustment_quantity = models.BigIntegerField(
+        null=False,
+        blank=False,
+        help_text=(
+            "How many units to adjust for in the related transaction."
+        ),
+    )
+    transaction = models.OneToOneField(
+        Transaction,
+        related_name='adjustment',
+        unique=True,
+        null=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The Transaction instance which adjusts the balance of the relevant ledger."
+        ),
+    )
+    transaction_of_interest = models.OneToOneField(
+        Transaction,
+        related_name='adjustment_of_interest',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text=(
+            "Any transaction of interest w.r.t. the reason for being of this adjustment. "
+            "For example, the transaction of interest may point to some transaction record "
+            "for which the enrolling user is unsatisfied, but for which we cannot issue a reversal "
+            "due to business rules."
+        ),
+    )
+    reason = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        choices=AdjustmentReasonChoices.CHOICES,
+        default=AdjustmentReasonChoices.TECHNICAL_CHALLENGES,
+        db_index=True,
+        help_text=(
+            'The primary reason for the existence of this adjustment.'
+        ),
+    )
+    notes = models.TextField(
+        blank=True,
+        null=True,
+        help_text=(
+            'Any additional context you have for the existence of this adjustment.'
+        ),
+    )
+    history = HistoricalRecords()
