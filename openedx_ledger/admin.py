@@ -1,6 +1,7 @@
 """
 Admin configuration for openedx_ledger models.
 """
+from django import forms
 from django.conf import settings
 from django.contrib import admin
 from django.http import HttpResponseRedirect
@@ -8,7 +9,7 @@ from django.urls import re_path, reverse
 from django_object_actions import DjangoObjectActions
 from simple_history.admin import SimpleHistoryAdmin
 
-from openedx_ledger import constants, models, views
+from openedx_ledger import api, constants, models, views
 
 
 def can_modify():
@@ -36,6 +37,12 @@ class LedgerAdmin(SimpleHistoryAdmin):
         model = models.Ledger
 
     fields = ('uuid', 'idempotency_key', 'unit', 'balance_usd', 'metadata')
+    # The autocomplete_fields of AdjustmentAdmin include the ledger field,
+    # which in turn requires that we define here that ledgers are
+    # searchable by uuid.
+    search_fields = [
+        'uuid',
+    ]
     if can_modify():
         readonly_fields = ('uuid', 'balance_usd')
     else:
@@ -75,6 +82,29 @@ class ExternalTransactionReferenceInlineAdmin(admin.TabularInline):
     model = models.ExternalTransactionReference
 
 
+class AdjustmentInlineAdmin(admin.TabularInline):
+    """
+    Inline admin configuration for the Adjustment model.
+    """
+    model = models.Adjustment
+    fk_name = 'transaction'
+    fields = [
+        'uuid',
+        'get_quantity_usd',
+        'reason',
+        'created',
+        'modified',
+    ]
+    readonly_fields = fields
+    show_change_link = True
+
+    @admin.display(description='Amount in U.S. Dollars')
+    def get_quantity_usd(self, obj):
+        if not obj._state.adding:  # pylint: disable=protected-access
+            return cents_to_usd_string(obj.adjustment_quantity)
+        return None
+
+
 @admin.register(models.Transaction)
 class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
     """
@@ -98,7 +128,7 @@ class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
     )
     _all_fields = [
         field.name for field in models.Transaction._meta.get_fields()
-        if field.name != 'external_reference'
+        if field.name not in {'external_reference', 'adjustment', 'adjustment_of_interest'}
     ]
     _writable_fields = [
         'fulfillment_identifier',
@@ -124,7 +154,11 @@ class TransactionAdmin(DjangoObjectActions, SimpleHistoryAdmin):
         ]
     else:
         readonly_fields = _all_fields
-    inlines = [ExternalTransactionReferenceInlineAdmin]
+
+    def get_inlines(self, request, obj):
+        if obj and not obj._state.adding:  # pylint: disable=protected-access
+            return [AdjustmentInlineAdmin, ExternalTransactionReferenceInlineAdmin]
+        return [ExternalTransactionReferenceInlineAdmin]
 
     @admin.display(ordering='reversal', description='Has a reversal')
     def has_reversal(self, obj):
@@ -176,3 +210,133 @@ class ReversalAdmin(SimpleHistoryAdmin):
 
         model = models.Reversal
         fields = '__all__'
+
+
+class AdjustmentAdminCreateForm(forms.ModelForm):
+    """
+    Form that allows users to enter adjustment quantities in dollars
+    instead of cents.
+    """
+    class Meta:
+        model = models.Adjustment
+        fields = [
+            'ledger',
+            'quantity_usd_input',
+            'reason',
+            'notes',
+            'transaction_of_interest',
+            'transaction',
+            'adjustment_quantity',
+        ]
+
+    quantity_usd_input = forms.FloatField(
+        required=True,
+        help_text='Amount of adjustment in US Dollars.',
+    )
+
+
+class AdjustmentAdminChangeForm(forms.ModelForm):
+    """
+    Form for reading and changing only the allowed fields of an existing adjustment record.
+    """
+    class Meta:
+        model = models.Adjustment
+        fields = [
+            'ledger',
+            'reason',
+            'notes',
+            'transaction_of_interest',
+            'transaction',
+            'adjustment_quantity',
+        ]
+
+
+@admin.register(models.Adjustment)
+class AdjustmentAdmin(SimpleHistoryAdmin):
+    """
+    Admin configuration for the Adjustment model.
+    """
+    form = AdjustmentAdminCreateForm
+
+    _readonly_fields = [
+        'get_quantity_usd',
+        'uuid',
+        'transaction',
+        'adjustment_quantity',
+        'created',
+        'modified',
+    ]
+
+    list_display = (
+        'uuid',
+        'get_ledger_uuid',
+        'get_quantity_usd',
+        'reason',
+        'created',
+        'modified',
+    )
+    list_filter = (
+        'reason',
+    )
+    autocomplete_fields = [
+        'ledger',
+        'transaction_of_interest',
+    ]
+
+    def get_readonly_fields(self, request, obj=None):
+        """
+        Don't allow changing the ledger if we've already saved the adjustment record.
+        """
+        if obj and not obj._state.adding:  # pylint: disable=protected-access
+            return ['ledger'] + self._readonly_fields
+        return self._readonly_fields
+
+    def get_fields(self, request, obj=None):
+        """
+        Don't include the ``quantity_usd_input`` field unless we're creating a new adjustment.
+        """
+        # When we're adding a new adjustment, use default fields
+        if not obj:
+            return super().get_fields(request, obj)
+        else:
+            # Don't show the USD amount input field on read/change
+            return [
+                field for field in super().get_fields(request, obj)
+                if field != 'quantity_usd_input'
+            ]
+
+    def get_form(self, request, obj=None, **kwargs):  # pylint: disable=arguments-differ
+        """
+        Don't worry about validating the ``quantity_usd_input`` unless we're creating a new adjustment.
+        """
+        if obj and not obj._state.adding:  # pylint: disable=protected-access
+            kwargs['form'] = AdjustmentAdminChangeForm
+        return super().get_form(request, obj, **kwargs)
+
+    @admin.display(description='Amount in U.S. Dollars')
+    def get_quantity_usd(self, obj):
+        if not obj._state.adding:  # pylint: disable=protected-access
+            return cents_to_usd_string(obj.adjustment_quantity)
+        return None
+
+    @admin.display(ordering='uuid', description='Ledger uuid')
+    def get_ledger_uuid(self, obj):
+        return obj.ledger.uuid
+
+    def save_model(self, request, obj, form, change):
+        if change:
+            super().save_model(request, obj, form, change)
+        else:
+            raw_usd_input = form.cleaned_data.get('quantity_usd_input')
+            quantity_usd_cents = raw_usd_input * constants.CENTS_PER_US_DOLLAR
+            # AED 2023-10-16: Use the auto-generated "stub" UUID for the Adjustment record
+            # to persist the Adjustment record, so that Django Admin doesn't get lost
+            # when a user clicks "Save and Continue Editing".
+            api.create_adjustment(
+                adjustment_uuid=obj.uuid,
+                ledger=obj.ledger,
+                quantity=quantity_usd_cents,
+                reason=obj.reason,
+                notes=obj.notes,
+                transaction_of_interest=obj.transaction_of_interest,
+            )

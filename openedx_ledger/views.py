@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import View
 
-from openedx_ledger.api import NonCommittedTransactionError, reverse_full_transaction
+from openedx_ledger.api import CannotReverseAdjustmentError, NonCommittedTransactionError, reverse_full_transaction
 from openedx_ledger.models import Transaction
 
 logger = logging.getLogger(__name__)
@@ -72,6 +72,11 @@ class ReverseTransactionView(View):
         except NonCommittedTransactionError as error:
             logger.exception(
                 f"ReverseTransactionView Error: transaction is not in a committed state: {transaction_id}"
+            )
+            return HttpResponseBadRequest(f'Transaction Reversal failed: {error}')
+        except CannotReverseAdjustmentError as error:
+            logger.exception(
+                f"ReverseTransactionView Error: cannot reverse the transaction of an adjustment: {transaction_id}"
             )
             return HttpResponseBadRequest(f'Transaction Reversal failed: {error}')
         url = reverse("admin:openedx_ledger_transaction_change", args=(transaction_id,))

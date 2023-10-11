@@ -11,7 +11,7 @@ from rest_framework.test import APITestCase
 
 from openedx_ledger.models import Reversal, TransactionStateChoices
 from openedx_ledger.signals.signals import TRANSACTION_REVERSED
-from openedx_ledger.test_utils.factories import LedgerFactory, ReversalFactory, TransactionFactory
+from openedx_ledger.test_utils.factories import AdjustmentFactory, LedgerFactory, ReversalFactory, TransactionFactory
 
 
 @pytest.mark.django_db
@@ -130,11 +130,41 @@ class ReverseTransactionViewTests(ViewTestBases):
         response = self.client.post(url)
 
         self.assertEqual(response.status_code, 400)
+        expected_content = (
+            'Transaction Reversal failed: '
+            f'Cannot reverse transaction {self.transaction.uuid} '
+            'because it is not in a committed state.'
+        )
         self.assertEqual(
-            response.content,
-            b'Transaction Reversal failed: '
-            b'Cannot reverse transaction because it is not in a committed state.'
+            response.content.decode(),
+            expected_content,
         )
 
         signal_received.assert_not_called()
         assert Reversal.objects.count() == 0
+
+    def test_reverse_transaction_view_post_with_related_adjustment(self):
+        """
+        Tests that you can't reverse the transaction of an adjustment.
+        """
+        signal_received = MagicMock()
+        TRANSACTION_REVERSED.connect(signal_received)
+
+        assert Reversal.objects.count() == 0
+
+        adjustment = AdjustmentFactory()
+
+        url = self.get_reverse_transaction_url(adjustment.transaction.uuid)
+        response = self.client.post(url)
+
+        # Assert that the post request returns a 400 status code
+        self.assertEqual(response.status_code, 400)
+        # Assert that the response contains the expected error message
+        expected_content = (
+            "Transaction Reversal failed: "
+            f"Transaction {adjustment.transaction.uuid} comprises an Adjustment, can't reverse."
+        )
+        self.assertEqual(response.content.decode(), expected_content)
+
+        # Assert that the transaction reversal signal was not sent or received
+        signal_received.assert_not_called()

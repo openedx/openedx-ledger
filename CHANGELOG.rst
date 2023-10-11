@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.2.0]
+*******
+* Add an ``Adjustment`` model
+
 [1.1.0]
 *******
 * Add support for Django 4.2
