@@ -344,6 +344,16 @@ class Transaction(BaseTransaction):
             "The id of the Open edX LMS user record with which this Transaction is associated."
         ),
     )
+    lms_user_email = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        db_index=True,
+        help_text=(
+            "The email of the Open edX LMS user record with which this Transaction is associated."
+            "The email is captured at the time the Transaction is created and may not be up to date."
+        )
+    )
     content_key = models.CharField(
         max_length=255,
         blank=True,
@@ -351,6 +361,16 @@ class Transaction(BaseTransaction):
         db_index=True,
         help_text=(
             "The globally unique content identifier.  Joinable with ContentMetadata.content_key in enterprise-catalog."
+        )
+    )
+    content_title = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        db_index=True,
+        help_text=(
+            "The title of the content associated with this Transaction."
+            "The title is captured at the time the Transaction is created and may not be up to date."
         )
     )
     fulfillment_identifier = models.CharField(

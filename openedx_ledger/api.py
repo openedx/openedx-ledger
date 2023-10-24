@@ -42,7 +42,9 @@ def create_transaction(
     quantity,
     idempotency_key,
     lms_user_id=None,
+    lms_user_email=None,
     content_key=None,
+    content_tile=None,
     subsidy_access_policy_uuid=None,
     state=models.TransactionStateChoices.CREATED,
     **metadata
@@ -57,9 +59,15 @@ def create_transaction(
         lms_user_id (int, Optional):
             The lms_user_id representing the learner who is enrolling. Skip if this does not represent a policy
             enrolling a learner into content.
+        lms_user_email (str, Optional):
+            The lms_user_email representing the learner who is enrolling. Skip if this does not represent a policy
+            enrolling a learner into content or if the email is not readily available.
         content_key (str, Optional):
             The identifier of the content into which the learner is enrolling. Skip if this does not represent a policy
             enrolling a learner into content.
+        content_title (str, Optional):
+            The title of the content into which the learner is enrolling. Skip if this does not represent a policy
+            enrolling a learner into content or if the title is not readily available.
         subsidy_access_policy_uuid (str, Optional):
             The policy which permitted the creation of the new Transaction. Skip if this does not represent a policy
             enrolling a learner into content.
@@ -88,7 +96,9 @@ def create_transaction(
                 defaults={
                     "quantity": quantity,
                     "content_key": content_key,
+                    "content_title": content_tile,
                     "lms_user_id": lms_user_id,
+                    "lms_user_email": lms_user_email,
                     "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
                     "state": state,
                     "metadata": metadata,
