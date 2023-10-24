@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.3.0]
+*******
+* Add optional ``lms_user_email`` and ``content_title`` to the ``Transaction`` model
+
 [1.2.0]
 *******
 * Add an ``Adjustment`` model

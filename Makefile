@@ -87,6 +87,11 @@ style:
 lint:
 	pylint openedx_ledger tests manage.py setup.py
 
+## Docker in this repo is only supported for running tests locally
+## as an alternative to virtualenv natively
+test-shell: ## Run a shell, as root, on the specified service container
+	docker-compose run -u 0 test-shell env TERM=$(TERM) /bin/bash
+
 ## Localization targets
 
 extract_translations: ## extract strings to be translated, outputting .mo files
