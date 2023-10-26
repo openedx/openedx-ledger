@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.6.0
+asgiref==3.7.2
     # via
     #   -r requirements/base.txt
     #   django
-async-timeout==4.0.2
+async-timeout==4.0.3
     # via
     #   -r requirements/base.txt
     #   redis
@@ -16,29 +16,31 @@ attrs==23.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
-certifi==2022.12.7
+certifi==2023.7.22
     # via
     #   -r requirements/base.txt
     #   requests
-cffi==1.15.1
+cffi==1.16.0
     # via
     #   -r requirements/base.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.1.0
+charset-normalizer==3.3.1
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.3
+click==8.1.7
     # via
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-utils
-code-annotations==1.3.0
+code-annotations==1.5.0
     # via -r requirements/test.in
-coverage[toml]==7.2.3
-    # via pytest-cov
-cryptography==40.0.2
+coverage[toml]==7.3.2
+    # via
+    #   coverage
+    #   pytest-cov
+cryptography==41.0.4
     # via
     #   -r requirements/base.txt
     #   pyjwt
@@ -51,6 +53,7 @@ ddt==1.6.0
     #   django-extensions
     #   django-filter
     #   django-model-utils
+    #   django-waffle
     #   djangorestframework
     #   drf-jwt
     #   edx-django-release-util
@@ -64,21 +67,21 @@ django-crum==0.7.9
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-rbac
-django-extensions==3.2.1
+django-extensions==3.2.3
     # via -r requirements/base.txt
-django-filter==23.1
+django-filter==23.3
     # via -r requirements/base.txt
 django-model-utils==4.3.1
     # via
     #   -r requirements/base.txt
     #   edx-rbac
-django-object-actions==4.1.0
+django-object-actions==4.2.0
     # via -r requirements/base.txt
 django-simple-history==3.0.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
-django-waffle==3.0.0
+django-waffle==4.0.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -94,37 +97,34 @@ drf-jwt==1.19.2
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-django-release-util==1.2.0
+edx-django-release-util==1.3.0
     # via -r requirements/base.txt
-edx-django-utils==5.4.0
+edx-django-utils==5.7.0
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-drf-extensions==8.7.0
+edx-drf-extensions==8.12.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
-edx-opaque-keys[django]==2.3.0
+edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
+    #   edx-opaque-keys
     #   openedx-events
-edx-rbac==1.7.0
+edx-rbac==1.8.0
     # via -r requirements/base.txt
-exceptiongroup==1.1.1
+exceptiongroup==1.1.3
     # via pytest
-factory-boy==3.2.1
+factory-boy==3.3.0
     # via -r requirements/test.in
-faker==18.5.1
+faker==19.11.0
     # via factory-boy
-fastavro==1.7.3
+fastavro==1.8.4
     # via
     #   -r requirements/base.txt
     #   openedx-events
-future==0.18.3
-    # via
-    #   -r requirements/base.txt
-    #   pyjwkest
 idna==3.4
     # via
     #   -r requirements/base.txt
@@ -135,29 +135,29 @@ jinja2==3.1.2
     # via code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
-markupsafe==2.1.2
+markupsafe==2.1.3
     # via jinja2
-mysqlclient==2.1.1
+mysqlclient==2.2.0
     # via -r requirements/base.txt
-newrelic==8.8.0
+newrelic==9.1.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==7.0.0
+openedx-events==9.0.0
     # via -r requirements/base.txt
-packaging==23.1
+packaging==23.2
     # via pytest
 pbr==5.11.1
     # via
     #   -r requirements/base.txt
     #   stevedore
-pluggy==1.0.0
+pluggy==1.3.0
     # via pytest
 ply==3.11
     # via
     #   -r requirements/base.txt
     #   djangoql
-psutil==5.9.5
+psutil==5.9.6
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -165,19 +165,12 @@ pycparser==2.21
     # via
     #   -r requirements/base.txt
     #   cffi
-pycryptodomex==3.17
-    # via
-    #   -r requirements/base.txt
-    #   pyjwkest
-pyjwkest==1.4.2
-    # via
-    #   -r requirements/base.txt
-    #   edx-drf-extensions
-pyjwt[crypto]==2.6.0
+pyjwt[crypto]==2.8.0
     # via
     #   -r requirements/base.txt
     #   drf-jwt
     #   edx-drf-extensions
+    #   pyjwt
 pymongo==3.13.0
     # via
     #   -r requirements/base.txt
@@ -186,38 +179,34 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==7.3.1
+pytest==7.4.2
     # via
     #   pytest-cov
     #   pytest-django
-pytest-cov==4.0.0
+pytest-cov==4.1.0
     # via -r requirements/test.in
 pytest-django==4.5.2
     # via -r requirements/test.in
 python-dateutil==2.8.2
-    # via
-    #   -r requirements/base.txt
-    #   edx-drf-extensions
-    #   faker
+    # via faker
 python-slugify==8.0.1
     # via code-annotations
-pytz==2023.3
+pytz==2023.3.post1
     # via
     #   -r requirements/base.txt
     #   django
     #   djangorestframework
-pyyaml==6.0
+pyyaml==6.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==4.5.4
+redis==5.0.1
     # via -r requirements/base.txt
-requests==2.28.2
+requests==2.31.0
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-    #   pyjwkest
 rules==3.3
     # via -r requirements/base.txt
 semantic-version==2.10.0
@@ -228,15 +217,13 @@ six==1.16.0
     # via
     #   -r requirements/base.txt
     #   edx-django-release-util
-    #   edx-drf-extensions
     #   edx-rbac
-    #   pyjwkest
     #   python-dateutil
 sqlparse==0.4.4
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.0.0
+stevedore==5.1.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -248,7 +235,13 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-urllib3==1.26.15
+typing-extensions==4.8.0
+    # via
+    #   -r requirements/base.txt
+    #   asgiref
+    #   edx-opaque-keys
+    #   faker
+urllib3==2.0.7
     # via
     #   -r requirements/base.txt
     #   requests
