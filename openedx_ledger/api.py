@@ -44,7 +44,7 @@ def create_transaction(
     lms_user_id=None,
     lms_user_email=None,
     content_key=None,
-    content_tile=None,
+    content_title=None,
     subsidy_access_policy_uuid=None,
     state=models.TransactionStateChoices.CREATED,
     **metadata
@@ -96,7 +96,7 @@ def create_transaction(
                 defaults={
                     "quantity": quantity,
                     "content_key": content_key,
-                    "content_title": content_tile,
+                    "content_title": content_title,
                     "lms_user_id": lms_user_id,
                     "lms_user_email": lms_user_email,
                     "subsidy_access_policy_uuid": subsidy_access_policy_uuid,

@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.3.2]
+*******
+* Fixing a kwarg typo
+
 [1.3.1]
 *******
 * Update requirements
