@@ -16,7 +16,7 @@ attrs==23.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
-certifi==2023.7.22
+certifi==2023.11.17
     # via
     #   -r requirements/base.txt
     #   requests
@@ -44,7 +44,7 @@ cryptography==41.0.5
     # via
     #   -r requirements/base.txt
     #   pyjwt
-ddt==1.6.0
+ddt==1.7.0
     # via -r requirements/test.in
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
@@ -69,7 +69,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==3.2.3
     # via -r requirements/base.txt
-django-filter==23.3
+django-filter==23.4
     # via -r requirements/base.txt
 django-model-utils==4.3.1
     # via
@@ -99,11 +99,11 @@ drf-jwt==1.19.2
     #   edx-drf-extensions
 edx-django-release-util==1.3.0
     # via -r requirements/base.txt
-edx-django-utils==5.7.0
+edx-django-utils==5.8.0
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-drf-extensions==8.13.0
+edx-drf-extensions==8.13.1
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -115,17 +115,17 @@ edx-opaque-keys[django]==2.5.1
     #   openedx-events
 edx-rbac==1.8.0
     # via -r requirements/base.txt
-exceptiongroup==1.1.3
+exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==19.12.1
+faker==20.1.0
     # via factory-boy
 fastavro==1.9.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
-idna==3.4
+idna==3.6
     # via
     #   -r requirements/base.txt
     #   requests
@@ -139,15 +139,15 @@ markupsafe==2.1.3
     # via jinja2
 mysqlclient==2.2.0
     # via -r requirements/base.txt
-newrelic==9.1.1
+newrelic==9.2.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.0.1
+openedx-events==9.2.0
     # via -r requirements/base.txt
 packaging==23.2
     # via pytest
-pbr==5.11.1
+pbr==6.0.0
     # via
     #   -r requirements/base.txt
     #   stevedore
@@ -185,7 +185,7 @@ pytest==7.4.3
     #   pytest-django
 pytest-cov==4.1.0
     # via -r requirements/test.in
-pytest-django==4.6.0
+pytest-django==4.7.0
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via faker
@@ -241,7 +241,7 @@ typing-extensions==4.8.0
     #   asgiref
     #   edx-opaque-keys
     #   faker
-urllib3==2.0.7
+urllib3==2.1.0
     # via
     #   -r requirements/base.txt
     #   requests
