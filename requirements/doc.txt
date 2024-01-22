@@ -24,7 +24,7 @@ babel==2.14.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
     # via pydata-sphinx-theme
 build==1.0.3
     # via -r requirements/doc.in
@@ -123,7 +123,7 @@ drf-jwt==1.19.2
     #   edx-drf-extensions
 edx-django-release-util==1.3.0
     # via -r requirements/test.txt
-edx-django-utils==5.9.0
+edx-django-utils==5.10.1
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -145,7 +145,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==22.2.0
+faker==22.4.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -188,7 +188,7 @@ keyring==24.3.0
     # via twine
 markdown-it-py==3.0.0
     # via rich
-markupsafe==2.1.3
+markupsafe==2.1.4
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -227,7 +227,7 @@ ply==3.11
     # via
     #   -r requirements/test.txt
     #   djangoql
-psutil==5.9.7
+psutil==5.9.8
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
