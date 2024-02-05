@@ -16,7 +16,7 @@ attrs==23.2.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
-certifi==2023.11.17
+certifi==2024.2.2
     # via
     #   -r requirements/base.txt
     #   requests
@@ -34,13 +34,13 @@ click==8.1.7
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-utils
-code-annotations==1.5.0
+code-annotations==1.6.0
     # via -r requirements/test.in
 coverage[toml]==7.4.1
     # via
     #   coverage
     #   pytest-cov
-cryptography==42.0.1
+cryptography==42.0.2
     # via
     #   -r requirements/base.txt
     #   pyjwt
@@ -103,7 +103,7 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.0.0
+edx-drf-extensions==10.1.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -119,7 +119,7 @@ exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==22.5.1
+faker==22.6.0
     # via factory-boy
 fastavro==1.9.3
     # via
@@ -135,15 +135,15 @@ jinja2==3.1.3
     # via code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
-markupsafe==2.1.4
+markupsafe==2.1.5
     # via jinja2
-mysqlclient==2.2.1
+mysqlclient==2.2.3
     # via -r requirements/base.txt
 newrelic==9.6.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.3.0
+openedx-events==9.4.0
     # via -r requirements/base.txt
 packaging==23.2
     # via pytest
@@ -185,13 +185,13 @@ pytest==8.0.0
     #   pytest-django
 pytest-cov==4.1.0
     # via -r requirements/test.in
-pytest-django==4.7.0
+pytest-django==4.8.0
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via faker
-python-slugify==8.0.2
+python-slugify==8.0.3
     # via code-annotations
-pytz==2023.3.post1
+pytz==2024.1
     # via
     #   -r requirements/base.txt
     #   django
@@ -241,7 +241,7 @@ typing-extensions==4.9.0
     #   asgiref
     #   edx-opaque-keys
     #   faker
-urllib3==2.1.0
+urllib3==2.2.0
     # via
     #   -r requirements/base.txt
     #   requests
