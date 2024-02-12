@@ -91,7 +91,7 @@ distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.23
+django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -118,7 +118,7 @@ django-extensions==3.2.3
     # via -r requirements/quality.txt
 django-filter==23.5
     # via -r requirements/quality.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-rbac
@@ -150,7 +150,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-rbac
@@ -172,7 +173,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==22.6.0
+faker==23.1.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -218,13 +219,13 @@ mccabe==0.7.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/quality.txt
 newrelic==9.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.4.0
+openedx-events==9.5.0
     # via -r requirements/quality.txt
 packaging==23.2
     # via
@@ -332,7 +333,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/quality.txt
     #   faker
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via
     #   -r requirements/quality.txt
     #   code-annotations

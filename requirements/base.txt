@@ -22,7 +22,7 @@ click==8.1.7
     # via edx-django-utils
 cryptography==42.0.2
     # via pyjwt
-django==3.2.23
+django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -47,7 +47,7 @@ django-extensions==3.2.3
     # via -r requirements/base.in
 django-filter==23.5
     # via -r requirements/base.in
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via edx-rbac
 django-object-actions==4.2.0
     # via -r requirements/base.in
@@ -73,7 +73,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/base.in
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via edx-rbac
 edx-opaque-keys[django]==2.5.1
     # via
@@ -87,11 +88,11 @@ idna==3.6
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/base.in
 newrelic==9.6.0
     # via edx-django-utils
-openedx-events==9.4.0
+openedx-events==9.5.0
     # via -r requirements/base.in
 pbr==6.0.0
     # via stevedore

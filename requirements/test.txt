@@ -71,7 +71,7 @@ django-extensions==3.2.3
     # via -r requirements/base.txt
 django-filter==23.5
     # via -r requirements/base.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -103,7 +103,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -119,7 +120,7 @@ exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==22.6.0
+faker==23.1.0
     # via factory-boy
 fastavro==1.9.3
     # via
@@ -137,13 +138,13 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
 markupsafe==2.1.5
     # via jinja2
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/base.txt
 newrelic==9.6.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.4.0
+openedx-events==9.5.0
     # via -r requirements/base.txt
 packaging==23.2
     # via pytest
@@ -189,7 +190,7 @@ pytest-django==4.8.0
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via faker
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via code-annotations
 pytz==2024.1
     # via
