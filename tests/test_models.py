@@ -43,6 +43,7 @@ class LedgerBalanceTests(TestCase):
             lms_user_id=3,
             lms_user_email='user@example.com',
             content_key="course-v1:edX+test+course.3",
+            parent_content_key="edX+test",
             content_title="Edx: test course 3",
             quantity=-10,
             state=models.TransactionStateChoices.PENDING,

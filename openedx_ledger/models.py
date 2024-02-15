@@ -363,6 +363,16 @@ class Transaction(BaseTransaction):
             "The globally unique content identifier.  Joinable with ContentMetadata.content_key in enterprise-catalog."
         )
     )
+    parent_content_key = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        db_index=True,
+        help_text=(
+            "Identifier for the parent of the content_key.  Also should be joinable with ContentMetadata.content_key "
+            "in enterprise-catalog. In practice, this is the course key corresponding to a course run key."
+        )
+    )
     content_title = models.CharField(
         max_length=255,
         blank=True,
