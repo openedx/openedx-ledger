@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.4.0]
+*******
+* feat: Add parent_content_key field to Transaction model (ENT-8389)
+
 [1.3.3]
 *******
 * Upgrade requirements

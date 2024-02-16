@@ -45,7 +45,8 @@ class TransactionFactory(factory.django.DjangoModelFactory):
     ledger = factory.Iterator(Ledger.objects.all())
     lms_user_id = factory.Faker("random_int", min=1, max=1000)
     lms_user_email = factory.Faker("email")
-    content_key = factory.Faker("lexify", text="???+?????101")
+    content_key = factory.LazyAttribute(lambda tx: f"course-v1:{tx.parent_content_key}+2023")
+    parent_content_key = factory.Faker("lexify", text="???+?????101")
     content_title = factory.Faker("lexify", text="???: ?????? ???")
 
 
