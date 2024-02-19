@@ -71,9 +71,8 @@ colorama==0.4.6
 coverage[toml]==7.4.1
     # via
     #   -r requirements/quality.txt
-    #   coverage
     #   pytest-cov
-cryptography==42.0.2
+cryptography==42.0.3
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -91,7 +90,7 @@ distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.23
+django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -118,7 +117,7 @@ django-extensions==3.2.3
     # via -r requirements/quality.txt
 django-filter==23.5
     # via -r requirements/quality.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-rbac
@@ -150,7 +149,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-rbac
@@ -162,7 +162,6 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
-    #   edx-opaque-keys
     #   openedx-events
 edx-rbac==1.8.0
     # via -r requirements/quality.txt
@@ -172,11 +171,11 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==22.6.0
+faker==23.2.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-fastavro==1.9.3
+fastavro==1.9.4
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -218,13 +217,13 @@ mccabe==0.7.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/quality.txt
 newrelic==9.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.4.0
+openedx-events==9.5.1
     # via -r requirements/quality.txt
 packaging==23.2
     # via
@@ -241,7 +240,7 @@ pbr==6.0.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.3.0
+pip-tools==7.4.0
     # via -r requirements/pip-tools.txt
 platformdirs==4.2.0
     # via
@@ -282,7 +281,6 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/quality.txt
     #   drf-jwt
     #   edx-drf-extensions
-    #   pyjwt
 pylint==3.0.3
     # via
     #   -r requirements/quality.txt
@@ -319,7 +317,8 @@ pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pytest==8.0.0
+    #   pip-tools
+pytest==8.0.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -332,7 +331,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/quality.txt
     #   faker
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -401,7 +400,7 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.12.1
+tox==4.13.0
     # via -r requirements/ci.txt
 typing-extensions==4.9.0
     # via
@@ -411,7 +410,7 @@ typing-extensions==4.9.0
     #   edx-opaque-keys
     #   faker
     #   pylint
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/quality.txt
     #   requests

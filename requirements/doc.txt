@@ -51,16 +51,15 @@ code-annotations==1.6.0
 coverage[toml]==7.4.1
     # via
     #   -r requirements/test.txt
-    #   coverage
     #   pytest-cov
-cryptography==42.0.2
+cryptography==42.0.3
     # via
     #   -r requirements/test.txt
     #   pyjwt
     #   secretstorage
 ddt==1.7.1
     # via -r requirements/test.txt
-django==3.2.23
+django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -86,7 +85,7 @@ django-extensions==3.2.3
     # via -r requirements/test.txt
 django-filter==23.5
     # via -r requirements/test.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -127,7 +126,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -135,7 +135,6 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
-    #   edx-opaque-keys
     #   openedx-events
 edx-rbac==1.8.0
     # via -r requirements/test.txt
@@ -145,11 +144,11 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==22.6.0
+faker==23.2.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.9.3
+fastavro==1.9.4
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -171,7 +170,7 @@ iniconfig==2.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-jaraco-classes==3.3.0
+jaraco-classes==3.3.1
     # via keyring
 jeepney==0.8.0
     # via
@@ -196,7 +195,7 @@ mdurl==0.1.2
     # via markdown-it-py
 more-itertools==10.2.0
     # via jaraco-classes
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/test.txt
 newrelic==9.6.0
     # via
@@ -204,7 +203,7 @@ newrelic==9.6.0
     #   edx-django-utils
 nh3==0.2.15
     # via readme-renderer
-openedx-events==9.4.0
+openedx-events==9.5.1
     # via -r requirements/test.txt
 packaging==23.2
     # via
@@ -250,7 +249,6 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-    #   pyjwt
 pymongo==3.13.0
     # via
     #   -r requirements/test.txt
@@ -261,7 +259,7 @@ pynacl==1.5.0
     #   edx-django-utils
 pyproject-hooks==1.0.0
     # via build
-pytest==8.0.0
+pytest==8.0.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -274,7 +272,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -368,7 +366,7 @@ tomli==2.0.1
     #   doc8
     #   pyproject-hooks
     #   pytest
-twine==4.0.2
+twine==5.0.0
     # via -r requirements/doc.in
 typing-extensions==4.9.0
     # via
@@ -378,7 +376,7 @@ typing-extensions==4.9.0
     #   faker
     #   pydata-sphinx-theme
     #   rich
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/test.txt
     #   requests
