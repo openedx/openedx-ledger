@@ -427,7 +427,3 @@ zipp==3.17.0
     # via
     #   -r requirements/pip-tools.txt
     #   importlib-metadata
-
-# The following packages are considered to be unsafe in a requirements file:
-# pip
-# setuptools
