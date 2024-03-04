@@ -16,6 +16,10 @@ attrs==23.2.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
+backports-zoneinfo==0.2.1
+    # via
+    #   -r requirements/base.txt
+    #   django
 certifi==2024.2.2
     # via
     #   -r requirements/base.txt
@@ -36,15 +40,13 @@ click==8.1.7
     #   edx-django-utils
 code-annotations==1.6.0
     # via -r requirements/test.in
-coverage[toml]==7.4.1
-    # via
-    #   coverage
-    #   pytest-cov
-cryptography==42.0.2
+coverage[toml]==7.4.3
+    # via pytest-cov
+cryptography==42.0.5
     # via
     #   -r requirements/base.txt
     #   pyjwt
-ddt==1.7.1
+ddt==1.7.2
     # via -r requirements/test.in
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
@@ -71,7 +73,7 @@ django-extensions==3.2.3
     # via -r requirements/base.txt
 django-filter==23.5
     # via -r requirements/base.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -103,7 +105,8 @@ edx-django-utils==5.10.1
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-drf-extensions==10.1.0
+    #   openedx-events
+edx-drf-extensions==10.2.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
@@ -111,7 +114,6 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-    #   edx-opaque-keys
     #   openedx-events
 edx-rbac==1.8.0
     # via -r requirements/base.txt
@@ -119,9 +121,9 @@ exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==22.6.0
+faker==23.3.0
     # via factory-boy
-fastavro==1.9.3
+fastavro==1.9.4
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -137,13 +139,13 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
 markupsafe==2.1.5
     # via jinja2
-mysqlclient==2.2.3
+mysqlclient==2.2.4
     # via -r requirements/base.txt
-newrelic==9.6.0
+newrelic==9.7.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.4.0
+openedx-events==9.5.2
     # via -r requirements/base.txt
 packaging==23.2
     # via pytest
@@ -170,7 +172,6 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/base.txt
     #   drf-jwt
     #   edx-drf-extensions
-    #   pyjwt
 pymongo==3.13.0
     # via
     #   -r requirements/base.txt
@@ -179,7 +180,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==8.0.0
+pytest==8.1.0
     # via
     #   pytest-cov
     #   pytest-django
@@ -187,21 +188,20 @@ pytest-cov==4.1.0
     # via -r requirements/test.in
 pytest-django==4.8.0
     # via -r requirements/test.in
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via faker
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via code-annotations
 pytz==2024.1
     # via
     #   -r requirements/base.txt
-    #   django
     #   djangorestframework
 pyyaml==6.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==5.0.1
+redis==5.0.2
     # via -r requirements/base.txt
 requests==2.31.0
     # via
@@ -223,7 +223,7 @@ sqlparse==0.4.4
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.1.0
+stevedore==5.2.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -235,13 +235,13 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   -r requirements/base.txt
     #   asgiref
     #   edx-opaque-keys
     #   faker
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/base.txt
     #   requests
