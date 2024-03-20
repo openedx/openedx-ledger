@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.4.1]
+*******
+* feat: Add python 3.12 support
+
 [1.4.0]
 *******
 * feat: Add parent_content_key field to Transaction model (ENT-8389)
