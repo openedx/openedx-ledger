@@ -10,3 +10,10 @@
 
 # Common constraints for edx repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+
+# ONLY install backports.zoneinfo if python < 3.9.
+# https://stackoverflow.com/questions/71712258/error-could-not-build-wheels-for-backports-zoneinfo-which-is-required-to-insta
+# Basically, django 4.x introduces a conditional dependency on backports.zoneinfo based on python version, but since
+# that dependency is resolved at requirements compilation time the resulting requirements are not sensitive to the
+# python version *at runtime*.
+backports.zoneinfo;python_version<"3.9"
