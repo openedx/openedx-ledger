@@ -26,8 +26,9 @@ babel==2.14.0
     #   sphinx
 backports-tarfile==1.0.0
     # via jaraco-context
-backports-zoneinfo==0.2.1
+backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   django
     #   djangorestframework
