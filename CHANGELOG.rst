@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.4.2]
+*******
+* feat: Dependency updates
+
 [1.4.1]
 *******
 * feat: Add python 3.12 support
