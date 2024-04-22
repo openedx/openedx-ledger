@@ -117,13 +117,13 @@ edx-opaque-keys[django]==2.5.1
     #   -r requirements/base.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/base.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==24.9.0
+faker==24.11.0
     # via factory-boy
 fastavro==1.9.4
     # via
@@ -143,11 +143,11 @@ markupsafe==2.1.5
     # via jinja2
 mysqlclient==2.2.4
     # via -r requirements/base.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/base.txt
 packaging==24.0
     # via pytest
@@ -155,7 +155,7 @@ pbr==6.0.0
     # via
     #   -r requirements/base.txt
     #   stevedore
-pluggy==1.4.0
+pluggy==1.5.0
     # via pytest
 ply==3.11
     # via
@@ -245,3 +245,6 @@ urllib3==2.2.1
     # via
     #   -r requirements/base.txt
     #   requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

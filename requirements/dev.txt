@@ -169,15 +169,15 @@ edx-opaque-keys[django]==2.5.1
     #   -r requirements/quality.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/quality.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/quality.txt
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==24.9.0
+faker==24.11.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -226,11 +226,11 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.4
     # via -r requirements/quality.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/quality.txt
 packaging==24.0
     # via
@@ -256,7 +256,7 @@ platformdirs==4.2.0
     #   pylint
     #   tox
     #   virtualenv
-pluggy==1.4.0
+pluggy==1.5.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -418,7 +418,7 @@ urllib3==2.2.1
     # via
     #   -r requirements/quality.txt
     #   requests
-virtualenv==20.25.1
+virtualenv==20.25.3
     # via
     #   -r requirements/ci.txt
     #   tox

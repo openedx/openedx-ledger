@@ -85,7 +85,7 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/base.in
 fastavro==1.9.4
     # via openedx-events
@@ -95,9 +95,9 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.4
     # via -r requirements/base.in
-newrelic==9.8.0
+newrelic==9.9.0
     # via edx-django-utils
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/base.in
 pbr==6.0.0
     # via stevedore
@@ -143,3 +143,6 @@ typing-extensions==4.11.0
     #   edx-opaque-keys
 urllib3==2.2.1
     # via requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
