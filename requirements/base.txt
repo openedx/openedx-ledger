@@ -70,6 +70,8 @@ djangorestframework==3.15.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
+dnspython==2.6.1
+    # via pymongo
 drf-jwt==1.19.2
     # via edx-drf-extensions
 edx-django-release-util==1.4.0
@@ -81,11 +83,11 @@ edx-django-utils==5.12.0
     #   openedx-events
 edx-drf-extensions==10.3.0
     # via edx-rbac
-edx-opaque-keys[django]==2.5.1
+edx-opaque-keys[django]==2.9.0
     # via
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/base.in
 fastavro==1.9.4
     # via openedx-events
@@ -95,9 +97,9 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.4
     # via -r requirements/base.in
-newrelic==9.8.0
+newrelic==9.9.0
     # via edx-django-utils
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/base.in
 pbr==6.0.0
     # via stevedore
@@ -111,7 +113,7 @@ pyjwt[crypto]==2.8.0
     # via
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==3.13.0
+pymongo==4.4.0
     # via edx-opaque-keys
 pynacl==1.5.0
     # via edx-django-utils
@@ -119,7 +121,7 @@ pytz==2024.1
     # via -r requirements/base.in
 pyyaml==6.0.1
     # via edx-django-release-util
-redis==5.0.3
+redis==5.0.4
     # via -r requirements/base.in
 requests==2.31.0
     # via edx-drf-extensions
@@ -143,3 +145,6 @@ typing-extensions==4.11.0
     #   edx-opaque-keys
 urllib3==2.2.1
     # via requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

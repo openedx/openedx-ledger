@@ -52,7 +52,7 @@ code-annotations==1.8.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.4.4
+coverage[toml]==7.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -112,6 +112,10 @@ djangorestframework==3.15.1
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
+dnspython==2.6.1
+    # via
+    #   -r requirements/test.txt
+    #   pymongo
 drf-jwt==1.19.2
     # via
     #   -r requirements/test.txt
@@ -129,20 +133,20 @@ edx-drf-extensions==10.3.0
     #   edx-rbac
 edx-lint==5.3.6
     # via -r requirements/quality.in
-edx-opaque-keys[django]==2.5.1
+edx-opaque-keys[django]==2.9.0
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/test.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/test.txt
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==24.9.0
+faker==24.14.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -176,11 +180,11 @@ mccabe==0.7.0
     # via pylint
 mysqlclient==2.2.4
     # via -r requirements/test.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/test.txt
 packaging==24.0
     # via
@@ -190,9 +194,9 @@ pbr==6.0.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==4.2.0
+platformdirs==4.2.1
     # via pylint
-pluggy==1.4.0
+pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -231,7 +235,7 @@ pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==3.13.0
+pymongo==4.4.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -239,7 +243,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==8.1.1
+pytest==8.2.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -263,7 +267,7 @@ pyyaml==6.0.1
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==5.0.3
+redis==5.0.4
     # via -r requirements/test.txt
 requests==2.31.0
     # via
@@ -318,3 +322,6 @@ urllib3==2.2.1
     # via
     #   -r requirements/test.txt
     #   requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
