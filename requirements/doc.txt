@@ -20,11 +20,11 @@ attrs==23.2.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-babel==2.14.0
+babel==2.15.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
-backports-tarfile==1.0.0
+backports-tarfile==1.1.1
     # via jaraco-context
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
@@ -56,11 +56,11 @@ click==8.1.7
     #   edx-django-utils
 code-annotations==1.8.0
     # via -r requirements/test.txt
-coverage[toml]==7.4.4
+coverage[toml]==7.5.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==42.0.5
+cryptography==42.0.6
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -93,7 +93,7 @@ django-extensions==3.2.3
     # via -r requirements/test.txt
 django-filter==24.2
     # via -r requirements/test.txt
-django-model-utils==4.5.0
+django-model-utils==4.5.1
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -115,6 +115,10 @@ djangorestframework==3.15.1
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
+dnspython==2.6.1
+    # via
+    #   -r requirements/test.txt
+    #   pymongo
 doc8==1.1.1
     # via -r requirements/doc.in
 docutils==0.19
@@ -130,7 +134,7 @@ drf-jwt==1.19.2
     #   edx-drf-extensions
 edx-django-release-util==1.4.0
     # via -r requirements/test.txt
-edx-django-utils==5.12.0
+edx-django-utils==5.13.0
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -139,20 +143,20 @@ edx-drf-extensions==10.3.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-opaque-keys[django]==2.5.1
+edx-opaque-keys[django]==2.9.0
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.8.0
+edx-rbac==1.9.0
     # via -r requirements/test.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/test.txt
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==24.9.0
+faker==25.0.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -183,20 +187,20 @@ jaraco-classes==3.4.0
     # via keyring
 jaraco-context==5.3.0
     # via keyring
-jaraco-functools==4.0.0
+jaraco-functools==4.0.1
     # via keyring
 jeepney==0.8.0
     # via
     #   keyring
     #   secretstorage
-jinja2==3.1.3
+jinja2==3.1.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   sphinx
 jsonfield2==4.0.0.post0
     # via -r requirements/test.txt
-keyring==25.1.0
+keyring==25.2.0
     # via twine
 markdown-it-py==3.0.0
     # via rich
@@ -212,13 +216,13 @@ more-itertools==10.2.0
     #   jaraco-functools
 mysqlclient==2.2.4
     # via -r requirements/test.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.17
     # via readme-renderer
-openedx-events==9.9.1
+openedx-events==9.9.2
     # via -r requirements/test.txt
 packaging==24.0
     # via
@@ -233,7 +237,7 @@ pbr==6.0.0
     #   stevedore
 pkginfo==1.10.0
     # via twine
-pluggy==1.4.0
+pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -251,7 +255,7 @@ pycparser==2.22
     #   cffi
 pydata-sphinx-theme==0.14.4
     # via sphinx-book-theme
-pygments==2.17.2
+pygments==2.18.0
     # via
     #   accessible-pygments
     #   doc8
@@ -264,7 +268,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==3.13.0
+pymongo==4.4.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -272,9 +276,9 @@ pynacl==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pyproject-hooks==1.0.0
+pyproject-hooks==1.1.0
     # via build
-pytest==8.1.1
+pytest==8.2.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -302,7 +306,7 @@ pyyaml==6.0.1
     #   edx-django-release-util
 readme-renderer==43.0
     # via twine
-redis==5.0.3
+redis==5.0.4
     # via -r requirements/test.txt
 requests==2.31.0
     # via
@@ -377,7 +381,6 @@ tomli==2.0.1
     #   build
     #   coverage
     #   doc8
-    #   pyproject-hooks
     #   pytest
 twine==5.0.0
     # via -r requirements/doc.in
@@ -386,7 +389,6 @@ typing-extensions==4.11.0
     #   -r requirements/test.txt
     #   asgiref
     #   edx-opaque-keys
-    #   faker
     #   pydata-sphinx-theme
     #   rich
 urllib3==2.2.1
@@ -398,3 +400,6 @@ zipp==3.18.1
     # via
     #   importlib-metadata
     #   importlib-resources
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
