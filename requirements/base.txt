@@ -128,7 +128,7 @@ redis==5.0.4
     # via -r requirements/base.in
 requests==2.31.0
     # via edx-drf-extensions
-rules==3.3
+rules==3.4
     # via -r requirements/base.in
 semantic-version==2.10.0
     # via edx-drf-extensions

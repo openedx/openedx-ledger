@@ -283,7 +283,7 @@ pynacl==1.5.0
     #   edx-django-utils
 pyproject-hooks==1.1.0
     # via build
-pytest==8.2.0
+pytest==8.2.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -328,7 +328,7 @@ rfc3986==2.0.0
     # via twine
 rich==13.7.1
     # via twine
-rules==3.3
+rules==3.4
     # via -r requirements/test.txt
 secretstorage==3.3.3
     # via keyring
@@ -388,7 +388,7 @@ tomli==2.0.1
     #   coverage
     #   doc8
     #   pytest
-twine==5.0.0
+twine==5.1.0
     # via -r requirements/doc.in
 typing-extensions==4.11.0
     # via
@@ -402,7 +402,7 @@ urllib3==2.2.1
     #   -r requirements/test.txt
     #   requests
     #   twine
-zipp==3.18.1
+zipp==3.18.2
     # via
     #   importlib-metadata
     #   importlib-resources
