@@ -232,7 +232,8 @@ class AdjustmentAdminCreateForm(forms.ModelForm):
     quantity_usd_input = forms.FloatField(
         required=True,
         help_text='Amount of adjustment in US Dollars. If the adjustment reduces the total deposits, please verify \
-        that the policies spend limit associated to this subsidy does not exceed the new total deposits after this adjustment is made.',
+        that the policies\' spend limit associated to this subsidy does not exceed the new total deposits after this \
+        adjustment is made.',
     )
 
 
