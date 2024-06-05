@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.4.3]
+*******
+* feat: Update help text for adjustments
+
 [1.4.2]
 *******
 * feat: Dependency updates
