@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.4.4]
+*******
+* feat: the Reversal django admin field now autocompletes.
+
 [1.4.3]
 *******
 * feat: Update help text for adjustments
