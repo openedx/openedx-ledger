@@ -211,6 +211,18 @@ class ReversalAdmin(SimpleHistoryAdmin):
         model = models.Reversal
         fields = '__all__'
 
+    autocomplete_fields = [
+        'transaction',
+    ]
+    list_display = (
+        'uuid',
+        'quantity',
+        'state',
+        'transaction',
+        'modified',
+    )
+    ordering = ('-modified',)
+
 
 class AdjustmentAdminCreateForm(forms.ModelForm):
     """
