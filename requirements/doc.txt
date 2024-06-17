@@ -147,7 +147,7 @@ edx-drf-extensions==10.3.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-opaque-keys[django]==2.9.0
+edx-opaque-keys[django]==2.10.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -215,13 +215,13 @@ markupsafe==2.1.5
     #   jinja2
 mdurl==0.1.2
     # via markdown-it-py
-more-itertools==10.2.0
+more-itertools==10.3.0
     # via
     #   jaraco-classes
     #   jaraco-functools
 mysqlclient==2.2.4
     # via -r requirements/test.txt
-newrelic==9.10.0
+newrelic==9.11.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -273,7 +273,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.4.0
+pymongo==4.7.3
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -311,7 +311,7 @@ pyyaml==6.0.1
     #   edx-django-release-util
 readme-renderer==43.0
     # via twine
-redis==5.0.5
+redis==5.0.6
     # via -r requirements/test.txt
 requests==2.32.3
     # via
