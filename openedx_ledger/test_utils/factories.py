@@ -7,10 +7,12 @@ import factory
 
 from openedx_ledger.models import (
     Adjustment,
+    Deposit,
     ExternalFulfillmentProvider,
     ExternalTransactionReference,
     Ledger,
     Reversal,
+    SalesContractReferenceProvider,
     Transaction,
     TransactionStateChoices,
     UnitChoices,
@@ -95,5 +97,38 @@ class AdjustmentFactory(factory.django.DjangoModelFactory):
         model = Adjustment
 
     ledger = factory.SubFactory(LedgerFactory)
-    transaction = factory.SubFactory(TransactionFactory)
+    transaction = factory.SubFactory(
+        TransactionFactory,
+        ledger=factory.SelfAttribute('..ledger'),
+        quantity=factory.SelfAttribute('..adjustment_quantity'),
+    )
     adjustment_quantity = factory.Faker("random_int", min=100, max=10000)
+
+
+class SalesContractReferenceProviderFactory(factory.django.DjangoModelFactory):
+    """
+    Test factory for the `SalesContractReferenceProvider` model.
+    """
+    class Meta:
+        model = SalesContractReferenceProvider
+
+    name = factory.Faker("company")
+    slug = factory.Faker("slug")
+
+
+class DepositFactory(factory.django.DjangoModelFactory):
+    """
+    Test factory for the `Deposit` model.
+    """
+    class Meta:
+        model = Deposit
+
+    ledger = factory.SubFactory(LedgerFactory)
+    transaction = factory.SubFactory(
+        TransactionFactory,
+        ledger=factory.SelfAttribute('..ledger'),
+        quantity=factory.SelfAttribute('..desired_deposit_quantity'),
+    )
+    desired_deposit_quantity = factory.Faker("random_int", min=100, max=10000)
+    sales_contract_reference_id = factory.Faker("lexify", text="????-????-????-????")
+    sales_contract_reference_provider = factory.SubFactory(SalesContractReferenceProviderFactory)

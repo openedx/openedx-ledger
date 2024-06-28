@@ -9,7 +9,14 @@ import pytest
 from django.test import TestCase
 
 from openedx_ledger import models
-from openedx_ledger.test_utils.factories import LedgerFactory, ReversalFactory, TransactionFactory
+from openedx_ledger.constants import INITIAL_DEPOSIT_TRANSACTION_SLUG
+from openedx_ledger.test_utils.factories import (
+    AdjustmentFactory,
+    DepositFactory,
+    LedgerFactory,
+    ReversalFactory,
+    TransactionFactory,
+)
 
 
 @ddt.ddt
@@ -21,10 +28,12 @@ class LedgerBalanceTests(TestCase):
     def setUp(self):
         super().setUp()
         self.ledger = LedgerFactory()
-        self.initial_transaction = TransactionFactory(
+        self.initial_deposit = DepositFactory(
             ledger=self.ledger,
-            quantity=100,
+            desired_deposit_quantity=100,
         )
+        self.initial_deposit.transaction.idempotency_key = INITIAL_DEPOSIT_TRANSACTION_SLUG
+        self.initial_deposit.transaction.save()
         self.transaction_2 = TransactionFactory(
             ledger=self.ledger, lms_user_id=1, content_key="course-v1:edX+test+course.1", quantity=-10
         )
@@ -48,6 +57,18 @@ class LedgerBalanceTests(TestCase):
             quantity=-10,
             state=models.TransactionStateChoices.PENDING,
         )
+        self.adjustment_1 = AdjustmentFactory(
+            ledger=self.ledger,
+            adjustment_quantity=15,
+        )
+        self.adjustment_2 = AdjustmentFactory(
+            ledger=self.ledger,
+            adjustment_quantity=-5,
+        )
+        self.extra_deposit = DepositFactory(
+            ledger=self.ledger,
+            desired_deposit_quantity=50,
+        )
 
     def test_balance(self):
         """
@@ -56,7 +77,7 @@ class LedgerBalanceTests(TestCase):
         ``committed_only`` is implicitly False.
         """
         result = self.ledger.balance()
-        assert result == 100 - 10 - 10 - 10 + 10 - 10
+        assert result == 100 - 10 - 10 - 10 + 10 - 10 + 15 - 5 + 50
 
     def test_balance_committed_only(self):
         """
@@ -65,13 +86,13 @@ class LedgerBalanceTests(TestCase):
         One of the setUp transactions is still pending.
         """
         result = self.ledger.balance(committed_only=True)
-        assert result == 100 - 10 - 10 - 10 + 10
+        assert result == 100 - 10 - 10 - 10 + 10 + 15 - 5 + 50
 
     @ddt.data(
         # Test calculating the balance of the entire ledger.
         {
             "transaction_filters": {},
-            "expected_balance": 100 - 10 - 10 - 10 + 10 - 10,
+            "expected_balance": 100 - 10 - 10 - 10 + 10 - 10 + 15 - 5 + 50,
         },
         # Test calculating the balance of a user subset.
         {
@@ -99,7 +120,7 @@ class LedgerBalanceTests(TestCase):
 
         assert result == expected_balance
 
-    def test_subset_balance_doesnt_fail_superset(self,):
+    def test_subset_balance_doesnt_fail_superset(self):
         """
         Test Ledger.subset_balance() doesn't fail when given a set of transactions that are a superset of
         Ledger.transactions.
@@ -117,9 +138,19 @@ class LedgerBalanceTests(TestCase):
             quantity=-55,
             state=models.TransactionStateChoices.FAILED,
         )
-        expected_balance = 100 - 10 - 10 - 10 + 10 - 10
+        expected_balance = 100 - 10 - 10 - 10 + 10 - 10 + 15 - 5 + 50
 
         self.assertEqual(self.ledger.balance(), expected_balance)
+
+    def test_total_deposits(self):
+        """
+        Test Ledger.total_deposits() counts all deposit-esque transactions.
+        """
+        #                       extra deposit─────────────────┐
+        #                         adjustments────────┬────┐   │
+        #                     initial deposit───┐    │    │   │
+        assert self.ledger.total_deposits() == 100 + 15 - 5 + 50
+        # Note that all transactions representing learner spend are excluded.
 
     def test_idempotency_key_is_generated(self):
         """
