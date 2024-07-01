@@ -161,7 +161,7 @@ exceptiongroup==1.2.1
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==25.9.1
+faker==26.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -240,7 +240,7 @@ pbr==6.0.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-pkginfo==1.11.1
+pkginfo==1.10.0
     # via twine
 pluggy==1.5.0
     # via
@@ -273,7 +273,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.7.3
+pymongo==4.8.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -311,7 +311,7 @@ pyyaml==6.0.1
     #   edx-django-release-util
 readme-renderer==43.0
     # via twine
-redis==5.0.6
+redis==5.0.7
     # via -r requirements/test.txt
 requests==2.32.3
     # via
@@ -388,7 +388,7 @@ tomli==2.0.1
     #   coverage
     #   doc8
     #   pytest
-twine==5.1.0
+twine==5.1.1
     # via -r requirements/doc.in
 typing-extensions==4.12.2
     # via

@@ -132,7 +132,7 @@ exceptiongroup==1.2.1
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==25.9.1
+faker==26.0.0
     # via factory-boy
 fastavro==1.9.4
     # via
@@ -183,7 +183,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/base.txt
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.7.3
+pymongo==4.8.0
     # via
     #   -r requirements/base.txt
     #   edx-opaque-keys
@@ -210,7 +210,7 @@ pyyaml==6.0.1
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==5.0.6
+redis==5.0.7
     # via -r requirements/base.txt
 requests==2.32.3
     # via
