@@ -6,6 +6,7 @@ from uuid import uuid4
 
 from django.core.cache import cache as django_cache
 from django.db import models
+from django.db.models import Q
 from django.db.models.functions import Coalesce
 from django.db.transaction import atomic
 from edx_django_utils.cache.utils import get_cache_key
@@ -183,6 +184,27 @@ class Ledger(TimeStampedModelWithUuid):
             queryset = Transaction.objects.filter(ledger=self, state=TransactionStateChoices.COMMITTED)
         else:
             queryset = Transaction.objects.filter(ledger=self).exclude(state=TransactionStateChoices.FAILED)
+        return self.subset_balance(queryset)
+
+    def total_deposits(self):
+        """
+        Calculate and return the total value added to this ledger.
+
+        Note that this not only factors actual deposits, but also all adjustments which essentially represent
+        ad-hoc manipulations of the total value added.
+
+        IMPORTANT NOTE: Until ENT-9132 is completed (backfill initial deposits), this method will be inaccurate in prod.
+        Do not call this method until completing ENT-9132!
+        """
+        # Custom filter that searches for anything that looks and smells like a deposit, including actual deposits.
+        deposit_esque_filter = Q(deposit__isnull=False) | Q(adjustment__isnull=False)
+        # Limit results to just deposits committed to this ledger.
+        queryset = Transaction.objects.filter(
+            deposit_esque_filter,
+            ledger=self,
+            state=TransactionStateChoices.COMMITTED,
+        )
+        # Finally, subsidy_blance further factors in reversals.
         return self.subset_balance(queryset)
 
     @property
@@ -615,5 +637,101 @@ class Adjustment(TimeStampedModelWithUuid):
         help_text=(
             'Any additional context you have for the existence of this adjustment.'
         ),
+    )
+    history = HistoricalRecords()
+
+
+class SalesContractReferenceProvider(TimeStampedModel):
+    """
+    All possible providers for sales contracts.
+
+    Typically your sales contracts are recorded within one centralized system-of-record (e.g. SalesForce), in which case
+    this table may only ever have one single record to describe that provider.
+
+    .. no_pii:
+    """
+
+    class Meta:
+        """
+        Metaclass for SalesContractReferenceProvider.
+        """
+
+        verbose_name = 'Sales Contract Reference Provider'
+
+    name = models.CharField(
+        max_length=255,
+        help_text="The pretty name of the contract reference provider.",
+    )
+    slug = models.SlugField(
+        max_length=32,
+        unique=True,
+        help_text="A unique slug for this sales contract reference provider.",
+    )
+
+    def __str__(self):
+        """
+        Return string representation of this external fulfillment provider, visible in logs, django admin, etc.
+        """
+        msg = (
+            f'<SalesContractReferenceProvider\n'
+            f'name={self.name}\n'
+            f'slug={self.slug}>'
+        )
+        return msg
+
+
+class Deposit(TimeStampedModelWithUuid):
+    """
+    Represents a deposit into to the balance of a ledger via a transaction (with quantity > 0).
+
+    .. no_pii:
+    """
+    ledger = models.ForeignKey(
+        Ledger,
+        related_name='deposits',
+        null=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The Ledger instance with which this deposit is associated."
+        )
+    )
+    # This field is non-contributing, and should NOT be factored into balance calculations. It should only be used to
+    # accept input from an admin form and feed the transaction creation.
+    desired_deposit_quantity = models.BigIntegerField(
+        null=False,
+        blank=False,
+        help_text=(
+            "How many units to deposit via related transaction."
+        ),
+    )
+    transaction = models.OneToOneField(
+        Transaction,
+        related_name='deposit',
+        unique=True,
+        null=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The Transaction instance which represents this deposit and influences the balance of the relevant ledger."
+        ),
+    )
+    sales_contract_reference_id = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        db_index=True,
+        help_text=(
+            "The reference ID for the specific sales contract which beget this deposit. The source system which ",
+            "stores the sales object is identified by the sales_contract_reference_provider field.",
+        ),
+    )
+    sales_contract_reference_provider = models.ForeignKey(
+        SalesContractReferenceProvider,
+        related_name='deposits',
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        help_text=(
+            "The system providing the source of truth for the sales contract which beget this deposit."
+        )
     )
     history = HistoricalRecords()

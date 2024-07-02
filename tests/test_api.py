@@ -7,6 +7,7 @@ import pytest
 
 from openedx_ledger import api
 from openedx_ledger.models import AdjustmentReasonChoices, TransactionStateChoices, UnitChoices
+from openedx_ledger.test_utils.factories import SalesContractReferenceProviderFactory
 
 
 @pytest.mark.django_db
@@ -138,3 +139,69 @@ def test_adjustment_creation_balance_exceeded():
         )
     assert ledger.balance() == 50
     assert ledger.transactions.all().count() == 1
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "idempotency_key,expected_idempotency_key_substring",
+    [
+        ('foo-bar', 'foo-bar'),
+        (None, 'sales-contract'),
+    ],
+)
+def test_deposit_creation_happy_path(idempotency_key, expected_idempotency_key_substring):
+    ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
+    assert ledger.balance() == 0
+
+    test_deposit_uuid = uuid.uuid4()
+    test_sales_contract_reference_id = str(uuid.uuid4())
+    test_sales_contract_reference_provider = SalesContractReferenceProviderFactory()
+
+    deposit = api.create_deposit(
+        ledger,
+        deposit_uuid=test_deposit_uuid,
+        quantity=100,
+        sales_contract_reference_id=test_sales_contract_reference_id,
+        sales_contract_reference_provider=test_sales_contract_reference_provider,
+        idempotency_key=idempotency_key,
+        some_key='some_value',  # tests that metadata is recorded on the adjustment's transaction
+    )
+
+    assert deposit.uuid == test_deposit_uuid
+    assert deposit.transaction.quantity == 100
+    assert deposit.transaction.state == TransactionStateChoices.COMMITTED
+    assert expected_idempotency_key_substring in deposit.transaction.idempotency_key
+    assert deposit.desired_deposit_quantity == 100
+    assert deposit.sales_contract_reference_id == test_sales_contract_reference_id
+    assert deposit.sales_contract_reference_provider == test_sales_contract_reference_provider
+    assert deposit.transaction.metadata == {
+        'some_key': 'some_value',
+    }
+    assert ledger.balance() == 100
+
+
+@pytest.mark.django_db
+def test_deposit_creation_error():
+    ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
+    assert ledger.balance() == 0
+
+    test_deposit_uuid = uuid.uuid4()
+    test_sales_contract_reference_id = str(uuid.uuid4())
+    test_sales_contract_reference_provider = SalesContractReferenceProviderFactory()
+
+    with pytest.raises(
+        api.DepositCreationError,
+        match="Deposits must be positive"
+    ):
+        api.create_deposit(
+            ledger,
+            deposit_uuid=test_deposit_uuid,
+            quantity=-100,  # negative deposits not allowed, so we expect this to throw an exception.
+            sales_contract_reference_id=test_sales_contract_reference_id,
+            sales_contract_reference_provider=test_sales_contract_reference_provider,
+            idempotency_key='unique-string-for-transaction',
+            some_key='some_value',  # tests that metadata is recorded on the adjustment's transaction
+        )
+
+    # Make sure the ledger balance did not change.
+    assert ledger.balance() == 0

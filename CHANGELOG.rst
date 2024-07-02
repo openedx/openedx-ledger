@@ -15,6 +15,14 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.0]
+*******
+* feat: Deposit model and supporting functionality
+
+[1.4.5]
+*******
+* chore: Increase version to 1.4.5 for dependency updates.
+
 [1.4.4]
 *******
 * feat: the Reversal django admin field now autocompletes.
