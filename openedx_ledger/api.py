@@ -37,6 +37,12 @@ class AdjustmentCreationError(Exception):
     """
 
 
+class DepositCreationError(Exception):
+    """
+    Raised when, for whatever reason, deposit could not be created.
+    """
+
+
 def create_transaction(
     ledger,
     quantity,
@@ -235,3 +241,52 @@ def create_adjustment(
         raise AdjustmentCreationError(str(exc)) from exc
 
     return adjustment
+
+
+def create_deposit(
+    ledger,
+    quantity,
+    sales_contract_reference_id,
+    sales_contract_reference_provider,
+    deposit_uuid=None,
+    idempotency_key=None,
+    **metadata,
+):
+    """
+    Creates a new Transaction and related Deposit record
+    to increase the balance of the given ledger.
+    """
+    if idempotency_key is None:
+        tx_idempotency_key = f'{ledger.uuid}-deposit-{quantity}-sales-contract-{sales_contract_reference_id}'
+    else:
+        tx_idempotency_key = idempotency_key
+
+    if quantity < 0:
+        raise DepositCreationError(f'Deposit quantity of {quantity} is invalid becase Deposits must be positive.')
+
+    try:
+        with atomic():
+            transaction = create_transaction(
+                ledger,
+                quantity,
+                idempotency_key=tx_idempotency_key,
+                state=models.TransactionStateChoices.COMMITTED,
+                **metadata,
+            )
+            kwargs = {}
+            if deposit_uuid:
+                kwargs['uuid'] = deposit_uuid
+            deposit = models.Deposit.objects.create(
+                ledger=ledger,
+                desired_deposit_quantity=quantity,
+                transaction=transaction,
+                sales_contract_reference_id=sales_contract_reference_id,
+                sales_contract_reference_provider=sales_contract_reference_provider,
+                **kwargs,
+            )
+    except Exception as exc:
+        message = f'Failed to create desposit in ledger {ledger.uuid} for amount {quantity}'
+        logger.exception(message)
+        raise DepositCreationError(str(exc)) from exc
+
+    return deposit
