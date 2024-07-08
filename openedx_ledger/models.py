@@ -13,10 +13,12 @@ from edx_django_utils.cache.utils import get_cache_key
 from jsonfield.fields import JSONField
 from model_utils.models import TimeStampedModel
 from simple_history.models import HistoricalRecords
+from simple_history.utils import bulk_create_with_history
 
 from openedx_ledger.utils import create_idempotency_key_for_ledger
 
 LEDGER_LOCK_RESOURCE_NAME = 'ledger'
+BULK_OPERATION_BATCH_SIZE = 50
 
 
 class UnitChoices:
@@ -735,3 +737,15 @@ class Deposit(TimeStampedModelWithUuid):
         )
     )
     history = HistoricalRecords()
+
+    @classmethod
+    def bulk_create(cls, deposit_records):
+        """
+        Creates new ``Deposit`` records in bulk, while saving their history:
+        https://django-simple-history.readthedocs.io/en/latest/common_issues.html#bulk-creating-a-model-with-history
+        """
+        return bulk_create_with_history(
+            deposit_records,
+            cls,
+            batch_size=BULK_OPERATION_BATCH_SIZE,
+        )
