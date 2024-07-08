@@ -35,7 +35,7 @@ cachetools==5.3.3
     # via
     #   -r requirements/ci.txt
     #   tox
-certifi==2024.6.2
+certifi==2024.7.4
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -417,7 +417,7 @@ tomlkit==0.12.5
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.15.1
+tox==4.16.0
     # via -r requirements/ci.txt
 typing-extensions==4.12.2
     # via
