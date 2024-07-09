@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.2]
+*******
+* feat: Ledger creation is now capable of initial Deposit creation
+
 [1.5.1]
 *******
 * chore: Increase version to 1.5.1 for dependency updates.
