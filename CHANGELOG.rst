@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.3]
+*******
+* fix: deposit sales references should be optional
+
 [1.5.2]
 *******
 * feat: Ledger creation is now capable of initial Deposit creation
