@@ -31,6 +31,12 @@ class CannotReverseAdjustmentError(Exception):
     """
 
 
+class LedgerCreationError(Exception):
+    """
+    Raised when, for whatever reason, a Ledger could not be created.
+    """
+
+
 class AdjustmentCreationError(Exception):
     """
     Raised when, for whatever reason, an adjustment could not be created.
@@ -159,7 +165,15 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
         return reversal
 
 
-def create_ledger(unit=None, idempotency_key=None, subsidy_uuid=None, initial_deposit=None, **metadata):
+def create_ledger(
+    unit=None,
+    idempotency_key=None,
+    subsidy_uuid=None,
+    initial_deposit=None,
+    sales_contract_reference_id=None,
+    sales_contract_reference_provider=None,
+    **metadata
+):
     """
     Primary interface for creating a Ledger record.
 
@@ -170,8 +184,16 @@ def create_ledger(unit=None, idempotency_key=None, subsidy_uuid=None, initial_de
       subsidy_uuid: Optional subsidy uuid used in above utility function.
       initial_deposit: Optional amount of value to initialize the ledger with.  In units specified by units
         (units by default are USD_CENTS).
+      sales_contract_reference_id (str):
+        The reference ID for the specific sales contract which beget this ledger's initial deposit.
+      sales_contract_reference_provider (openedx_ledger.models.SalesContractReferenceProvider):
+        The system providing the source of truth for the sales contract which beget this ledger's initial deposit.
       metadata: Optional additional information for the ledger.
     """
+    if initial_deposit and not (sales_contract_reference_id and sales_contract_reference_provider):
+        raise LedgerCreationError(
+            "create_ledger(): both sales_contract_reference_id/provider are required when creating an initial deposit"
+        )
     ledger, _ = models.Ledger.objects.get_or_create(
         unit=unit or models.UnitChoices.USD_CENTS,
         idempotency_key=idempotency_key or utils.create_idempotency_key_for_ledger(subsidy_uuid),
@@ -185,11 +207,12 @@ def create_ledger(unit=None, idempotency_key=None, subsidy_uuid=None, initial_de
             initial_deposit,
             is_initial_deposit=True,
         )
-        create_transaction(
-            ledger,
-            initial_deposit,
-            initial_idpk,
-            state=models.TransactionStateChoices.COMMITTED,
+        create_deposit(
+            ledger=ledger,
+            quantity=initial_deposit,
+            idempotency_key=initial_idpk,
+            sales_contract_reference_id=sales_contract_reference_id,
+            sales_contract_reference_provider=sales_contract_reference_provider,
         )
 
     return ledger

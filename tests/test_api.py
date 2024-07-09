@@ -6,13 +6,18 @@ import uuid
 import pytest
 
 from openedx_ledger import api
-from openedx_ledger.models import AdjustmentReasonChoices, TransactionStateChoices, UnitChoices
+from openedx_ledger.models import AdjustmentReasonChoices, Deposit, Transaction, TransactionStateChoices, UnitChoices
 from openedx_ledger.test_utils.factories import SalesContractReferenceProviderFactory
 
 
 @pytest.mark.django_db
 def test_create_ledger_happy_path():
-    ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
+    sales_reference_kwargs = {
+        "sales_contract_reference_id": str(uuid.uuid4()),
+        "sales_contract_reference_provider": SalesContractReferenceProviderFactory(),
+    }
+
+    ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger', **sales_reference_kwargs)
     assert ledger.balance() == 0
 
     api.create_transaction(ledger, quantity=5000, idempotency_key='tx-1', state=TransactionStateChoices.CREATED)
@@ -29,6 +34,46 @@ def test_create_ledger_happy_path():
 
     other_ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
     assert ledger == other_ledger
+
+
+@pytest.mark.django_db
+def test_create_ledger_with_initial_deposit():
+    """
+    Simple test case to make sure ledger creation API is capable of creating initial Deposit and Transaction objects.
+    """
+    ledger = api.create_ledger(
+        unit=UnitChoices.USD_CENTS,
+        idempotency_key='my-happy-ledger',
+        initial_deposit=100,
+        sales_contract_reference_id=str(uuid.uuid4()),
+        sales_contract_reference_provider=SalesContractReferenceProviderFactory(),
+    )
+    assert ledger.balance() == 100
+    assert ledger.total_deposits() == 100
+
+    # Check that a transaction was created.
+    assert len(Transaction.objects.filter(ledger=ledger)) == 1
+    assert Transaction.objects.filter(ledger=ledger)[0].quantity == 100
+
+    # Check that a deposit was created.
+    assert len(Deposit.objects.filter(ledger=ledger)) == 1
+    assert Deposit.objects.filter(ledger=ledger)[0].desired_deposit_quantity == 100
+
+
+@pytest.mark.django_db
+def test_create_ledger_missing_sales_contract_reference():
+    """
+    Ledger creation API fails if initial_deposit is non-zero but no sales contract reference is provided.
+    """
+    with pytest.raises(
+        api.LedgerCreationError,
+        match="both sales_contract_reference_id/provider are required when creating an initial deposit"
+    ):
+        api.create_ledger(
+            unit=UnitChoices.USD_CENTS,
+            idempotency_key='my-happy-ledger',
+            initial_deposit=100,
+        )
 
 
 @pytest.mark.django_db
