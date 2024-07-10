@@ -716,8 +716,9 @@ class Deposit(TimeStampedModelWithUuid):
     )
     sales_contract_reference_id = models.CharField(
         max_length=255,
-        blank=False,
-        null=False,
+        # Don't require this field because it's often inherited from the parent subsidy which also has blank/null=True.
+        blank=True,
+        null=True,
         db_index=True,
         help_text=(
             "The reference ID for the specific sales contract which beget this deposit. The source system which ",
@@ -727,8 +728,8 @@ class Deposit(TimeStampedModelWithUuid):
     sales_contract_reference_provider = models.ForeignKey(
         SalesContractReferenceProvider,
         related_name='deposits',
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE,
         help_text=(
             "The system providing the source of truth for the sales contract which beget this deposit."
