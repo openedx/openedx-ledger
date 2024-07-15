@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.2.2
+astroid==3.2.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -74,7 +74,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.5.4
+coverage[toml]==7.6.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -96,7 +96,7 @@ distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.13
+django==4.2.14
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -180,7 +180,7 @@ edx-opaque-keys[django]==2.10.0
     #   openedx-events
 edx-rbac==1.9.0
     # via -r requirements/quality.txt
-exceptiongroup==1.2.1
+exceptiongroup==1.2.2
     # via
     #   -r requirements/quality.txt
     #   pytest
@@ -190,7 +190,7 @@ faker==26.0.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-fastavro==1.9.4
+fastavro==1.9.5
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -239,7 +239,7 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.4
     # via -r requirements/quality.txt
-newrelic==9.11.0
+newrelic==9.12.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -413,7 +413,7 @@ tomli==2.0.1
     #   pyproject-api
     #   pytest
     #   tox
-tomlkit==0.12.5
+tomlkit==0.13.0
     # via
     #   -r requirements/quality.txt
     #   pylint
