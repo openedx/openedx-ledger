@@ -56,7 +56,7 @@ click==8.1.7
     #   edx-django-utils
 code-annotations==1.8.0
     # via -r requirements/test.txt
-coverage[toml]==7.5.4
+coverage[toml]==7.6.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -67,7 +67,7 @@ cryptography==42.0.8
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==4.2.13
+django==4.2.14
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -155,7 +155,7 @@ edx-opaque-keys[django]==2.10.0
     #   openedx-events
 edx-rbac==1.9.0
     # via -r requirements/test.txt
-exceptiongroup==1.2.1
+exceptiongroup==1.2.2
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -165,7 +165,7 @@ faker==26.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.9.4
+fastavro==1.9.5
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -221,7 +221,7 @@ more-itertools==10.3.0
     #   jaraco-functools
 mysqlclient==2.2.4
     # via -r requirements/test.txt
-newrelic==9.11.0
+newrelic==9.12.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
