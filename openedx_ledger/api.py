@@ -276,8 +276,10 @@ def create_deposit(
     **metadata,
 ):
     """
-    Creates a new Transaction and related Deposit record
-    to increase the balance of the given ledger.
+    Creates a new Transaction and related Deposit record to increase the balance of the given ledger.
+
+    Note: this function is NOT idempotent. If called twice with the same idempotency key, it will raise an
+    openedx_ledger.api.DepositCreationError. This is probably not ideal.
     """
     if idempotency_key is None:
         tx_idempotency_key = f'{ledger.uuid}-deposit-{quantity}-sales-contract-{sales_contract_reference_id}'
