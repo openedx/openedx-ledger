@@ -157,6 +157,26 @@ def test_adjustment_creation_happy_path():
     }
     assert ledger.balance() == 4900
 
+    # This function is unfortunately not idempotent. But at least it rolls back any unwanted changes and maintains
+    # database integrity.
+    with pytest.raises(
+        api.AdjustmentCreationError,
+        match="UNIQUE constraint failed: openedx_ledger_adjustment",
+    ):
+        api.create_adjustment(
+            ledger,
+            adjustment_uuid=test_uuid,
+            quantity=-100,
+            idempotency_key='unique-string-for-transaction',
+            reason=AdjustmentReasonChoices.POOR_CONTENT_FIT,
+            notes='Long form notes about this record',
+            transaction_of_interest=tx_of_interest,
+            some_key='some_value',  # tests that metadata is recorded on the adjustment's transaction
+        )
+
+    # No change after 2nd attempt.
+    assert ledger.balance() == 4900
+
 
 @pytest.mark.django_db
 def test_adjustment_creation_balance_exceeded():
@@ -222,6 +242,25 @@ def test_deposit_creation_happy_path(idempotency_key, expected_idempotency_key_s
     assert deposit.transaction.metadata == {
         'some_key': 'some_value',
     }
+    assert ledger.balance() == 100
+
+    # This function is unfortunately not idempotent. But at least it rolls back any unwanted changes and maintains
+    # database integrity.
+    with pytest.raises(
+        api.DepositCreationError,
+        match="UNIQUE constraint failed: openedx_ledger_deposit.transaction_id",
+    ):
+        api.create_deposit(
+            ledger,
+            deposit_uuid=test_deposit_uuid,
+            quantity=100,
+            sales_contract_reference_id=test_sales_contract_reference_id,
+            sales_contract_reference_provider=test_sales_contract_reference_provider,
+            idempotency_key=idempotency_key,
+            some_key='some_value',  # tests that metadata is recorded on the adjustment's transaction
+        )
+
+    # No change after 2nd attempt.
     assert ledger.balance() == 100
 
 
