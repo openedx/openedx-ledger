@@ -25,7 +25,7 @@ charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via edx-django-utils
-cryptography==42.0.8
+cryptography==43.0.0
     # via pyjwt
 django==4.2.14
     # via
@@ -137,7 +137,7 @@ six==1.16.0
     #   edx-ccx-keys
     #   edx-django-release-util
     #   edx-rbac
-sqlparse==0.5.0
+sqlparse==0.5.1
     # via django
 stevedore==5.2.0
     # via
