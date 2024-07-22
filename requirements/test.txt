@@ -44,7 +44,7 @@ code-annotations==1.8.0
     # via -r requirements/test.in
 coverage[toml]==7.6.0
     # via pytest-cov
-cryptography==42.0.8
+cryptography==43.0.0
     # via
     #   -r requirements/base.txt
     #   pyjwt
@@ -191,7 +191,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==8.2.2
+pytest==8.3.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -229,7 +229,7 @@ six==1.16.0
     #   edx-django-release-util
     #   edx-rbac
     #   python-dateutil
-sqlparse==0.5.0
+sqlparse==0.5.1
     # via
     #   -r requirements/base.txt
     #   django

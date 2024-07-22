@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.2.3
+astroid==3.2.4
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -31,7 +31,7 @@ build==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==5.3.3
+cachetools==5.4.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -78,7 +78,7 @@ coverage[toml]==7.6.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==42.0.8
+cryptography==43.0.0
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -86,7 +86,7 @@ ddt==1.7.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/quality.txt
-diff-cover==9.1.0
+diff-cover==9.1.1
     # via -r requirements/dev.in
 dill==0.3.8
     # via
@@ -170,7 +170,7 @@ edx-drf-extensions==10.3.0
     #   edx-rbac
 edx-i18n-tools==1.6.0
     # via -r requirements/dev.in
-edx-lint==5.3.6
+edx-lint==5.3.7
     # via -r requirements/quality.txt
 edx-opaque-keys[django]==2.10.0
     # via
@@ -301,7 +301,7 @@ pyjwt[crypto]==2.8.0
     #   -r requirements/quality.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==3.2.5
+pylint==3.2.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -338,7 +338,7 @@ pyproject-hooks==1.1.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==8.2.2
+pytest==8.3.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -387,7 +387,7 @@ snowballstemmer==2.2.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlparse==0.5.0
+sqlparse==0.5.1
     # via
     #   -r requirements/quality.txt
     #   django
