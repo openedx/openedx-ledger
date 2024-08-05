@@ -16,7 +16,7 @@ async-timeout==4.0.3
     # via
     #   -r requirements/test.txt
     #   redis
-attrs==23.2.0
+attrs==24.1.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -52,7 +52,7 @@ code-annotations==1.8.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.6.0
+coverage[toml]==7.6.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -88,7 +88,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==3.2.3
     # via -r requirements/test.txt
-django-filter==24.2
+django-filter==24.3
     # via -r requirements/test.txt
 django-model-utils==4.5.1
     # via
@@ -151,7 +151,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==26.0.0
+faker==26.1.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -213,7 +213,7 @@ psutil==6.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pycodestyle==2.12.0
+pycodestyle==2.12.1
     # via -r requirements/quality.in
 pycparser==2.22
     # via
@@ -221,7 +221,7 @@ pycparser==2.22
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pyjwt[crypto]==2.8.0
+pyjwt[crypto]==2.9.0
     # via
     #   -r requirements/test.txt
     #   drf-jwt
