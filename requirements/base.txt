@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via django
 async-timeout==4.0.3
     # via redis
-attrs==23.2.0
+attrs==24.1.0
     # via openedx-events
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
@@ -50,7 +50,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==3.2.3
     # via -r requirements/base.in
-django-filter==24.2
+django-filter==24.3
     # via -r requirements/base.in
 django-model-utils==4.5.1
     # via edx-rbac
@@ -112,7 +112,7 @@ psutil==6.0.0
     # via edx-django-utils
 pycparser==2.22
     # via cffi
-pyjwt[crypto]==2.8.0
+pyjwt[crypto]==2.9.0
     # via
     #   drf-jwt
     #   edx-drf-extensions
