@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.8]
+*******
+* chore: Increase version to 1.5.8 for dependency updates.
+
 [1.5.7]
 *******
 * chore: Increase version to 1.5.7 for dependency updates.
