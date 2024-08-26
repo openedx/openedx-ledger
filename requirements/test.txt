@@ -127,19 +127,19 @@ edx-opaque-keys[django]==2.10.0
     #   edx-ccx-keys
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.9.0
+edx-rbac==1.10.0
     # via -r requirements/base.txt
 exceptiongroup==1.2.2
     # via pytest
 factory-boy==3.3.1
     # via -r requirements/test.in
-faker==27.0.0
+faker==28.0.0
     # via factory-boy
 fastavro==1.9.5
     # via
     #   -r requirements/base.txt
     #   openedx-events
-idna==3.7
+idna==3.8
     # via
     #   -r requirements/base.txt
     #   requests
@@ -157,7 +157,7 @@ newrelic==9.13.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.11.0
+openedx-events==9.12.0
     # via -r requirements/base.txt
 packaging==24.1
     # via pytest
@@ -234,7 +234,7 @@ sqlparse==0.5.1
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.2.0
+stevedore==5.3.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
