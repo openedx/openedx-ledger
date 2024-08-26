@@ -90,11 +90,11 @@ edx-opaque-keys[django]==2.10.0
     #   edx-ccx-keys
     #   edx-drf-extensions
     #   openedx-events
-edx-rbac==1.9.0
+edx-rbac==1.10.0
     # via -r requirements/base.in
 fastavro==1.9.5
     # via openedx-events
-idna==3.7
+idna==3.8
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
@@ -102,7 +102,7 @@ mysqlclient==2.2.4
     # via -r requirements/base.in
 newrelic==9.13.0
     # via edx-django-utils
-openedx-events==9.11.0
+openedx-events==9.12.0
     # via -r requirements/base.in
 pbr==6.0.0
     # via stevedore
@@ -139,7 +139,7 @@ six==1.16.0
     #   edx-rbac
 sqlparse==0.5.1
     # via django
-stevedore==5.2.0
+stevedore==5.3.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys
