@@ -33,9 +33,9 @@ MAINTAINER sre@edx.org
 RUN apt-get update && apt-get -qy install --no-install-recommends \
  language-pack-en \
  locales \
- python3.8 \
+ python3.12 \
  python3-pip \
- python3.8-venv \
+ python3.12-venv \
  pkg-config \
  libmysqlclient-dev \
  libssl-dev \
@@ -69,7 +69,7 @@ RUN useradd -m --shell /bin/false app
 
 WORKDIR /edx/app/openedx-ledger
 
-RUN python3.8 -m venv $VIRTUAL_ENV
+RUN python3.12 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Copy the requirements explicitly even though we copy everything below
