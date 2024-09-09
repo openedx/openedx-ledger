@@ -34,13 +34,13 @@ backports-zoneinfo==0.2.1 ; python_version < "3.9"
     #   djangorestframework
 beautifulsoup4==4.12.3
     # via pydata-sphinx-theme
-build==1.2.1
+build==1.2.2
     # via -r requirements/doc.in
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.17.0
+cffi==1.17.1
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -60,14 +60,14 @@ coverage[toml]==7.6.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==43.0.0
+cryptography==43.0.1
     # via
     #   -r requirements/test.txt
     #   pyjwt
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==4.2.15
+django==4.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -93,7 +93,7 @@ django-extensions==3.2.3
     # via -r requirements/test.txt
 django-filter==24.3
     # via -r requirements/test.txt
-django-model-utils==4.5.1
+django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -119,7 +119,7 @@ dnspython==2.6.1
     # via
     #   -r requirements/test.txt
     #   pymongo
-doc8==1.1.1
+doc8==1.1.2
     # via -r requirements/doc.in
 docutils==0.19
     # via
@@ -143,11 +143,11 @@ edx-django-utils==5.15.0
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.3.0
+edx-drf-extensions==10.4.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-opaque-keys[django]==2.10.0
+edx-opaque-keys[django]==2.11.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -161,11 +161,11 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==28.0.0
+faker==28.4.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.9.5
+fastavro==1.9.7
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -214,7 +214,7 @@ markupsafe==2.1.5
     #   jinja2
 mdurl==0.1.2
     # via markdown-it-py
-more-itertools==10.4.0
+more-itertools==10.5.0
     # via
     #   jaraco-classes
     #   jaraco-functools
@@ -226,7 +226,7 @@ newrelic==9.13.0
     #   edx-django-utils
 nh3==0.2.18
     # via readme-renderer
-openedx-events==9.12.0
+openedx-events==9.14.0
     # via -r requirements/test.txt
 packaging==24.1
     # via
@@ -235,7 +235,7 @@ packaging==24.1
     #   pydata-sphinx-theme
     #   pytest
     #   sphinx
-pbr==6.0.0
+pbr==6.1.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -289,7 +289,7 @@ pytest==8.3.2
     #   pytest-django
 pytest-cov==5.0.0
     # via -r requirements/test.txt
-pytest-django==4.8.0
+pytest-django==4.9.0
     # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
@@ -325,9 +325,9 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.7.1
+rich==13.8.0
     # via twine
-rules==3.4
+rules==3.5
     # via -r requirements/test.txt
 secretstorage==3.3.3
     # via keyring
@@ -401,7 +401,7 @@ urllib3==2.2.2
     #   -r requirements/test.txt
     #   requests
     #   twine
-zipp==3.20.0
+zipp==3.20.1
     # via
     #   importlib-metadata
     #   importlib-resources
