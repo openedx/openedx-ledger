@@ -26,11 +26,11 @@ backports-zoneinfo==0.2.1 ; python_version < "3.9"
     #   -r requirements/test.txt
     #   django
     #   djangorestframework
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.17.0
+cffi==1.17.1
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -56,7 +56,7 @@ coverage[toml]==7.6.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==43.0.0
+cryptography==43.0.1
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -64,7 +64,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.3.8
     # via pylint
-django==4.2.15
+django==4.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -90,7 +90,7 @@ django-extensions==3.2.3
     # via -r requirements/test.txt
 django-filter==24.3
     # via -r requirements/test.txt
-django-model-utils==4.5.1
+django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -131,13 +131,13 @@ edx-django-utils==5.15.0
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.3.0
+edx-drf-extensions==10.4.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
 edx-lint==5.4.0
     # via -r requirements/quality.in
-edx-opaque-keys[django]==2.10.0
+edx-opaque-keys[django]==2.11.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -151,11 +151,11 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==28.0.0
+faker==28.4.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.9.5
+fastavro==1.9.7
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -189,17 +189,17 @@ newrelic==9.13.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-openedx-events==9.12.0
+openedx-events==9.14.0
     # via -r requirements/test.txt
 packaging==24.1
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==6.0.0
+pbr==6.1.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==4.2.2
+platformdirs==4.3.2
     # via pylint
 pluggy==1.5.0
     # via
@@ -226,7 +226,7 @@ pyjwt[crypto]==2.9.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==3.2.6
+pylint==3.2.7
     # via
     #   edx-lint
     #   pylint-celery
@@ -255,7 +255,7 @@ pytest==8.3.2
     #   pytest-django
 pytest-cov==5.0.0
     # via -r requirements/test.txt
-pytest-django==4.8.0
+pytest-django==4.9.0
     # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
@@ -278,7 +278,7 @@ requests==2.32.3
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
-rules==3.4
+rules==3.5
     # via -r requirements/test.txt
 semantic-version==2.10.0
     # via
