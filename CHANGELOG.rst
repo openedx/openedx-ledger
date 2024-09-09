@@ -15,6 +15,11 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.9]
+*******
+* chore: Increase version to 1.5.9 for dependency updates.
+* chore: Use Node 20 in Dockerfile.
+
 [1.5.8]
 *******
 * chore: Increase version to 1.5.8 for dependency updates.
