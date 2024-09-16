@@ -97,7 +97,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-django-object-actions==4.2.0
+django-object-actions==4.3.0
     # via -r requirements/test.txt
 django-simple-history==3.0.0
     # via
@@ -169,19 +169,19 @@ fastavro==1.9.7
     # via
     #   -r requirements/test.txt
     #   openedx-events
-idna==3.8
+idna==3.10
     # via
     #   -r requirements/test.txt
     #   requests
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==8.4.0
+importlib-metadata==8.5.0
     # via
     #   build
     #   keyring
     #   sphinx
     #   twine
-importlib-resources==6.4.4
+importlib-resources==6.4.5
     # via keyring
 iniconfig==2.0.0
     # via
@@ -282,7 +282,7 @@ pynacl==1.5.0
     #   edx-django-utils
 pyproject-hooks==1.1.0
     # via build
-pytest==8.3.2
+pytest==8.3.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -299,7 +299,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2024.1
+pytz==2024.2
     # via
     #   -r requirements/test.txt
     #   babel
@@ -325,7 +325,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.8.0
+rich==13.8.1
     # via twine
 rules==3.5
     # via -r requirements/test.txt
@@ -396,12 +396,12 @@ typing-extensions==4.12.2
     #   edx-opaque-keys
     #   pydata-sphinx-theme
     #   rich
-urllib3==2.2.2
+urllib3==2.2.3
     # via
     #   -r requirements/test.txt
     #   requests
     #   twine
-zipp==3.20.1
+zipp==3.20.2
     # via
     #   importlib-metadata
     #   importlib-resources

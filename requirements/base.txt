@@ -54,7 +54,7 @@ django-filter==24.3
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-rbac
-django-object-actions==4.2.0
+django-object-actions==4.3.0
     # via -r requirements/base.in
 django-simple-history==3.0.0
     # via
@@ -94,7 +94,7 @@ edx-rbac==1.10.0
     # via -r requirements/base.in
 fastavro==1.9.7
     # via openedx-events
-idna==3.8
+idna==3.10
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
@@ -120,7 +120,7 @@ pymongo==4.8.0
     # via edx-opaque-keys
 pynacl==1.5.0
     # via edx-django-utils
-pytz==2024.1
+pytz==2024.2
     # via -r requirements/base.in
 pyyaml==6.0.2
     # via edx-django-release-util
@@ -147,7 +147,7 @@ typing-extensions==4.12.2
     # via
     #   asgiref
     #   edx-opaque-keys
-urllib3==2.2.2
+urllib3==2.2.3
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
