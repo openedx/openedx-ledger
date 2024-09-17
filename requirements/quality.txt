@@ -94,7 +94,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-django-object-actions==4.2.0
+django-object-actions==4.3.0
     # via -r requirements/test.txt
 django-simple-history==3.0.0
     # via
@@ -159,7 +159,7 @@ fastavro==1.9.7
     # via
     #   -r requirements/test.txt
     #   openedx-events
-idna==3.8
+idna==3.10
     # via
     #   -r requirements/test.txt
     #   requests
@@ -199,7 +199,7 @@ pbr==6.1.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==4.3.2
+platformdirs==4.3.3
     # via pylint
 pluggy==1.5.0
     # via
@@ -248,7 +248,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==8.3.2
+pytest==8.3.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -265,7 +265,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2024.1
+pytz==2024.2
     # via -r requirements/test.txt
 pyyaml==6.0.2
     # via
@@ -323,7 +323,7 @@ typing-extensions==4.12.2
     #   astroid
     #   edx-opaque-keys
     #   pylint
-urllib3==2.2.2
+urllib3==2.2.3
     # via
     #   -r requirements/test.txt
     #   requests
