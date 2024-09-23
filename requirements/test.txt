@@ -133,7 +133,7 @@ exceptiongroup==1.2.2
     # via pytest
 factory-boy==3.3.1
     # via -r requirements/test.in
-faker==28.4.1
+faker==29.0.0
     # via factory-boy
 fastavro==1.9.7
     # via
@@ -157,7 +157,7 @@ newrelic==9.13.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.14.0
+openedx-events==9.14.1
     # via -r requirements/base.txt
 packaging==24.1
     # via pytest
@@ -184,7 +184,7 @@ pyjwt[crypto]==2.9.0
     #   -r requirements/base.txt
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.8.0
+pymongo==4.9.1
     # via
     #   -r requirements/base.txt
     #   edx-opaque-keys
