@@ -62,7 +62,7 @@ cryptography==43.0.1
     #   pyjwt
 ddt==1.7.2
     # via -r requirements/test.txt
-dill==0.3.8
+dill==0.3.9
     # via pylint
 django==4.2.16
     # via
@@ -151,7 +151,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==29.0.0
+faker==30.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -185,7 +185,7 @@ mccabe==0.7.0
     # via pylint
 mysqlclient==2.2.4
     # via -r requirements/test.txt
-newrelic==9.13.0
+newrelic==10.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -272,7 +272,7 @@ pyyaml==6.0.2
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==5.0.8
+redis==5.1.0
     # via -r requirements/test.txt
 requests==2.32.3
     # via
