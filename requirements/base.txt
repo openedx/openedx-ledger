@@ -100,7 +100,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.4
     # via -r requirements/base.in
-newrelic==9.13.0
+newrelic==10.0.0
     # via edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/base.in
@@ -124,7 +124,7 @@ pytz==2024.2
     # via -r requirements/base.in
 pyyaml==6.0.2
     # via edx-django-release-util
-redis==5.0.8
+redis==5.1.0
     # via -r requirements/base.in
 requests==2.32.3
     # via edx-drf-extensions
