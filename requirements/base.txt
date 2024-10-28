@@ -12,7 +12,7 @@ attrs==24.2.0
     # via openedx-events
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
-    #   -c requirements/constraints.txt
+    #   -c /home/runner/work/openedx-ledger/openedx-ledger/requirements/constraints.txt
     #   django
     #   djangorestframework
 certifi==2024.8.30
@@ -83,7 +83,7 @@ edx-django-utils==7.0.0
     #   -r requirements/base.in
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.4.0
+edx-drf-extensions==10.5.0
     # via edx-rbac
 edx-opaque-keys[django]==2.11.0
     # via
@@ -124,7 +124,7 @@ pytz==2024.2
     # via -r requirements/base.in
 pyyaml==6.0.2
     # via edx-django-release-util
-redis==5.1.1
+redis==5.2.0
     # via -r requirements/base.in
 requests==2.32.3
     # via edx-drf-extensions
