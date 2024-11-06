@@ -6,13 +6,13 @@
 #
 asgiref==3.8.1
     # via django
-async-timeout==4.0.3
+async-timeout==5.0.0
     # via redis
 attrs==24.2.0
     # via openedx-events
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
-    #   -c /home/runner/work/openedx-ledger/openedx-ledger/requirements/constraints.txt
+    #   -c requirements/constraints.txt
     #   django
     #   djangorestframework
 certifi==2024.8.30

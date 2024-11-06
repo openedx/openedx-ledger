@@ -10,15 +10,15 @@ alabaster==0.7.13
     # via sphinx
 asgiref==3.8.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   django
-async-timeout==4.0.3
+async-timeout==5.0.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   redis
 attrs==24.2.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   openedx-events
 babel==2.16.0
     # via
@@ -28,8 +28,8 @@ backports-tarfile==1.2.0
     # via jaraco-context
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
-    #   -c /home/runner/work/openedx-ledger/openedx-ledger/requirements/constraints.txt
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.txt
     #   django
     #   djangorestframework
 beautifulsoup4==4.12.3
@@ -38,39 +38,39 @@ build==1.2.2.post1
     # via -r requirements/doc.in
 certifi==2024.8.30
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   requests
 cffi==1.17.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   cryptography
     #   pynacl
 charset-normalizer==3.4.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   requests
 click==8.1.7
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-utils
 code-annotations==1.8.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 coverage[toml]==7.6.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pytest-cov
 cryptography==43.0.3
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pyjwt
     #   secretstorage
 ddt==1.7.2
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 django==4.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   django-crum
     #   django-extensions
     #   django-filter
@@ -86,38 +86,38 @@ django==4.2.16
     #   openedx-events
 django-crum==0.7.9
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-rbac
 django-extensions==3.2.3
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 django-filter==24.3
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 django-model-utils==5.0.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-rbac
 django-object-actions==4.3.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 django-simple-history==3.0.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
 django-waffle==4.1.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-drf-extensions
 djangoql==0.18.1
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 djangorestframework==3.15.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
 dnspython==2.6.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pymongo
 doc8==1.1.2
     # via -r requirements/doc.in
@@ -130,48 +130,48 @@ docutils==0.19
     #   sphinx
 drf-jwt==1.19.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-drf-extensions
 edx-ccx-keys==1.3.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   openedx-events
 edx-django-release-util==1.4.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 edx-django-utils==7.0.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
 edx-drf-extensions==10.5.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-rbac
 edx-opaque-keys[django]==2.11.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-ccx-keys
     #   edx-drf-extensions
     #   openedx-events
 edx-rbac==1.10.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 exceptiongroup==1.2.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pytest
 factory-boy==3.3.1
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
-faker==30.8.1
+    # via -r requirements/test.txt
+faker==30.8.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   factory-boy
 fastavro==1.9.7
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   openedx-events
 idna==3.10
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   requests
 imagesize==1.4.1
     # via sphinx
@@ -185,7 +185,7 @@ importlib-resources==6.4.5
     # via keyring
 iniconfig==2.0.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pytest
 jaraco-classes==3.4.0
     # via keyring
@@ -199,18 +199,18 @@ jeepney==0.8.0
     #   secretstorage
 jinja2==3.1.4
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   code-annotations
     #   sphinx
 jsonfield2==4.0.0.post0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 keyring==25.5.0
     # via twine
 markdown-it-py==3.0.0
     # via rich
 markupsafe==2.1.5
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   jinja2
 mdurl==0.1.2
     # via markdown-it-py
@@ -219,43 +219,43 @@ more-itertools==10.5.0
     #   jaraco-classes
     #   jaraco-functools
 mysqlclient==2.2.5
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 newrelic==10.2.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.18
     # via readme-renderer
 openedx-events==9.14.1
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 packaging==24.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   build
     #   pydata-sphinx-theme
     #   pytest
     #   sphinx
 pbr==6.1.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   stevedore
 pkginfo==1.10.0
     # via twine
 pluggy==1.5.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pytest
 ply==3.11
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   djangoql
 psutil==6.1.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-django-utils
 pycparser==2.22
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   cffi
 pydata-sphinx-theme==0.14.4
     # via sphinx-book-theme
@@ -269,52 +269,52 @@ pygments==2.18.0
     #   sphinx
 pyjwt[crypto]==2.9.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
 pymongo==4.10.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-opaque-keys
 pynacl==1.5.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-django-utils
 pyproject-hooks==1.2.0
     # via build
 pytest==8.3.3
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   pytest-cov
     #   pytest-django
 pytest-cov==5.0.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 pytest-django==4.9.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   faker
 python-slugify==8.0.4
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   code-annotations
 pytz==2024.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   babel
 pyyaml==6.0.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
 readme-renderer==43.0
     # via twine
 redis==5.2.0
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 requests==2.32.3
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-drf-extensions
     #   requests-toolbelt
     #   sphinx
@@ -325,19 +325,19 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.9.3
+rich==13.9.4
     # via twine
 rules==3.5
-    # via -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    # via -r requirements/test.txt
 secretstorage==3.3.3
     # via keyring
 semantic-version==2.10.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-drf-extensions
 six==1.16.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   edx-ccx-keys
     #   edx-django-release-util
     #   edx-rbac
@@ -367,22 +367,22 @@ sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 sqlparse==0.5.1
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   django
 stevedore==5.3.0
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   code-annotations
     #   doc8
     #   edx-django-utils
     #   edx-opaque-keys
 text-unidecode==1.3
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   python-slugify
 tomli==2.0.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   build
     #   coverage
     #   doc8
@@ -391,7 +391,7 @@ twine==5.1.1
     # via -r requirements/doc.in
 typing-extensions==4.12.2
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   asgiref
     #   edx-opaque-keys
     #   faker
@@ -399,7 +399,7 @@ typing-extensions==4.12.2
     #   rich
 urllib3==2.2.3
     # via
-    #   -r /home/runner/work/openedx-ledger/openedx-ledger/requirements/test.txt
+    #   -r requirements/test.txt
     #   requests
     #   twine
 zipp==3.20.2
