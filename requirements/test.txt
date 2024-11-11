@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/base.txt
     #   django
-async-timeout==5.0.0
+async-timeout==5.0.1
     # via
     #   -r requirements/base.txt
     #   redis
@@ -159,7 +159,7 @@ newrelic==10.2.0
     #   edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/base.txt
-packaging==24.1
+packaging==24.2
     # via pytest
 pbr==6.1.0
     # via
