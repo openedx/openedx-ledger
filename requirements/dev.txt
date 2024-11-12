@@ -13,7 +13,7 @@ astroid==3.2.4
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-async-timeout==5.0.0
+async-timeout==5.0.1
     # via
     #   -r requirements/quality.txt
     #   redis
@@ -244,7 +244,7 @@ newrelic==10.2.0
     #   edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/quality.txt
-packaging==24.1
+packaging==24.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -436,7 +436,7 @@ virtualenv==20.27.1
     # via
     #   -r requirements/ci.txt
     #   tox
-wheel==0.44.0
+wheel==0.45.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools

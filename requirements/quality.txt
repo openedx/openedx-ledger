@@ -12,7 +12,7 @@ astroid==3.2.4
     # via
     #   pylint
     #   pylint-celery
-async-timeout==5.0.0
+async-timeout==5.0.1
     # via
     #   -r requirements/test.txt
     #   redis
@@ -191,7 +191,7 @@ newrelic==10.2.0
     #   edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/test.txt
-packaging==24.1
+packaging==24.2
     # via
     #   -r requirements/test.txt
     #   pytest

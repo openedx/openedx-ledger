@@ -6,7 +6,7 @@
 #
 asgiref==3.8.1
     # via django
-async-timeout==5.0.0
+async-timeout==5.0.1
     # via redis
 attrs==24.2.0
     # via openedx-events

@@ -12,7 +12,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/test.txt
     #   django
-async-timeout==5.0.0
+async-timeout==5.0.1
     # via
     #   -r requirements/test.txt
     #   redis
@@ -228,7 +228,7 @@ nh3==0.2.18
     # via readme-renderer
 openedx-events==9.14.1
     # via -r requirements/test.txt
-packaging==24.1
+packaging==24.2
     # via
     #   -r requirements/test.txt
     #   build
