@@ -60,7 +60,7 @@ django-simple-history==3.0.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
-django-waffle==4.1.0
+django-waffle==4.2.0
     # via
     #   edx-django-utils
     #   edx-drf-extensions
@@ -98,7 +98,7 @@ idna==3.10
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
-mysqlclient==2.2.5
+mysqlclient==2.2.6
     # via -r requirements/base.in
 newrelic==10.2.0
     # via edx-django-utils
@@ -137,7 +137,7 @@ six==1.16.0
     #   edx-ccx-keys
     #   edx-django-release-util
     #   edx-rbac
-sqlparse==0.5.1
+sqlparse==0.5.2
     # via django
 stevedore==5.3.0
     # via
