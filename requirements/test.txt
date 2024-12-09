@@ -50,7 +50,7 @@ cryptography==44.0.0
     #   pyjwt
 ddt==1.7.2
     # via -r requirements/test.in
-django==4.2.16
+django==4.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
@@ -106,13 +106,13 @@ drf-jwt==1.19.2
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-edx-ccx-keys==1.3.0
+edx-ccx-keys==2.0.2
     # via
     #   -r requirements/base.txt
     #   openedx-events
 edx-django-release-util==1.4.0
     # via -r requirements/base.txt
-edx-django-utils==7.0.1
+edx-django-utils==7.1.0
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
@@ -211,7 +211,7 @@ pyyaml==6.0.2
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==5.2.0
+redis==5.2.1
     # via -r requirements/base.txt
 requests==2.32.3
     # via
@@ -223,7 +223,7 @@ semantic-version==2.10.0
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
-six==1.16.0
+six==1.17.0
     # via
     #   -r requirements/base.txt
     #   edx-ccx-keys
