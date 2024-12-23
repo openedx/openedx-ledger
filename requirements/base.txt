@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via django
 async-timeout==5.0.1
     # via redis
-attrs==24.2.0
+attrs==24.3.0
     # via openedx-events
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
@@ -23,7 +23,7 @@ cffi==1.17.1
     #   pynacl
 charset-normalizer==3.4.0
     # via requests
-click==8.1.7
+click==8.1.8
     # via edx-django-utils
 cryptography==44.0.0
     # via pyjwt
@@ -108,7 +108,7 @@ pbr==6.1.0
     # via stevedore
 ply==3.11
     # via djangoql
-psutil==6.1.0
+psutil==6.1.1
     # via edx-django-utils
 pycparser==2.22
     # via cffi

@@ -16,7 +16,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/test.txt
     #   redis
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -39,7 +39,7 @@ charset-normalizer==3.4.0
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/test.txt
     #   click-log
@@ -171,7 +171,7 @@ isort==5.13.2
     # via
     #   -r requirements/quality.in
     #   pylint
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -209,7 +209,7 @@ ply==3.11
     # via
     #   -r requirements/test.txt
     #   djangoql
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
