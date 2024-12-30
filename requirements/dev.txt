@@ -17,7 +17,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/quality.txt
     #   redis
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -49,11 +49,11 @@ chardet==5.2.0
     #   -r requirements/ci.txt
     #   diff-cover
     #   tox
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -215,7 +215,7 @@ isort==5.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -281,7 +281,7 @@ ply==3.11
     #   djangoql
 polib==1.2.0
     # via edx-i18n-tools
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
