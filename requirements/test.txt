@@ -12,7 +12,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/base.txt
     #   redis
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -31,11 +31,11 @@ cffi==1.17.1
     #   -r requirements/base.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -133,7 +133,7 @@ exceptiongroup==1.2.2
     # via pytest
 factory-boy==3.3.1
     # via -r requirements/test.in
-faker==33.1.0
+faker==33.3.0
     # via factory-boy
 fastavro==1.9.7
     # via
@@ -145,7 +145,7 @@ idna==3.10
     #   requests
 iniconfig==2.0.0
     # via pytest
-jinja2==3.1.4
+jinja2==3.1.5
     # via code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
@@ -171,7 +171,7 @@ ply==3.11
     # via
     #   -r requirements/base.txt
     #   djangoql
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
