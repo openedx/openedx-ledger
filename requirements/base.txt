@@ -98,7 +98,7 @@ idna==3.10
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
-mysqlclient==2.2.6
+mysqlclient==2.2.7
     # via -r requirements/base.in
 newrelic==10.4.0
     # via edx-django-utils
@@ -148,7 +148,9 @@ typing-extensions==4.12.2
     #   asgiref
     #   edx-opaque-keys
 urllib3==2.2.3
-    # via requests
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   requests
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

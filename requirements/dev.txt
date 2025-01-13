@@ -186,7 +186,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/quality.txt
-faker==33.3.0
+faker==33.3.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -236,7 +236,7 @@ mccabe==0.7.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-mysqlclient==2.2.6
+mysqlclient==2.2.7
     # via -r requirements/quality.txt
 newrelic==10.4.0
     # via
@@ -293,7 +293,7 @@ pycparser==2.22
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
-pygments==2.19.0
+pygments==2.19.1
     # via diff-cover
 pyjwt[crypto]==2.9.0
     # via
@@ -430,6 +430,7 @@ typing-extensions==4.12.2
     #   tox
 urllib3==2.2.3
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   requests
 virtualenv==20.28.1
