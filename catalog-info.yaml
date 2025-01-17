@@ -14,7 +14,7 @@ metadata:
     openedx.org/arch-interest-groups: ""
 spec:
   # (Required) This can be a group(`group:<group_name>` or a user(`user:<github_username>`)
-  owner: "group:openedx-unmaintained"
+  owner: group:2u-enterprise
 
   # (Required) Acceptable Type Values: service, website, library
   type: 'library'
