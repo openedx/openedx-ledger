@@ -16,7 +16,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/test.txt
     #   redis
-attrs==24.3.0
+attrs==25.1.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -161,7 +161,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==33.3.1
+faker==35.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -169,6 +169,8 @@ fastavro==1.9.7
     # via
     #   -r requirements/test.txt
     #   openedx-events
+id==1.5.0
+    # via twine
 idna==3.10
     # via
     #   -r requirements/test.txt
@@ -240,8 +242,6 @@ pbr==6.1.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-pkginfo==1.12.0
-    # via twine
 pluggy==1.5.0
     # via
     #   -r requirements/test.txt
@@ -317,6 +317,7 @@ requests==2.32.3
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
+    #   id
     #   requests-toolbelt
     #   sphinx
     #   twine
@@ -388,7 +389,7 @@ tomli==2.2.1
     #   coverage
     #   doc8
     #   pytest
-twine==6.0.1
+twine==6.1.0
     # via -r requirements/doc.in
 typing-extensions==4.12.2
     # via

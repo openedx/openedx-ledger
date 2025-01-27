@@ -12,7 +12,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/base.txt
     #   redis
-attrs==24.3.0
+attrs==25.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -133,7 +133,7 @@ exceptiongroup==1.2.2
     # via pytest
 factory-boy==3.3.1
     # via -r requirements/test.in
-faker==33.3.1
+faker==35.0.0
     # via factory-boy
 fastavro==1.9.7
     # via

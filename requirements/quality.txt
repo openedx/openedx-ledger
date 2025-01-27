@@ -16,7 +16,7 @@ async-timeout==5.0.1
     # via
     #   -r requirements/test.txt
     #   redis
-attrs==24.3.0
+attrs==25.1.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -135,7 +135,7 @@ edx-drf-extensions==10.5.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-lint==5.4.1
+edx-lint==5.6.0
     # via -r requirements/quality.in
 edx-opaque-keys[django]==2.11.0
     # via
@@ -151,7 +151,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==33.3.1
+faker==35.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
