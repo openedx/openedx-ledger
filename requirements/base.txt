@@ -15,7 +15,7 @@ backports-zoneinfo==0.2.1 ; python_version < "3.9"
     #   -c requirements/constraints.txt
     #   django
     #   djangorestframework
-certifi==2024.12.14
+certifi==2025.1.31
     # via requests
 cffi==1.17.1
     # via
@@ -100,7 +100,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-newrelic==10.4.0
+newrelic==10.5.0
     # via edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/base.in
@@ -120,7 +120,7 @@ pymongo==4.10.1
     # via edx-opaque-keys
 pynacl==1.5.0
     # via edx-django-utils
-pytz==2024.2
+pytz==2025.1
     # via -r requirements/base.in
 pyyaml==6.0.2
     # via edx-django-release-util

@@ -26,7 +26,7 @@ backports-zoneinfo==0.2.1 ; python_version < "3.9"
     #   -r requirements/test.txt
     #   django
     #   djangorestframework
-certifi==2024.12.14
+certifi==2025.1.31
     # via
     #   -r requirements/test.txt
     #   requests
@@ -151,7 +151,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==35.0.0
+faker==35.2.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -185,7 +185,7 @@ mccabe==0.7.0
     # via pylint
 mysqlclient==2.2.7
     # via -r requirements/test.txt
-newrelic==10.4.0
+newrelic==10.5.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -265,7 +265,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2024.2
+pytz==2025.1
     # via -r requirements/test.txt
 pyyaml==6.0.2
     # via
