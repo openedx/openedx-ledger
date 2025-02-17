@@ -78,7 +78,7 @@ coverage[toml]==7.6.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==44.0.0
+cryptography==44.0.1
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -186,7 +186,7 @@ exceptiongroup==1.2.2
     #   pytest
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==35.2.0
+faker==35.2.2
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -222,7 +222,7 @@ jinja2==3.1.5
     #   diff-cover
 jsonfield2==4.0.0.post0
     # via -r requirements/quality.txt
-lxml[html-clean,html_clean]==5.3.0
+lxml[html-clean,html_clean]==5.3.1
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -281,7 +281,7 @@ ply==3.11
     #   djangoql
 polib==1.2.0
     # via edx-i18n-tools
-psutil==6.1.1
+psutil==7.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -344,7 +344,7 @@ pytest==8.3.4
     #   pytest-django
 pytest-cov==5.0.0
     # via -r requirements/quality.txt
-pytest-django==4.9.0
+pytest-django==4.10.0
     # via -r requirements/quality.txt
 python-dateutil==2.9.0.post0
     # via
@@ -433,7 +433,7 @@ urllib3==2.2.3
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   requests
-virtualenv==20.29.1
+virtualenv==20.29.2
     # via
     #   -r requirements/ci.txt
     #   tox
