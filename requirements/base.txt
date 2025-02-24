@@ -25,7 +25,7 @@ charset-normalizer==3.4.1
     # via requests
 click==8.1.8
     # via edx-django-utils
-cryptography==44.0.0
+cryptography==44.0.1
     # via pyjwt
 django==4.2.19
     # via
@@ -108,7 +108,7 @@ pbr==6.1.1
     # via stevedore
 ply==3.11
     # via djangoql
-psutil==6.1.1
+psutil==7.0.0
     # via edx-django-utils
 pycparser==2.22
     # via cffi
