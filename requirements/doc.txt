@@ -67,7 +67,7 @@ cryptography==44.0.2
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==4.2.19
+django==4.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -199,7 +199,7 @@ jeepney==0.9.0
     # via
     #   keyring
     #   secretstorage
-jinja2==3.1.5
+jinja2==3.1.6
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -222,7 +222,7 @@ more-itertools==10.5.0
     #   jaraco-functools
 mysqlclient==2.2.7
     # via -r requirements/test.txt
-newrelic==10.6.0
+newrelic==10.7.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
