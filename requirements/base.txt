@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via django
 async-timeout==5.0.1
     # via redis
-attrs==25.1.0
+attrs==25.3.0
     # via openedx-events
 backports-zoneinfo==0.2.1 ; python_version < "3.9"
     # via
@@ -27,7 +27,7 @@ click==8.1.8
     # via edx-django-utils
 cryptography==44.0.2
     # via pyjwt
-django==4.2.19
+django==4.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -100,7 +100,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-newrelic==10.6.0
+newrelic==10.7.0
     # via edx-django-utils
 openedx-events==9.14.1
     # via -r requirements/base.in
