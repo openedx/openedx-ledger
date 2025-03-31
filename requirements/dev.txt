@@ -238,7 +238,7 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.7
     # via -r requirements/quality.txt
-newrelic==10.7.0
+newrelic==10.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -354,7 +354,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2025.1
+pytz==2025.2
     # via -r requirements/quality.txt
 pyyaml==6.0.2
     # via
@@ -416,9 +416,9 @@ tomlkit==0.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.24.2
+tox==4.25.0
     # via -r requirements/ci.txt
-typing-extensions==4.12.2
+typing-extensions==4.13.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
