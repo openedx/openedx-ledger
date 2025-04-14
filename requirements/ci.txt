@@ -34,7 +34,7 @@ tomli==2.2.1
     #   tox
 tox==4.25.0
     # via -r requirements/ci.in
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via tox
 virtualenv==20.30.0
     # via tox
