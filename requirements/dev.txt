@@ -159,7 +159,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.4.0
     # via -r requirements/quality.txt
-edx-django-utils==7.2.0
+edx-django-utils==7.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
@@ -226,7 +226,7 @@ lxml[html-clean,html_clean]==5.3.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
-lxml-html-clean==0.4.1
+lxml-html-clean==0.4.2
     # via lxml
 markupsafe==2.1.5
     # via
@@ -238,7 +238,7 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.7
     # via -r requirements/quality.txt
-newrelic==10.8.1
+newrelic==10.9.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -418,7 +418,7 @@ tomlkit==0.13.2
     #   pylint
 tox==4.25.0
     # via -r requirements/ci.txt
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
