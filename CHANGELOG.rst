@@ -15,6 +15,12 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.6.0]
+********
+* feat: Add support for Django 5.2
+* feat!: Dropped support for Python 3.8 and 3.9
+* feat: Switched from using `sqlite` to `postgres` for the test database
+
 [1.5.23]
 ********
 * chore: Increase version to 1.5.23 for dependency updates.

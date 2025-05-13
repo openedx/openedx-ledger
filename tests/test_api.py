@@ -117,7 +117,7 @@ def test_multiple_reversals():
     assert reversal == third_reversal
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db(transaction=True)
 def test_adjustment_creation_happy_path():
     ledger = api.create_ledger(unit=UnitChoices.USD_CENTS, idempotency_key='my-happy-ledger')
     assert ledger.balance() == 0
@@ -161,7 +161,7 @@ def test_adjustment_creation_happy_path():
     # database integrity.
     with pytest.raises(
         api.AdjustmentCreationError,
-        match="UNIQUE constraint failed: openedx_ledger_adjustment",
+        match=r'duplicate key value violates unique constraint "openedx_ledger_adjustment_pkey"',
     ):
         api.create_adjustment(
             ledger,
@@ -248,7 +248,7 @@ def test_deposit_creation_happy_path(idempotency_key, expected_idempotency_key_s
     # database integrity.
     with pytest.raises(
         api.DepositCreationError,
-        match="UNIQUE constraint failed: openedx_ledger_deposit.transaction_id",
+        match=r'duplicate key value violates unique constraint "openedx_ledger_deposit_pkey"',
     ):
         api.create_deposit(
             ledger,
