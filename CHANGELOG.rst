@@ -15,6 +15,11 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.6.0]
+*******
+* feat: Add support for Django 5.2
+* feat!: Dropped support for Python 3.8 and 3.9
+
 [1.5.24]
 ********
 * chore: Increase version to 1.5.24 for dependency updates.
