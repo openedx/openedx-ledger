@@ -18,7 +18,7 @@ jobs:
           python-version: 3.8
 
       - name: Install pip
-        run: pip install -r requirements/pip.txt
+        run: pip install --no-cache-dir -r requirements/pip.txt
 
       - name: Build package
         run: python setup.py sdist bdist_wheel
