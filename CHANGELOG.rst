@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.5.23]
+********
+* chore: Increase version to 1.5.23 for dependency updates.
+
 [1.5.22]
 ********
 * chore: Update python requirements job source to openedx
