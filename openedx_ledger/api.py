@@ -61,7 +61,7 @@ def create_transaction(
     subsidy_access_policy_uuid=None,
     state=models.TransactionStateChoices.CREATED,
     **metadata
-):
+):  # pylint: disable=too-many-positional-arguments
     """
     Create a pending transaction.
 
@@ -173,7 +173,7 @@ def create_ledger(
     sales_contract_reference_id=None,
     sales_contract_reference_provider=None,
     **metadata
-):
+):  # pylint: disable=too-many-positional-arguments
     """
     Primary interface for creating a Ledger record.
 
@@ -227,7 +227,7 @@ def create_adjustment(
     idempotency_key=None,
     transaction_of_interest=None,
     **metadata,
-):
+):  # pylint: disable=too-many-positional-arguments
     """
     Creates a new Transaction and related Adjustment record
     to adjust the balance of the given ledger.
@@ -274,7 +274,7 @@ def create_deposit(
     deposit_uuid=None,
     idempotency_key=None,
     **metadata,
-):
+):  # pylint: disable=too-many-positional-arguments
     """
     Creates a new Transaction and related Deposit record to increase the balance of the given ledger.
 
