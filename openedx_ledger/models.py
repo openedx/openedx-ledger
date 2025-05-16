@@ -343,10 +343,19 @@ class Transaction(BaseTransaction):
         """
 
         unique_together = [('ledger', 'idempotency_key')]
-        index_together = [
-            ('ledger', 'lms_user_id', 'content_key'),
-            ('ledger', 'content_key'),
-            ('ledger', 'subsidy_access_policy_uuid'),
+        indexes = [
+            models.Index(
+                fields=['ledger', 'lms_user_id', 'content_key'],
+                name="idx_ledger_lms_content_exc",
+            ),
+            models.Index(
+                fields=['ledger', 'content_key'],
+                name="idx_ledger_content_exc",
+            ),
+            models.Index(
+                fields=['ledger', 'subsidy_access_policy_uuid'],
+                name="idx_ledger_subsidy_exc",
+            ),
         ]
 
     ledger = models.ForeignKey(

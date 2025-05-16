@@ -12,12 +12,32 @@ jobs:
   run_tests:
     name: tests
     runs-on: ${{ matrix.os }}
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_pass
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      DB_NAME: test_db
+      DB_USER: test_user
+      DB_PASSWORD: test_pass
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
     strategy:
       matrix:
         os: [ubuntu-latest]
         python-version:
         - '3.12'
-        toxenv: [quality, pii_check, django42]
+        toxenv: [quality, pii_check, django42, django52]
 
     steps:
     - uses: actions/checkout@v4
@@ -38,7 +58,7 @@ jobs:
       run: tox
 
     - name: Run coverage
-      if: matrix.python-version == '3.8' && matrix.toxenv == 'django42'
+      if: matrix.python-version == '3.12' && matrix.toxenv == 'django42'
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
