@@ -16,9 +16,9 @@ cffi==1.17.1
     #   pynacl
 charset-normalizer==3.4.2
     # via requests
-click==8.2.0
+click==8.2.1
     # via edx-django-utils
-cryptography==45.0.2
+cryptography==45.0.3
     # via pyjwt
 django==4.2.21
     # via
@@ -71,7 +71,7 @@ edx-ccx-keys==2.0.2
     # via openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/base.in
-edx-django-utils==7.4.0
+edx-django-utils==8.0.0
     # via
     #   -r requirements/base.in
     #   edx-drf-extensions
@@ -93,8 +93,6 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-newrelic==10.12.0
-    # via edx-django-utils
 openedx-events==10.2.1
     # via -r requirements/base.in
 pbr==6.1.1
