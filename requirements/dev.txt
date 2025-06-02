@@ -21,7 +21,7 @@ build==1.2.2.post1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==5.5.2
+cachetools==6.0.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -43,7 +43,7 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.2.0
+click==8.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -64,11 +64,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.8.0
+coverage[toml]==7.8.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==45.0.2
+cryptography==45.0.3
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -76,7 +76,7 @@ ddt==1.7.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/quality.txt
-diff-cover==9.2.4
+diff-cover==9.3.2
     # via -r requirements/dev.in
 dill==0.4.0
     # via
@@ -149,7 +149,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/quality.txt
-edx-django-utils==7.4.0
+edx-django-utils==8.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
@@ -220,10 +220,6 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.7
     # via -r requirements/quality.txt
-newrelic==10.12.0
-    # via
-    #   -r requirements/quality.txt
-    #   edx-django-utils
 openedx-events==10.2.1
     # via -r requirements/quality.txt
 packaging==25.0
@@ -340,7 +336,7 @@ pyyaml==6.0.2
     #   code-annotations
     #   edx-django-release-util
     #   edx-i18n-tools
-redis==6.1.0
+redis==6.2.0
     # via -r requirements/quality.txt
 requests==2.32.3
     # via
