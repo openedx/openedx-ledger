@@ -29,7 +29,7 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.2.0
+click==8.2.1
     # via
     #   -r requirements/test.txt
     #   click-log
@@ -42,11 +42,11 @@ code-annotations==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.8.0
+coverage[toml]==7.8.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==45.0.2
+cryptography==45.0.3
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -116,7 +116,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/test.txt
-edx-django-utils==7.4.0
+edx-django-utils==8.0.0
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -171,10 +171,6 @@ mccabe==0.7.0
     # via pylint
 mysqlclient==2.2.7
     # via -r requirements/test.txt
-newrelic==10.12.0
-    # via
-    #   -r requirements/test.txt
-    #   edx-django-utils
 openedx-events==10.2.1
     # via -r requirements/test.txt
 packaging==25.0
@@ -254,7 +250,7 @@ pyyaml==6.0.2
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==6.1.0
+redis==6.2.0
     # via -r requirements/test.txt
 requests==2.32.3
     # via

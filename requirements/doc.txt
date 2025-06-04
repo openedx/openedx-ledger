@@ -37,18 +37,18 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.2.0
+click==8.2.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-utils
 code-annotations==2.3.0
     # via -r requirements/test.txt
-coverage[toml]==7.8.0
+coverage[toml]==7.8.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==45.0.2
+cryptography==45.0.3
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -125,7 +125,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/test.txt
-edx-django-utils==7.4.0
+edx-django-utils==8.0.0
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -193,10 +193,6 @@ more-itertools==10.7.0
     #   jaraco-functools
 mysqlclient==2.2.7
     # via -r requirements/test.txt
-newrelic==10.12.0
-    # via
-    #   -r requirements/test.txt
-    #   edx-django-utils
 nh3==0.2.21
     # via readme-renderer
 openedx-events==10.2.1
@@ -276,7 +272,7 @@ pyyaml==6.0.2
     #   edx-django-release-util
 readme-renderer==44.0
     # via twine
-redis==6.1.0
+redis==6.2.0
     # via -r requirements/test.txt
 requests==2.32.3
     # via
@@ -364,6 +360,9 @@ urllib3==2.2.3
     #   -r requirements/test.txt
     #   requests
     #   twine
+zipp==3.22.0
+    # via importlib-metadata
+
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
