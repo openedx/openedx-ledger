@@ -20,7 +20,7 @@ click==8.2.1
     # via edx-django-utils
 cryptography==45.0.3
     # via pyjwt
-django==4.2.21
+django==4.2.22
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -134,7 +134,7 @@ stevedore==5.4.1
     # via
     #   edx-django-utils
     #   edx-opaque-keys
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via edx-opaque-keys
 urllib3==2.2.3
     # via
