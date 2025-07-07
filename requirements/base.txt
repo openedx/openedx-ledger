@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.8.1
+asgiref==3.9.0
     # via django
 attrs==25.3.0
     # via openedx-events
@@ -18,7 +18,7 @@ charset-normalizer==3.4.2
     # via requests
 click==8.2.1
     # via edx-django-utils
-cryptography==45.0.4
+cryptography==45.0.5
     # via pyjwt
 django==4.2.23
     # via
@@ -93,7 +93,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-openedx-events==10.2.1
+openedx-events==10.3.0
     # via -r requirements/base.in
 pbr==6.1.1
     # via stevedore
@@ -134,7 +134,7 @@ stevedore==5.4.1
     # via
     #   edx-django-utils
     #   edx-opaque-keys
-typing-extensions==4.14.0
+typing-extensions==4.14.1
     # via edx-opaque-keys
 urllib3==2.2.3
     # via
