@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.8.1
+asgiref==3.9.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.3.10
+astroid==3.3.11
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -25,7 +25,7 @@ cachetools==6.1.0
     # via
     #   -r requirements/ci.txt
     #   tox
-certifi==2025.6.15
+certifi==2025.7.9
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -64,11 +64,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.9.1
+coverage[toml]==7.9.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==45.0.4
+cryptography==45.0.5
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -76,7 +76,7 @@ ddt==1.7.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/quality.txt
-diff-cover==9.4.1
+diff-cover==9.5.0
     # via -r requirements/dev.in
 dill==0.4.0
     # via
@@ -220,7 +220,7 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.7
     # via -r requirements/quality.txt
-openedx-events==10.2.1
+openedx-events==10.3.0
     # via -r requirements/quality.txt
 packaging==25.0
     # via
@@ -383,7 +383,7 @@ tomlkit==0.13.3
     #   pylint
 tox==4.27.0
     # via -r requirements/ci.txt
-typing-extensions==4.14.0
+typing-extensions==4.14.1
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
