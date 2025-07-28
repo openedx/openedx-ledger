@@ -93,7 +93,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-openedx-events==10.3.0
+openedx-events==10.4.0
     # via -r requirements/base.in
 pbr==6.1.1
     # via stevedore
