@@ -42,7 +42,7 @@ code-annotations==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.9.2
+coverage[toml]==7.10.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -171,7 +171,7 @@ mccabe==0.7.0
     # via pylint
 mysqlclient==2.2.7
     # via -r requirements/test.txt
-openedx-events==10.3.0
+openedx-events==10.4.0
     # via -r requirements/test.txt
 packaging==25.0
     # via
