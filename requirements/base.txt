@@ -8,7 +8,7 @@ asgiref==3.9.1
     # via django
 attrs==25.3.0
     # via openedx-events
-certifi==2025.7.14
+certifi==2025.8.3
     # via requests
 cffi==1.17.1
     # via
@@ -22,12 +22,13 @@ cryptography==45.0.5
     # via pyjwt
 django==4.2.23
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
     #   django-crum
     #   django-extensions
     #   django-filter
     #   django-model-utils
+    #   django-simple-history
     #   django-waffle
     #   djangorestframework
     #   drf-jwt
@@ -49,10 +50,8 @@ django-model-utils==5.0.0
     # via edx-rbac
 django-object-actions==5.0.0
     # via -r requirements/base.in
-django-simple-history==3.0.0
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r requirements/base.in
+django-simple-history==3.10.1
+    # via -r requirements/base.in
 django-waffle==5.0.0
     # via
     #   edx-django-utils
@@ -85,7 +84,7 @@ edx-opaque-keys[django]==3.0.0
     #   openedx-events
 edx-rbac==2.1.0
     # via -r requirements/base.in
-fastavro==1.11.1
+fastavro==1.12.0
     # via openedx-events
 idna==3.10
     # via requests
@@ -136,10 +135,8 @@ stevedore==5.4.1
     #   edx-opaque-keys
 typing-extensions==4.14.1
     # via edx-opaque-keys
-urllib3==2.2.3
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   requests
+urllib3==2.5.0
+    # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
