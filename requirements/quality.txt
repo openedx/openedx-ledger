@@ -16,7 +16,7 @@ attrs==25.3.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-certifi==2025.7.14
+certifi==2025.8.3
     # via
     #   -r requirements/test.txt
     #   requests
@@ -42,7 +42,7 @@ code-annotations==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.10.1
+coverage[toml]==7.10.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -56,12 +56,13 @@ dill==0.4.0
     # via pylint
 django==4.2.23
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   django-crum
     #   django-extensions
     #   django-filter
     #   django-model-utils
+    #   django-simple-history
     #   django-waffle
     #   djangorestframework
     #   drf-jwt
@@ -86,10 +87,8 @@ django-model-utils==5.0.0
     #   edx-rbac
 django-object-actions==5.0.0
     # via -r requirements/test.txt
-django-simple-history==3.0.0
-    # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r requirements/test.txt
+django-simple-history==3.10.1
+    # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
     #   -r requirements/test.txt
@@ -137,11 +136,11 @@ edx-rbac==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==37.4.2
+faker==37.5.3
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.11.1
+fastavro==1.12.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -300,9 +299,8 @@ tzdata==2025.2
     # via
     #   -r requirements/test.txt
     #   faker
-urllib3==2.2.3
+urllib3==2.5.0
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   requests
 
