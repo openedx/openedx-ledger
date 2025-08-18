@@ -32,7 +32,7 @@ click==8.2.1
     #   edx-django-utils
 code-annotations==2.3.0
     # via -r requirements/test.in
-coverage[toml]==7.10.3
+coverage[toml]==7.10.4
     # via pytest-cov
 cryptography==45.0.6
     # via
@@ -143,7 +143,7 @@ openedx-events==10.4.0
     # via -r requirements/base.txt
 packaging==25.0
     # via pytest
-pbr==6.1.1
+pbr==7.0.0
     # via
     #   -r requirements/base.txt
     #   stevedore
