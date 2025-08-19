@@ -50,7 +50,8 @@ class TransactionFactory(factory.django.DjangoModelFactory):
     content_key = factory.LazyAttribute(lambda tx: f"course-v1:{tx.parent_content_key}+2023")
     parent_content_key = factory.Faker("lexify", text="???+?????101")
     content_title = factory.Faker("lexify", text="???: ?????? ???")
-
+    course_run_start_date = factory.Faker("future_datetime", end_date="+180d")
+    
 
 class ExternalFulfillmentProviderFactory(factory.django.DjangoModelFactory):
     """
