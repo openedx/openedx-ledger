@@ -64,7 +64,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.10.4
+coverage[toml]==7.10.5
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -203,7 +203,7 @@ jinja2==3.1.6
     #   diff-cover
 jsonfield2==4.0.0.post0
     # via -r requirements/quality.txt
-lxml[html-clean]==6.0.0
+lxml[html-clean]==6.0.1
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -219,7 +219,7 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.7
     # via -r requirements/quality.txt
-openedx-events==10.4.0
+openedx-events==10.5.0
     # via -r requirements/quality.txt
 packaging==25.0
     # via
@@ -232,7 +232,7 @@ packaging==25.0
     #   tox
 path==16.16.0
     # via edx-i18n-tools
-pbr==7.0.0
+pbr==7.0.1
     # via
     #   -r requirements/quality.txt
     #   stevedore
@@ -301,7 +301,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.14.0
+pymongo==4.14.1
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -341,7 +341,7 @@ pyyaml==6.0.2
     #   edx-i18n-tools
 redis==6.4.0
     # via -r requirements/quality.txt
-requests==2.32.4
+requests==2.32.5
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
