@@ -92,9 +92,9 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.7
     # via -r requirements/base.in
-openedx-events==10.4.0
+openedx-events==10.5.0
     # via -r requirements/base.in
-pbr==7.0.0
+pbr==7.0.1
     # via stevedore
 ply==3.11
     # via djangoql
@@ -106,7 +106,7 @@ pyjwt[crypto]==2.10.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.14.0
+pymongo==4.14.1
     # via edx-opaque-keys
 pynacl==1.5.0
     # via edx-django-utils
@@ -116,7 +116,7 @@ pyyaml==6.0.2
     # via edx-django-release-util
 redis==6.4.0
     # via -r requirements/base.in
-requests==2.32.4
+requests==2.32.5
     # via edx-drf-extensions
 rules==3.5
     # via -r requirements/base.in
