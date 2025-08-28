@@ -414,6 +414,15 @@ class Transaction(BaseTransaction):
             "The title is captured at the time the Transaction is created and may not be up to date."
         )
     )
+    course_run_start_date = models.DateTimeField(
+        blank=True,
+        null=True,
+        db_index=True,
+        help_text=(
+            "The start date of the course run associated with this Transaction."
+            "The start date is captured at the time the Transaction is created and may not be up to date."
+        )
+    )
     fulfillment_identifier = models.CharField(
         max_length=255,
         blank=True,

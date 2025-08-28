@@ -44,6 +44,8 @@ LOCALE_PATHS = [
 
 ROOT_URLCONF = 'openedx_ledger.urls'
 
+USE_TZ = True
+
 SECRET_KEY = 'insecure-secret-key'
 
 REST_FRAMEWORK = {
