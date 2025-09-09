@@ -3,9 +3,11 @@
 Tests for the `openedx-ledger` models.
 """
 import uuid
+from datetime import datetime
 
 import ddt
 import pytest
+import pytz
 from django.test import TestCase
 
 from openedx_ledger import models
@@ -161,6 +163,18 @@ class LedgerBalanceTests(TestCase):
         my_ledger.save()
 
         self.assertIsNotNone(my_ledger.idempotency_key)
+
+    def test_course_run_start_date_is_saved(self):
+        """
+        Test that course_run_start_date is saved and retrieved correctly on Transaction.
+        """
+        start_date = datetime(2024, 1, 1, 12, 0, 0, tzinfo=pytz.UTC)
+        transaction = TransactionFactory(
+            ledger=self.ledger,
+            course_run_start_date=start_date,
+        )
+        transaction.refresh_from_db()
+        self.assertEqual(transaction.course_run_start_date, start_date)
 
 
 class LedgerLockTests(TestCase):

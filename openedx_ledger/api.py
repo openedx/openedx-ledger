@@ -58,6 +58,7 @@ def create_transaction(
     content_key=None,
     parent_content_key=None,
     content_title=None,
+    course_run_start_date=None,
     subsidy_access_policy_uuid=None,
     state=models.TransactionStateChoices.CREATED,
     **metadata
@@ -84,6 +85,9 @@ def create_transaction(
         content_title (str, Optional):
             The title of the content into which the learner is enrolling. Skip if this does not represent a policy
             enrolling a learner into content or if the title is not readily available.
+        course_run_start_date (datetime, Optional):
+            The start date of the course run associated with this transaction. Skip if this does not represent a policy
+            enrolling a learner into content or if the start date is not readily available.
         subsidy_access_policy_uuid (str, Optional):
             The policy which permitted the creation of the new Transaction. Skip if this does not represent a policy
             enrolling a learner into content.
@@ -114,6 +118,7 @@ def create_transaction(
                     "content_key": content_key,
                     "parent_content_key": parent_content_key,
                     "content_title": content_title,
+                    "course_run_start_date": course_run_start_date,
                     "lms_user_id": lms_user_id,
                     "lms_user_email": lms_user_email,
                     "subsidy_access_policy_uuid": subsidy_access_policy_uuid,
