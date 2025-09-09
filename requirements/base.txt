@@ -18,9 +18,9 @@ charset-normalizer==3.4.3
     # via requests
 click==8.2.1
     # via edx-django-utils
-cryptography==45.0.6
+cryptography==45.0.7
     # via pyjwt
-django==4.2.23
+django==4.2.24
     # via
     #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -62,7 +62,7 @@ djangorestframework==3.16.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
-dnspython==2.7.0
+dnspython==2.8.0
     # via pymongo
 drf-jwt==1.19.2
     # via edx-drf-extensions
@@ -94,8 +94,6 @@ mysqlclient==2.2.7
     # via -r requirements/base.in
 openedx-events==10.5.0
     # via -r requirements/base.in
-pbr==7.0.1
-    # via stevedore
 ply==3.11
     # via djangoql
 psutil==7.0.0
@@ -129,11 +127,11 @@ six==1.17.0
     #   edx-rbac
 sqlparse==0.5.3
     # via django
-stevedore==5.4.1
+stevedore==5.5.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys
-typing-extensions==4.14.1
+typing-extensions==4.15.0
     # via edx-opaque-keys
 urllib3==2.5.0
     # via requests
