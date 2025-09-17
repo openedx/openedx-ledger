@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.6.10]
+*******
+* chore: Increase version to 1.6.10 for dependency updates.
+
 [1.6.9]
 *******
 * feat: Added `course_run_start_date` field to the `Transaction` model.
