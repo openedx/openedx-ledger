@@ -43,7 +43,7 @@ charset-normalizer==3.4.3
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.2.1
+click==8.3.0
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -64,11 +64,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.10.6
+coverage[toml]==7.10.7
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==45.0.7
+cryptography==46.0.1
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -171,7 +171,7 @@ edx-rbac==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==37.6.0
+faker==37.8.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -255,7 +255,7 @@ ply==3.11
     #   djangoql
 polib==1.2.0
     # via edx-i18n-tools
-psutil==7.0.0
+psutil==7.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -297,7 +297,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.15.0
+pymongo==4.15.1
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys

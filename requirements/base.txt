@@ -16,9 +16,9 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.3
     # via requests
-click==8.2.1
+click==8.3.0
     # via edx-django-utils
-cryptography==45.0.7
+cryptography==46.0.1
     # via pyjwt
 django==4.2.24
     # via
@@ -96,7 +96,7 @@ openedx-events==10.5.0
     # via -r requirements/base.in
 ply==3.11
     # via djangoql
-psutil==7.0.0
+psutil==7.1.0
     # via edx-django-utils
 pycparser==2.23
     # via cffi
@@ -104,7 +104,7 @@ pyjwt[crypto]==2.10.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.15.0
+pymongo==4.15.1
     # via edx-opaque-keys
 pynacl==1.6.0
     # via edx-django-utils
