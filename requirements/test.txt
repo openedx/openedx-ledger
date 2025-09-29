@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.9.1
+asgiref==3.9.2
     # via
     #   -r requirements/base.txt
     #   django
@@ -135,7 +135,7 @@ jinja2==3.1.6
     # via code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via jinja2
 mysqlclient==2.2.7
     # via -r requirements/base.txt
@@ -186,7 +186,7 @@ python-slugify==8.0.4
     # via code-annotations
 pytz==2025.2
     # via -r requirements/base.txt
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   -r requirements/base.txt
     #   code-annotations

@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.9.1
+asgiref==3.9.2
     # via
     #   -r requirements/quality.txt
     #   django
@@ -76,7 +76,7 @@ ddt==1.7.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/quality.txt
-diff-cover==9.6.0
+diff-cover==9.7.1
     # via -r requirements/dev.in
 dill==0.4.0
     # via
@@ -203,13 +203,13 @@ jinja2==3.1.6
     #   diff-cover
 jsonfield2==4.0.0.post0
     # via -r requirements/quality.txt
-lxml[html-clean]==6.0.1
+lxml[html-clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
 lxml-html-clean==0.4.2
     # via lxml
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -329,7 +329,7 @@ python-slugify==8.0.4
     #   code-annotations
 pytz==2025.2
     # via -r requirements/quality.txt
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
