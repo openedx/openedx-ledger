@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.9.1
+asgiref==3.10.0
     # via
     #   -r requirements/quality.txt
     #   django
@@ -25,7 +25,7 @@ cachetools==6.2.0
     # via
     #   -r requirements/ci.txt
     #   tox
-certifi==2025.8.3
+certifi==2025.10.5
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -68,7 +68,7 @@ coverage[toml]==7.10.7
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==46.0.1
+cryptography==46.0.2
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -76,7 +76,7 @@ ddt==1.7.2
     # via
     #   -r requirements/dev.in
     #   -r requirements/quality.txt
-diff-cover==9.6.0
+diff-cover==9.7.1
     # via -r requirements/dev.in
 dill==0.4.0
     # via
@@ -86,9 +86,9 @@ distlib==0.4.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.24
+django==4.2.25
     # via
-    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   django-crum
     #   django-extensions
@@ -148,7 +148,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/quality.txt
-edx-django-utils==8.0.0
+edx-django-utils==8.0.1
     # via
     #   -r requirements/quality.txt
     #   edx-drf-extensions
@@ -192,7 +192,7 @@ iniconfig==2.1.0
     # via
     #   -r requirements/quality.txt
     #   pytest
-isort==6.0.1
+isort==6.1.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -203,13 +203,13 @@ jinja2==3.1.6
     #   diff-cover
 jsonfield2==4.0.0.post0
     # via -r requirements/quality.txt
-lxml[html-clean]==6.0.1
+lxml[html-clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
-lxml-html-clean==0.4.2
+lxml-html-clean==0.4.3
     # via lxml
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -232,7 +232,7 @@ packaging==25.0
     #   tox
 path==16.16.0
     # via edx-i18n-tools
-pip-tools==7.5.0
+pip-tools==7.5.1
     # via -r requirements/pip-tools.txt
 platformdirs==4.4.0
     # via
@@ -277,7 +277,7 @@ pyjwt[crypto]==2.10.1
     #   -r requirements/quality.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==3.3.8
+pylint==3.3.9
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -297,7 +297,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.15.1
+pymongo==4.15.2
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -329,7 +329,7 @@ python-slugify==8.0.4
     #   code-annotations
 pytz==2025.2
     # via -r requirements/quality.txt
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -376,7 +376,7 @@ tomlkit==0.13.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.30.2
+tox==4.30.3
     # via -r requirements/ci.txt
 typing-extensions==4.15.0
     # via
