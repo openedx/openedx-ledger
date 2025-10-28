@@ -17,7 +17,7 @@ Unreleased
 
 [1.6.14]
 *******
-* chore: Increase version to 1.6.12 for dependency updates.
+* chore: Upgrade Python requirements
 
 [1.6.13]
 *******
