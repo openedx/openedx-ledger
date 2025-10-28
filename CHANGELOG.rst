@@ -16,24 +16,24 @@ Unreleased
 * Nothing unreleased
 
 [1.6.14]
-*******
+********
 * chore: Upgrade Python requirements
 
 [1.6.13]
-*******
+********
 * chore: Upgrade Python requirements
 * fix: Convert UUIDField columns to uuid type for MariaDB
 
 [1.6.12]
-*******
+********
 * chore: Increase version to 1.6.12 for dependency updates.
 
 [1.6.11]
-*******
+********
 * chore: Increase version to 1.6.11 for dependency updates.
 
 [1.6.10]
-*******
+********
 * chore: Increase version to 1.6.10 for dependency updates.
 
 [1.6.9]
