@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.6.15]
+********
+* build: pin pip version to resolve pip-tools conflict
+
 [1.6.14]
 ********
 * chore: Upgrade Python requirements
