@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.6.15]
+********
+* fix: update pip-tools to 7.5.2
+
 [1.6.14]
 ********
 * chore: Upgrade Python requirements
