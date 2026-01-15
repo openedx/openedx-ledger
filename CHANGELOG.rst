@@ -15,7 +15,6 @@ Unreleased
 **********
 * Nothing unreleased
 
-
 [1.6.14]
 ********
 * chore: Upgrade Python requirements
