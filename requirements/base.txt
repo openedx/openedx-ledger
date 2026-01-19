@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.10.0
+asgiref==3.11.0
     # via django
 attrs==25.4.0
     # via openedx-events
-certifi==2025.10.5
+certifi==2026.1.4
     # via requests
 cffi==2.0.0
     # via
@@ -16,11 +16,11 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.4
     # via requests
-click==8.3.0
+click==8.3.1
     # via edx-django-utils
 cryptography==46.0.3
     # via pyjwt
-django==4.2.25
+django==5.2.10
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -44,13 +44,13 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==4.1
     # via -r requirements/base.in
-django-filter==25.1
+django-filter==25.2
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-rbac
 django-object-actions==5.0.0
     # via -r requirements/base.in
-django-simple-history==3.10.1
+django-simple-history==3.11.0
     # via -r requirements/base.in
 django-waffle==5.0.0
     # via
@@ -96,7 +96,7 @@ openedx-events==10.5.0
     # via -r requirements/base.in
 ply==3.11
     # via djangoql
-psutil==7.1.1
+psutil==7.2.1
     # via edx-django-utils
 pycparser==2.23
     # via cffi
@@ -104,15 +104,15 @@ pyjwt[crypto]==2.10.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.15.3
+pymongo==4.16.0
     # via edx-opaque-keys
-pynacl==1.6.0
+pynacl==1.6.2
     # via edx-django-utils
 pytz==2025.2
     # via -r requirements/base.in
 pyyaml==6.0.3
     # via edx-django-release-util
-redis==6.4.0
+redis==7.1.0
     # via -r requirements/base.in
 requests==2.32.5
     # via edx-drf-extensions
@@ -125,15 +125,15 @@ six==1.17.0
     #   edx-ccx-keys
     #   edx-django-release-util
     #   edx-rbac
-sqlparse==0.5.3
+sqlparse==0.5.5
     # via django
-stevedore==5.5.0
+stevedore==5.6.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys
 typing-extensions==4.15.0
     # via edx-opaque-keys
-urllib3==2.5.0
+urllib3==2.6.3
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
