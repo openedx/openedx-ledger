@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.7.0]
+********
+* build: Upgrade to Django 5.2
+
 [1.6.14]
 ********
 * chore: Upgrade Python requirements
