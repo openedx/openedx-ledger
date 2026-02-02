@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.7.1]
+********
+* chore: Upgrade to Django 5.2 (no-op for new release tag)
+
 [1.7.0]
 ********
 * build: Upgrade to Django 5.2
