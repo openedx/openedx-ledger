@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.7.2]
+********
+* build: upgrade pip-tools to version 7.5.3
+
 [1.7.1]
 ********
 * chore: Upgrade to Django 5.2 (no-op for new release tag)
