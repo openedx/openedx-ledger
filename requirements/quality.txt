@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.11.0
+asgiref==3.11.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==4.0.3
+astroid==4.0.4
     # via
     #   pylint
     #   pylint-celery
@@ -16,7 +16,7 @@ attrs==25.4.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-certifi==2026.1.4
+certifi==2026.2.25
     # via
     #   -r requirements/test.txt
     #   requests
@@ -42,11 +42,11 @@ code-annotations==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.13.2
+coverage[toml]==7.13.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.3
+cryptography==46.0.5
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -54,7 +54,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.10
+django==5.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -94,7 +94,7 @@ django-waffle==5.0.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-drf-extensions
-djangoql==0.18.2
+djangoql==0.19.1
     # via -r requirements/test.txt
 djangorestframework==3.16.1
     # via
@@ -126,7 +126,7 @@ edx-drf-extensions==10.6.0
     #   edx-rbac
 edx-lint==5.6.0
     # via -r requirements/quality.in
-edx-opaque-keys[django]==3.0.0
+edx-opaque-keys[django]==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -136,7 +136,7 @@ edx-rbac==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.1.2
+faker==40.5.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -152,7 +152,7 @@ iniconfig==2.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==7.0.0
+isort==8.0.0
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -168,7 +168,7 @@ markupsafe==3.0.3
     #   jinja2
 mccabe==0.7.0
     # via pylint
-mysqlclient==2.2.7
+mysqlclient==2.2.8
     # via -r requirements/test.txt
 openedx-events==10.5.0
     # via -r requirements/test.txt
@@ -176,7 +176,7 @@ packaging==26.0
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.5.1
+platformdirs==4.9.2
     # via pylint
 pluggy==1.6.0
     # via
@@ -187,7 +187,7 @@ ply==3.11
     # via
     #   -r requirements/test.txt
     #   djangoql
-psutil==7.2.1
+psutil==7.2.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -203,12 +203,12 @@ pygments==2.19.2
     # via
     #   -r requirements/test.txt
     #   pytest
-pyjwt[crypto]==2.10.1
+pyjwt[crypto]==2.11.0
     # via
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==4.0.4
+pylint==4.0.5
     # via
     #   edx-lint
     #   pylint-celery
@@ -237,7 +237,7 @@ pytest==9.0.2
     #   pytest-django
 pytest-cov==7.0.0
     # via -r requirements/test.txt
-pytest-django==4.11.1
+pytest-django==4.12.0
     # via -r requirements/test.txt
 python-slugify==8.0.4
     # via
@@ -250,7 +250,7 @@ pyyaml==6.0.3
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==7.1.0
+redis==7.2.0
     # via -r requirements/test.txt
 requests==2.32.5
     # via
@@ -275,7 +275,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.6.0
+stevedore==5.7.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
