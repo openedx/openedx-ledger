@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.11.0
+asgiref==3.11.1
     # via django
 attrs==25.4.0
     # via openedx-events
-certifi==2026.1.4
+certifi==2026.2.25
     # via requests
 cffi==2.0.0
     # via
@@ -18,9 +18,9 @@ charset-normalizer==3.4.4
     # via requests
 click==8.3.1
     # via edx-django-utils
-cryptography==46.0.3
+cryptography==46.0.5
     # via pyjwt
-django==5.2.10
+django==5.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -56,7 +56,7 @@ django-waffle==5.0.0
     # via
     #   edx-django-utils
     #   edx-drf-extensions
-djangoql==0.18.2
+djangoql==0.19.1
     # via -r requirements/base.in
 djangorestframework==3.16.1
     # via
@@ -77,7 +77,7 @@ edx-django-utils==8.0.1
     #   openedx-events
 edx-drf-extensions==10.6.0
     # via edx-rbac
-edx-opaque-keys[django]==3.0.0
+edx-opaque-keys[django]==3.1.0
     # via
     #   edx-ccx-keys
     #   edx-drf-extensions
@@ -90,17 +90,17 @@ idna==3.11
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
-mysqlclient==2.2.7
+mysqlclient==2.2.8
     # via -r requirements/base.in
 openedx-events==10.5.0
     # via -r requirements/base.in
 ply==3.11
     # via djangoql
-psutil==7.2.1
+psutil==7.2.2
     # via edx-django-utils
 pycparser==3.0
     # via cffi
-pyjwt[crypto]==2.10.1
+pyjwt[crypto]==2.11.0
     # via
     #   drf-jwt
     #   edx-drf-extensions
@@ -112,7 +112,7 @@ pytz==2025.2
     # via -r requirements/base.in
 pyyaml==6.0.3
     # via edx-django-release-util
-redis==7.1.0
+redis==7.2.1
     # via -r requirements/base.in
 requests==2.32.5
     # via edx-drf-extensions
@@ -127,7 +127,7 @@ six==1.17.0
     #   edx-rbac
 sqlparse==0.5.5
     # via django
-stevedore==5.6.0
+stevedore==5.7.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys

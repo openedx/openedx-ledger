@@ -8,7 +8,7 @@ accessible-pygments==0.0.5
     # via pydata-sphinx-theme
 alabaster==1.0.0
     # via sphinx
-asgiref==3.11.0
+asgiref==3.11.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -16,7 +16,7 @@ attrs==25.4.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-babel==2.17.0
+babel==2.18.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
@@ -24,7 +24,7 @@ beautifulsoup4==4.14.3
     # via pydata-sphinx-theme
 build==1.4.0
     # via -r requirements/doc.in
-certifi==2026.1.4
+certifi==2026.2.25
     # via
     #   -r requirements/test.txt
     #   requests
@@ -44,18 +44,18 @@ click==8.3.1
     #   edx-django-utils
 code-annotations==2.3.0
     # via -r requirements/test.txt
-coverage[toml]==7.13.2
+coverage[toml]==7.13.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.3
+cryptography==46.0.5
     # via
     #   -r requirements/test.txt
     #   pyjwt
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==5.2.10
+django==5.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -95,7 +95,7 @@ django-waffle==5.0.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-drf-extensions
-djangoql==0.18.2
+djangoql==0.19.1
     # via -r requirements/test.txt
 djangorestframework==3.16.1
     # via
@@ -134,7 +134,7 @@ edx-drf-extensions==10.6.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-opaque-keys[django]==3.0.0
+edx-opaque-keys[django]==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -144,7 +144,7 @@ edx-rbac==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.1.2
+faker==40.5.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -152,7 +152,7 @@ fastavro==1.12.1
     # via
     #   -r requirements/test.txt
     #   openedx-events
-id==1.5.0
+id==1.6.1
     # via twine
 idna==3.11
     # via
@@ -195,9 +195,9 @@ more-itertools==10.8.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-mysqlclient==2.2.7
+mysqlclient==2.2.8
     # via -r requirements/test.txt
-nh3==0.3.2
+nh3==0.3.3
     # via readme-renderer
 openedx-events==10.5.0
     # via -r requirements/test.txt
@@ -218,7 +218,7 @@ ply==3.11
     # via
     #   -r requirements/test.txt
     #   djangoql
-psutil==7.2.1
+psutil==7.2.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -238,7 +238,7 @@ pygments==2.19.2
     #   readme-renderer
     #   rich
     #   sphinx
-pyjwt[crypto]==2.10.1
+pyjwt[crypto]==2.11.0
     # via
     #   -r requirements/test.txt
     #   drf-jwt
@@ -260,7 +260,7 @@ pytest==9.0.2
     #   pytest-django
 pytest-cov==7.0.0
     # via -r requirements/test.txt
-pytest-django==4.11.1
+pytest-django==4.12.0
     # via -r requirements/test.txt
 python-slugify==8.0.4
     # via
@@ -275,13 +275,12 @@ pyyaml==6.0.3
     #   edx-django-release-util
 readme-renderer==44.0
     # via twine
-redis==7.1.0
+redis==7.2.1
     # via -r requirements/test.txt
 requests==2.32.5
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
-    #   id
     #   requests-toolbelt
     #   sphinx
     #   twine
@@ -291,7 +290,7 @@ restructuredtext-lint==2.0.2
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.3.1
+rich==14.3.3
     # via twine
 roman-numerals==4.1.0
     # via sphinx
@@ -336,7 +335,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.6.0
+stevedore==5.7.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -358,6 +357,7 @@ typing-extensions==4.15.0
 urllib3==2.6.3
     # via
     #   -r requirements/test.txt
+    #   id
     #   requests
     #   twine
 
