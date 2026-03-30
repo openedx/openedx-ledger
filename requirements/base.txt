@@ -6,7 +6,7 @@
 #
 asgiref==3.11.1
     # via django
-attrs==25.4.0
+attrs==26.1.0
     # via openedx-events
 certifi==2026.2.25
     # via requests
@@ -18,7 +18,7 @@ charset-normalizer==3.4.6
     # via requests
 click==8.3.1
     # via edx-django-utils
-cryptography==46.0.5
+cryptography==46.0.6
     # via pyjwt
 django==5.2.12
     # via
@@ -58,7 +58,7 @@ django-waffle==5.0.0
     #   edx-drf-extensions
 djangoql==0.19.1
     # via -r requirements/base.in
-djangorestframework==3.16.1
+djangorestframework==3.17.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
@@ -92,7 +92,7 @@ jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.8
     # via -r requirements/base.in
-openedx-events==10.5.0
+openedx-events==11.1.0
     # via -r requirements/base.in
 ply==3.11
     # via djangoql
@@ -112,9 +112,9 @@ pytz==2026.1.post1
     # via -r requirements/base.in
 pyyaml==6.0.3
     # via edx-django-release-util
-redis==7.3.0
+redis==7.4.0
     # via -r requirements/base.in
-requests==2.32.5
+requests==2.33.0
     # via edx-drf-extensions
 rules==3.5
     # via -r requirements/base.in
