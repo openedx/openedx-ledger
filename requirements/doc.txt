@@ -22,7 +22,7 @@ babel==2.18.0
     #   sphinx
 beautifulsoup4==4.14.3
     # via pydata-sphinx-theme
-build==1.4.2
+build==1.4.3
     # via -r requirements/doc.in
 certifi==2026.2.25
     # via
@@ -33,11 +33,11 @@ cffi==2.0.0
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.3.1
+click==8.3.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -48,14 +48,14 @@ coverage[toml]==7.13.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.6
+cryptography==46.0.7
     # via
     #   -r requirements/test.txt
     #   pyjwt
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==5.2.12
+django==5.2.13
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -134,7 +134,7 @@ edx-drf-extensions==10.6.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-edx-opaque-keys[django]==3.1.0
+edx-opaque-keys[django]==4.0.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -144,7 +144,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.11.1
+faker==40.13.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -191,7 +191,7 @@ markupsafe==3.0.3
     #   jinja2
 mdurl==0.1.2
     # via markdown-it-py
-more-itertools==10.8.0
+more-itertools==11.0.2
     # via
     #   jaraco-classes
     #   jaraco-functools
@@ -199,7 +199,7 @@ mysqlclient==2.2.8
     # via -r requirements/test.txt
 nh3==0.3.4
     # via readme-renderer
-openedx-events==11.1.0
+openedx-events==11.1.1
     # via -r requirements/test.txt
 packaging==26.0
     # via
@@ -252,7 +252,7 @@ pynacl==1.6.2
     #   edx-django-utils
 pyproject-hooks==1.2.0
     # via build
-pytest==9.0.2
+pytest==9.0.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -276,7 +276,7 @@ readme-renderer==44.0
     # via twine
 redis==7.4.0
     # via -r requirements/test.txt
-requests==2.33.0
+requests==2.33.1
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -289,7 +289,7 @@ restructuredtext-lint==2.0.2
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.3.3
+rich==15.0.0
     # via twine
 roman-numerals==4.1.0
     # via sphinx
