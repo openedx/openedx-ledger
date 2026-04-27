@@ -8,7 +8,7 @@ asgiref==3.11.1
     # via django
 attrs==26.1.0
     # via openedx-events
-certifi==2026.2.25
+certifi==2026.4.22
     # via requests
 cffi==2.0.0
     # via
@@ -16,9 +16,9 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.7
     # via requests
-click==8.3.2
+click==8.3.3
     # via edx-django-utils
-cryptography==46.0.7
+cryptography==47.0.0
     # via pyjwt
 django==5.2.13
     # via
@@ -84,15 +84,15 @@ edx-opaque-keys[django]==4.0.0
     #   openedx-events
 edx-rbac==3.0.0
     # via -r requirements/base.in
-fastavro==1.12.1
+fastavro==1.12.2
     # via openedx-events
-idna==3.11
+idna==3.13
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 mysqlclient==2.2.8
     # via -r requirements/base.in
-openedx-events==11.1.1
+openedx-events==11.2.0
     # via -r requirements/base.in
 ply==3.11
     # via djangoql
@@ -104,7 +104,7 @@ pyjwt[crypto]==2.12.1
     # via
     #   drf-jwt
     #   edx-drf-extensions
-pymongo==4.16.0
+pymongo==4.17.0
     # via edx-opaque-keys
 pynacl==1.6.2
     # via edx-django-utils
