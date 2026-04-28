@@ -17,15 +17,15 @@ attrs==26.1.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-build==1.4.3
+build==1.4.4
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==7.0.5
+cachetools==7.0.6
     # via
     #   -r requirements/ci.txt
     #   tox
-certifi==2026.2.25
+certifi==2026.4.22
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -40,7 +40,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.3.2
+click==8.3.3
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -65,7 +65,7 @@ coverage[toml]==7.13.5
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==46.0.7
+cryptography==47.0.0
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -172,7 +172,7 @@ faker==40.15.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-fastavro==1.12.1
+fastavro==1.12.2
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -182,7 +182,7 @@ filelock==3.29.0
     #   python-discovery
     #   tox
     #   virtualenv
-idna==3.11
+idna==3.13
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -217,9 +217,9 @@ mccabe==0.7.0
     #   pylint
 mysqlclient==2.2.8
     # via -r requirements/quality.txt
-openedx-events==11.1.1
+openedx-events==11.2.0
     # via -r requirements/quality.txt
-packaging==26.1
+packaging==26.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -297,7 +297,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.16.0
+pymongo==4.17.0
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -399,7 +399,7 @@ virtualenv==21.2.4
     # via
     #   -r requirements/ci.txt
     #   tox
-wheel==0.46.3
+wheel==0.47.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
