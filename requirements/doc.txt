@@ -22,7 +22,7 @@ babel==2.18.0
     #   sphinx
 beautifulsoup4==4.14.3
     # via pydata-sphinx-theme
-build==1.4.4
+build==1.5.0
     # via -r requirements/doc.in
 certifi==2026.4.22
     # via
@@ -86,7 +86,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-django-object-actions==5.0.0
+django-object-actions==5.0.1
     # via -r requirements/test.txt
 django-simple-history==3.11.0
     # via -r requirements/test.txt
@@ -265,7 +265,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2026.1.post1
+pytz==2026.2
     # via -r requirements/test.txt
 pyyaml==6.0.3
     # via
