@@ -1,0 +1,20 @@
+docs/decisions/0009-deposit-model.rst
+  s_0c4dd70eb2c755::t_e6182d8c477140 2
+  s_0c4dd70eb2c755::t_294aa52c21497e 1,3-209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "bf101b984c9806f6366a87840eb6fef5382b3d93",
+  "prompts": {},
+  "sessions": {
+    "s_0c4dd70eb2c755": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "245f7bc1-20eb-4e99-9802-b5c2e2e0f441",
+        "model": "claude-sonnet-4.6"
+      },
+      "human_author": "Alexander Dusenbery <adusenbery@2u.com>"
+    }
+  }
+}
