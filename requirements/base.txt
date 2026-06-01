@@ -8,7 +8,7 @@ asgiref==3.11.1
     # via django
 attrs==26.1.0
     # via openedx-events
-certifi==2026.4.22
+certifi==2026.5.20
     # via requests
 cffi==2.0.0
     # via
@@ -16,7 +16,7 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.7
     # via requests
-click==8.3.3
+click==8.4.1
     # via edx-django-utils
 cryptography==48.0.0
     # via pyjwt
@@ -48,7 +48,7 @@ django-filter==25.2
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-rbac
-django-object-actions==5.0.1
+django-object-actions==5.1.2
     # via -r requirements/base.in
 django-simple-history==3.11.0
     # via -r requirements/base.in
@@ -86,7 +86,7 @@ edx-rbac==3.0.0
     # via -r requirements/base.in
 fastavro==1.12.2
     # via openedx-events
-idna==3.14
+idna==3.17
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
@@ -100,7 +100,7 @@ psutil==7.2.2
     # via edx-django-utils
 pycparser==3.0
     # via cffi
-pyjwt[crypto]==2.12.1
+pyjwt[crypto]==2.13.0
     # via
     #   drf-jwt
     #   edx-drf-extensions
@@ -112,9 +112,9 @@ pytz==2026.2
     # via -r requirements/base.in
 pyyaml==6.0.3
     # via edx-django-release-util
-redis==7.4.0
+redis==8.0.0
     # via -r requirements/base.in
-requests==2.33.1
+requests==2.34.2
     # via edx-drf-extensions
 rules==3.5
     # via -r requirements/base.in
@@ -127,7 +127,7 @@ six==1.17.0
     #   edx-rbac
 sqlparse==0.5.5
     # via django
-stevedore==5.7.0
+stevedore==5.8.0
     # via
     #   edx-django-utils
     #   edx-opaque-keys
