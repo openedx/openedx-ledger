@@ -12,7 +12,7 @@ attrs==26.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
-certifi==2026.4.22
+certifi==2026.5.20
     # via
     #   -r requirements/base.txt
     #   requests
@@ -25,14 +25,14 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.3.3
+click==8.4.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-utils
 code-annotations==3.0.0
     # via -r requirements/test.in
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via pytest-cov
 cryptography==48.0.0
     # via
@@ -70,7 +70,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/base.txt
     #   edx-rbac
-django-object-actions==5.0.1
+django-object-actions==5.1.2
     # via -r requirements/base.txt
 django-simple-history==3.11.0
     # via -r requirements/base.txt
@@ -119,13 +119,13 @@ edx-rbac==3.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.15.0
+faker==40.21.0
     # via factory-boy
 fastavro==1.12.2
     # via
     #   -r requirements/base.txt
     #   openedx-events
-idna==3.14
+idna==3.18
     # via
     #   -r requirements/base.txt
     #   requests
@@ -161,7 +161,7 @@ pycparser==3.0
     #   cffi
 pygments==2.20.0
     # via pytest
-pyjwt[crypto]==2.12.1
+pyjwt[crypto]==2.13.0
     # via
     #   -r requirements/base.txt
     #   drf-jwt
@@ -191,9 +191,9 @@ pyyaml==6.0.3
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==7.4.0
+redis==8.0.0
     # via -r requirements/base.txt
-requests==2.33.1
+requests==2.34.2
     # via
     #   -r requirements/base.txt
     #   edx-drf-extensions
@@ -213,7 +213,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.7.0
+stevedore==5.8.0
     # via
     #   -r requirements/base.txt
     #   code-annotations

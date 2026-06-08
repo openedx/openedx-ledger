@@ -16,7 +16,7 @@ attrs==26.1.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-certifi==2026.4.22
+certifi==2026.5.20
     # via
     #   -r requirements/test.txt
     #   requests
@@ -29,7 +29,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.3.3
+click==8.4.1
     # via
     #   -r requirements/test.txt
     #   click-log
@@ -42,7 +42,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -54,7 +54,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.14
+django==5.2.15
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -85,7 +85,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
-django-object-actions==5.0.1
+django-object-actions==5.1.2
     # via -r requirements/test.txt
 django-simple-history==3.11.0
     # via -r requirements/test.txt
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.15.0
+faker==40.21.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -144,7 +144,7 @@ fastavro==1.12.2
     # via
     #   -r requirements/test.txt
     #   openedx-events
-idna==3.14
+idna==3.18
     # via
     #   -r requirements/test.txt
     #   requests
@@ -176,7 +176,7 @@ packaging==26.2
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.9.6
+platformdirs==4.10.0
     # via pylint
 pluggy==1.6.0
     # via
@@ -203,7 +203,7 @@ pygments==2.20.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pyjwt[crypto]==2.12.1
+pyjwt[crypto]==2.13.0
     # via
     #   -r requirements/test.txt
     #   drf-jwt
@@ -250,9 +250,9 @@ pyyaml==6.0.3
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==7.4.0
+redis==8.0.0
     # via -r requirements/test.txt
-requests==2.33.1
+requests==2.34.2
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
@@ -269,13 +269,13 @@ six==1.17.0
     #   edx-django-release-util
     #   edx-lint
     #   edx-rbac
-snowballstemmer==3.0.1
+snowballstemmer==3.1.1
     # via pydocstyle
 sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.7.0
+stevedore==5.8.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
