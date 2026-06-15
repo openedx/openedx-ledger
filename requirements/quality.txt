@@ -46,7 +46,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==48.0.0
+cryptography==49.0.0
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.21.0
+faker==40.23.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -208,7 +208,7 @@ pyjwt[crypto]==2.13.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   edx-lint
     #   pylint-celery
@@ -230,7 +230,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==9.0.3
+pytest==9.1.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov

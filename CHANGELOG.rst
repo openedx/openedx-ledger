@@ -15,6 +15,10 @@ Unreleased
 **********
 * Nothing unreleased
 
+[1.8.0]
+********
+* chore: Upgrade Python requirements
+
 [1.7.2]
 ********
 * build: upgrade pip-tools to version 7.5.3
