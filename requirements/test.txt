@@ -34,7 +34,7 @@ code-annotations==3.0.0
     # via -r requirements/test.in
 coverage[toml]==7.14.1
     # via pytest-cov
-cryptography==48.0.0
+cryptography==49.0.0
     # via
     #   -r requirements/base.txt
     #   pyjwt
@@ -119,7 +119,7 @@ edx-rbac==3.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.21.0
+faker==40.23.0
     # via factory-boy
 fastavro==1.12.2
     # via
@@ -174,7 +174,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==9.0.3
+pytest==9.1.0
     # via
     #   pytest-cov
     #   pytest-django
