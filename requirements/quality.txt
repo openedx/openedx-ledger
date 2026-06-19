@@ -16,7 +16,7 @@ attrs==26.1.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   -r requirements/test.txt
     #   requests
