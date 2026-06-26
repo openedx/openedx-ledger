@@ -37,14 +37,14 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-utils
 code-annotations==3.0.0
     # via -r requirements/test.txt
-coverage[toml]==7.14.1
+coverage[toml]==7.14.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -88,7 +88,7 @@ django-model-utils==5.0.0
     #   edx-rbac
 django-object-actions==5.1.2
     # via -r requirements/test.txt
-django-simple-history==3.11.0
+django-simple-history==3.12.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
@@ -197,7 +197,7 @@ more-itertools==11.1.0
     #   jaraco-functools
 mysqlclient==2.2.8
     # via -r requirements/test.txt
-nh3==0.3.5
+nh3==0.3.6
     # via readme-renderer
 openedx-events==11.2.0
     # via -r requirements/test.txt
@@ -252,7 +252,7 @@ pynacl==1.6.2
     #   edx-django-utils
 pyproject-hooks==1.2.0
     # via build
-pytest==9.1.0
+pytest==9.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -274,7 +274,7 @@ pyyaml==6.0.3
     #   edx-django-release-util
 readme-renderer==45.0
     # via twine
-redis==8.0.0
+redis==8.0.1
     # via -r requirements/test.txt
 requests==2.34.2
     # via

@@ -25,14 +25,14 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-utils
 code-annotations==3.0.0
     # via -r requirements/test.in
-coverage[toml]==7.14.1
+coverage[toml]==7.14.3
     # via pytest-cov
 cryptography==49.0.0
     # via
@@ -72,7 +72,7 @@ django-model-utils==5.0.0
     #   edx-rbac
 django-object-actions==5.1.2
     # via -r requirements/base.txt
-django-simple-history==3.11.0
+django-simple-history==3.12.0
     # via -r requirements/base.txt
 django-waffle==5.0.0
     # via
@@ -174,7 +174,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==9.1.0
+pytest==9.1.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -191,7 +191,7 @@ pyyaml==6.0.3
     #   -r requirements/base.txt
     #   code-annotations
     #   edx-django-release-util
-redis==8.0.0
+redis==8.0.1
     # via -r requirements/base.txt
 requests==2.34.2
     # via
