@@ -29,7 +29,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/test.txt
     #   click-log
@@ -42,7 +42,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.14.1
+coverage[toml]==7.15.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -87,7 +87,7 @@ django-model-utils==5.0.0
     #   edx-rbac
 django-object-actions==5.1.2
     # via -r requirements/test.txt
-django-simple-history==3.11.0
+django-simple-history==3.12.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.23.0
+faker==40.28.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -230,7 +230,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==9.1.0
+pytest==9.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -250,7 +250,7 @@ pyyaml==6.0.3
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==8.0.0
+redis==8.0.1
     # via -r requirements/test.txt
 requests==2.34.2
     # via
@@ -275,7 +275,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.8.0
+stevedore==5.9.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -289,7 +289,7 @@ tomlkit==0.15.0
     # via
     #   edx-lint
     #   pylint
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
