@@ -33,6 +33,10 @@ pip-log.txt
 coverage.xml
 htmlcov/
 
+# Virtual environments
+venv/
+.venv/
+
 .vscode/
 
 # The Silver Searcher
