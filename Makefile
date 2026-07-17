@@ -61,13 +61,13 @@ selfcheck: ## check that the Makefile is well-formed
 	@echo "The Makefile is well-formed."
 
 isort:
-	isort tests openedx_ledger manage.py test_settings.py
+	isort tests src/openedx_ledger manage.py test_settings.py
 
 style:
-	pycodestyle openedx_ledger tests manage.py
+	pycodestyle src/openedx_ledger tests manage.py
 
 lint:
-	pylint openedx_ledger tests manage.py
+	pylint src/openedx_ledger tests manage.py
 
 ## Docker in this repo is only supported for running tests locally
 ## as an alternative to virtualenv natively
@@ -78,14 +78,14 @@ test-shell: ## Run a shell, as root, on the specified service container
 
 extract_translations: ## extract strings to be translated, outputting .mo files
 	rm -rf docs/_build
-	cd openedx_ledger && ../manage.py makemessages -l en -v1 -d django
-	cd openedx_ledger && ../manage.py makemessages -l en -v1 -d djangojs
+	cd src/openedx_ledger && ../../manage.py makemessages -l en -v1 -d django
+	cd src/openedx_ledger && ../../manage.py makemessages -l en -v1 -d djangojs
 
 compile_translations: ## compile translation files, outputting .po files for each supported language
-	cd openedx_ledger && ../manage.py compilemessages
+	cd src/openedx_ledger && ../../manage.py compilemessages
 
 detect_changed_source_translations:
-	cd openedx_ledger && i18n_tool changed
+	cd src/openedx_ledger && i18n_tool changed
 
 pull_translations: ## pull translations from Transifex
 	tx pull -a -f -t --mode reviewed
@@ -94,7 +94,7 @@ push_translations: ## push source translation files (.po) from Transifex
 	tx push -s
 
 dummy_translations: ## generate dummy translation (.po) files
-	cd openedx_ledger && i18n_tool dummy
+	cd src/openedx_ledger && i18n_tool dummy
 
 build_dummy_translations: extract_translations dummy_translations compile_translations ## generate and compile dummy translation files
 
