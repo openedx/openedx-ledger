@@ -8,7 +8,7 @@ accessible-pygments==0.0.5
     # via pydata-sphinx-theme
 alabaster==1.0.0
     # via sphinx
-asgiref==3.11.1
+asgiref==3.12.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -22,7 +22,7 @@ babel==2.18.0
     #   sphinx
 beautifulsoup4==4.15.0
     # via pydata-sphinx-theme
-build==1.5.1
+build==1.5.0
     # via -r requirements/doc.in
 certifi==2026.6.17
     # via
@@ -44,7 +44,7 @@ click==8.4.2
     #   edx-django-utils
 code-annotations==3.0.0
     # via -r requirements/test.txt
-coverage[toml]==7.15.0
+coverage[toml]==7.15.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -80,7 +80,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==4.1
     # via -r requirements/test.txt
-django-filter==25.2
+django-filter==26.1
     # via -r requirements/test.txt
 django-model-utils==5.0.0
     # via
@@ -144,7 +144,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.28.1
+faker==40.31.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -168,7 +168,7 @@ jaraco-classes==3.4.0
     # via keyring
 jaraco-context==6.1.2
     # via keyring
-jaraco-functools==4.5.0
+jaraco-functools==4.6.0
     # via keyring
 jeepney==0.9.0
     # via

@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.11.1
+asgiref==3.12.1
     # via
     #   -r requirements/base.txt
     #   django
@@ -32,7 +32,7 @@ click==8.4.2
     #   edx-django-utils
 code-annotations==3.0.0
     # via -r requirements/test.in
-coverage[toml]==7.15.0
+coverage[toml]==7.15.2
     # via pytest-cov
 cryptography==49.0.0
     # via
@@ -64,7 +64,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==4.1
     # via -r requirements/base.txt
-django-filter==25.2
+django-filter==26.1
     # via -r requirements/base.txt
 django-model-utils==5.0.0
     # via
@@ -119,7 +119,7 @@ edx-rbac==3.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.28.1
+faker==40.31.0
     # via factory-boy
 fastavro==1.12.2
     # via

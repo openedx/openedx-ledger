@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-asgiref==3.11.1
+asgiref==3.12.1
     # via
     #   -r requirements/quality.txt
     #   django
@@ -17,7 +17,7 @@ attrs==26.1.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-build==1.5.1
+build==1.5.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -61,7 +61,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.15.0
+coverage[toml]==7.15.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -109,7 +109,7 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==4.1
     # via -r requirements/quality.txt
-django-filter==25.2
+django-filter==26.1
     # via -r requirements/quality.txt
 django-model-utils==5.0.0
     # via
@@ -168,7 +168,7 @@ edx-rbac==3.0.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==40.28.1
+faker==40.31.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -176,7 +176,7 @@ fastavro==1.12.2
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-filelock==3.29.7
+filelock==3.30.2
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -288,7 +288,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.7.0
+pylint-django==2.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -381,7 +381,7 @@ tomli-w==1.2.0
     # via
     #   -r requirements/ci.txt
     #   tox
-tomlkit==0.15.0
+tomlkit==0.15.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -396,7 +396,7 @@ urllib3==2.7.0
     # via
     #   -r requirements/quality.txt
     #   requests
-virtualenv==21.6.0
+virtualenv==21.6.1
     # via
     #   -r requirements/ci.txt
     #   tox
