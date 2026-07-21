@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "openedx-ledger"
 description = "Records transactions against a ledger, denominated in units of value."
+readme = "README.rst"
 requires-python = ">=3.12"
 license = "AGPL-3.0-or-later"
 authors = [
@@ -25,7 +26,7 @@ keywords = [
     "edx",
 ]
 
-dynamic = ["readme", "version"]
+dynamic = ["version"]
 
 dependencies = [
     "Django",
@@ -89,9 +90,6 @@ dev = [
 [tool.setuptools]
 include-package-data = true
 
-[tool.setuptools.dynamic]
-readme = {file = ["README.rst", "CHANGELOG.rst"], content-type = "text/x-rst"}
-
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["openedx_ledger", "openedx_ledger.*"]
@@ -121,6 +119,7 @@ major_on_zero = false
 allow_zero_version = true
 
 [tool.uv]
+package = true
 # Every `uv sync`/`uv run` invocation in this repo names an explicit --group.
 # Without this, uv's implicit default group (named "dev") would be synced *in
 # addition* to whatever --group is passed, silently pulling the entire
@@ -151,3 +150,14 @@ skip = ["migrations"]
 DJANGO_SETTINGS_MODULE = "test_settings"
 addopts = "--cov openedx_ledger --cov-report term-missing --cov-report xml"
 norecursedirs = [".*", "docs", "requirements", "site-packages"]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["openedx_ledger"]
+omit = ["test_settings", "*migrations*", "*admin.py", "*static*", "*templates*"]
+
+[tool.coverage.html]
+directory = "build/coverage/html"
+
+[tool.coverage.xml]
+output = "build/coverage/coverage.xml"

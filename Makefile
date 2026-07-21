@@ -44,6 +44,7 @@ pii_check: ## check for PII annotations on all Django models
 
 requirements: ## install development environment requirements
 	uv sync --group dev
+	uv tool install tox --with tox-uv
 
 test: clean ## run tests in the current virtualenv
 	DJANGO_SETTINGS_MODULE=test_settings pytest
