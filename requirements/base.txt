@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-asgiref==3.11.1
+asgiref==3.12.1
     # via django
 attrs==26.1.0
     # via openedx-events
-certifi==2026.6.17
+certifi==2026.7.22
     # via requests
 cffi==2.1.0
     # via
@@ -44,13 +44,13 @@ django-crum==0.7.9
     #   edx-rbac
 django-extensions==4.1
     # via -r requirements/base.in
-django-filter==25.2
+django-filter==26.1
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-rbac
 django-object-actions==5.1.2
     # via -r requirements/base.in
-django-simple-history==3.12.0
+django-simple-history==3.13.0
     # via -r requirements/base.in
 django-waffle==5.0.0
     # via
