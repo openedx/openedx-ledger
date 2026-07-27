@@ -15,6 +15,11 @@ Unreleased
 **********
 * Nothing unreleased
 
+[2.0.0]
+********
+* chore: Upgrade Python requirements
+
+
 [1.8.0]
 ********
 * chore: Upgrade Python requirements
