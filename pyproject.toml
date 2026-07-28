@@ -60,6 +60,11 @@ test-base = [
 ]
 test = [
     {include-group = "test-base"},
+    "Django>=5.2,<6.0",
+]
+django42 = [
+    {include-group = "test-base"},
+    "Django>=4.2,<4.3",
 ]
 quality = [
     {include-group = "test"},
@@ -134,6 +139,17 @@ default-groups = []
 constraint-dependencies = [
     "Django<6.0",
     "elasticsearch<7.14.0",
+]
+# `test` (Django 5.2, the default) and `django42` (Django 4.2) pin mutually
+# exclusive Django versions -- without this, uv.lock would resolve a single
+# Django version for the whole project and the "other" version's tox env
+# would just force-override the Django package via `deps=` afterward, while
+# every transitive dependency stayed resolved against the one locked graph.
+conflicts = [
+    [
+        { group = "test" },
+        { group = "django42" },
+    ],
 ]
 
 [tool.edx_lint]

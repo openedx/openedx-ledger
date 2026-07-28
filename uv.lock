@@ -1,6 +1,19 @@
 version = 1
 revision = 3
 requires-python = ">=3.12"
+conflicts = [[
+    { package = "openedx-ledger", group = "django42" },
+    { package = "openedx-ledger", group = "test" },
+], [
+    { package = "openedx-ledger", group = "django42" },
+    { package = "openedx-ledger", group = "doc" },
+], [
+    { package = "openedx-ledger", group = "django42" },
+    { package = "openedx-ledger", group = "quality" },
+], [
+    { package = "openedx-ledger", group = "dev" },
+    { package = "openedx-ledger", group = "django42" },
+]]
 
 [manifest]
 constraints = [
@@ -115,7 +128,7 @@ name = "cffi"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy'" },
+    { name = "pycparser", marker = "implementation_name != 'PyPy' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/57/5f/ff100cae70ebe9d8df1c01a00e510e45d9adb5c1fdda84791b199141de97/cffi-2.1.0.tar.gz", hash = "sha256:efc1cdd798b1aaf39b4610bba7aad28c9bea9b910f25c784ccf9ec1fa719d1f9", size = 531036, upload-time = "2026-07-06T21:34:30.382Z" }
 wheels = [
@@ -292,7 +305,7 @@ name = "click"
 version = "8.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/76/d4/81420972a676e8ffea40450d8c8c92943e7218a78fe9b64359836cc9876b/click-8.4.2.tar.gz", hash = "sha256:9a6cea6e60b17ebe0a44c5cc636d94f09bd66142c1cd7d8b4cd731c4917a15f6", size = 338000, upload-time = "2026-06-24T17:45:15.148Z" }
 wheels = [
@@ -410,7 +423,7 @@ name = "cryptography"
 version = "49.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1f/99/d1c90d6041656cc6ee229dc99cd67fd0cd5aec3c5f7d72fffc27cc750054/cryptography-49.0.0.tar.gz", hash = "sha256:f89660a348f4f78a92366240a61404e337586ef7f5909a2fef59ca88ef505493", size = 854345, upload-time = "2026-06-12T20:02:30.512Z" }
 wheels = [
@@ -499,12 +512,26 @@ wheels = [
 
 [[package]]
 name = "django"
+version = "4.2.30"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asgiref", marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "sqlparse", marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "tzdata", marker = "(sys_platform == 'win32' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/11/b5/f1a53dc68da6429d6e0345bb848161e2381a2e9f02700148911e8582c2b3/django-4.2.30.tar.gz", hash = "sha256:4ebc7a434e3819db6cf4b399fb5b3f536310a30e8486f08b66886840be84b37c", size = 10468707, upload-time = "2026-04-07T14:05:45.57Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/39/b7/a7c96f239cf91313a6589233fed55111c7063b26683b226802732c455dbc/django-4.2.30-py3-none-any.whl", hash = "sha256:4d07aaf1c62f9984842b67c2874ebbf7056a17be253860299b93ae1881faad65", size = 7997231, upload-time = "2026-04-07T14:05:38.241Z" },
+]
+
+[[package]]
+name = "django"
 version = "5.2.16"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "sqlparse" },
-    { name = "tzdata", marker = "sys_platform == 'win32'" },
+    { name = "tzdata", marker = "(sys_platform == 'win32' and extra == 'group-14-openedx-ledger-dev') or (sys_platform == 'win32' and extra != 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a9/26/889449d521ae508b26de715954faecd8bcf3f740affb81b2d146a83b42a5/django-5.2.16.tar.gz", hash = "sha256:59ea02020c3136fce14bef0bbece21a10a4febef5eed1c51c22ae468efa22200", size = 10890894, upload-time = "2026-07-07T13:52:17.005Z" }
 wheels = [
@@ -516,7 +543,8 @@ name = "django-crum"
 version = "0.7.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/34/1d/c56588f67130aeef8828e47535e8551337d2ae02f91f1414da61bc5e49fb/django-crum-0.7.9.tar.gz", hash = "sha256:65e9bc0f070a663fafc4d9e357f45fd4e6f01838b20a9e2fb7670f5706754288", size = 5168, upload-time = "2020-11-10T17:15:35.124Z" }
 wheels = [
@@ -528,7 +556,8 @@ name = "django-extensions"
 version = "4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/6d/b3/ed0f54ed706ec0b54fd251cc0364a249c6cd6c6ec97f04dc34be5e929eac/django_extensions-4.1.tar.gz", hash = "sha256:7b70a4d28e9b840f44694e3f7feb54f55d495f8b3fa6c5c0e5e12bcb2aa3cdeb", size = 283078, upload-time = "2025-04-11T01:15:39.617Z" }
 wheels = [
@@ -537,10 +566,22 @@ wheels = [
 
 [[package]]
 name = "django-filter"
+version = "25.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b5/40/c702a6fe8cccac9bf426b55724ebdf57d10a132bae80a17691d0cf0b9bac/django_filter-25.1.tar.gz", hash = "sha256:1ec9eef48fa8da1c0ac9b411744b16c3f4c31176c867886e4c48da369c407153", size = 143021, upload-time = "2025-02-14T16:30:53.238Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/07/a6/70dcd68537c434ba7cb9277d403c5c829caf04f35baf5eb9458be251e382/django_filter-25.1-py3-none-any.whl", hash = "sha256:4fa48677cf5857b9b1347fed23e355ea792464e0fe07244d1fdfb8a806215b80", size = 94114, upload-time = "2025-02-14T16:30:50.435Z" },
+]
+
+[[package]]
+name = "django-filter"
 version = "25.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/2c/e4/465d2699cd388c0005fb8d6ae6709f239917c6d8790ac35719676fffdcf3/django_filter-25.2.tar.gz", hash = "sha256:760e984a931f4468d096f5541787efb8998c61217b73006163bf2f9523fe8f23", size = 143818, upload-time = "2025-10-05T09:51:31.521Z" }
 wheels = [
@@ -552,7 +593,8 @@ name = "django-model-utils"
 version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/81/60/5e232c32a2c977cc1af8c70a38ef436598bc649ad89c2c4568454edde2c9/django_model_utils-5.0.0.tar.gz", hash = "sha256:041cdd6230d2fbf6cd943e1969318bce762272077f4ecd333ab2263924b4e5eb", size = 80559, upload-time = "2024-09-04T11:35:22.858Z" }
 wheels = [
@@ -573,7 +615,8 @@ name = "django-simple-history"
 version = "3.12.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/7d/75/658d2e0ba3f51c0774cc7c71d2879e3260880d441406bba4bab64d70a4de/django_simple_history-3.12.0.tar.gz", hash = "sha256:4cc363c6c806834f32c9d19c9db2d97165f379f41e581c39fb7dbac9e4c20c11", size = 235106, upload-time = "2026-06-22T13:16:23.766Z" }
 wheels = [
@@ -585,7 +628,8 @@ name = "django-waffle"
 version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/22/e1/6f533da0d4ac89f427dfd9410e39bfc14ae3a23335ecd549d76be4b2a834/django_waffle-5.0.0.tar.gz", hash = "sha256:62f9d00eedf68dafb82657beab56e601bddedc1ea1ccfef91d83df8658708509", size = 37761, upload-time = "2025-06-12T07:38:54.895Z" }
 wheels = [
@@ -609,7 +653,8 @@ name = "djangorestframework"
 version = "3.17.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ca/d7/c016e69fac19ff8afdc89db9d31d9ae43ae031e4d1993b20aca179b8301a/djangorestframework-3.17.1.tar.gz", hash = "sha256:a6def5f447fe78ff853bff1d47a3c59bf38f5434b031780b351b0c73a62db1a5", size = 905742, upload-time = "2026-03-24T16:58:33.705Z" }
 wheels = [
@@ -654,7 +699,8 @@ name = "drf-jwt"
 version = "1.19.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "djangorestframework" },
     { name = "pyjwt", extra = ["crypto"] },
 ]
@@ -681,7 +727,8 @@ name = "edx-django-release-util"
 version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "pyyaml" },
     { name = "six" },
 ]
@@ -696,7 +743,8 @@ version = "8.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "django-crum" },
     { name = "django-waffle" },
     { name = "psutil" },
@@ -713,7 +761,8 @@ name = "edx-drf-extensions"
 version = "10.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "django-waffle" },
     { name = "djangorestframework" },
     { name = "drf-jwt" },
@@ -733,8 +782,8 @@ name = "edx-i18n-tools"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
-    { name = "lxml", extra = ["html-clean"] },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
+    { name = "lxml", extra = ["html-clean"], marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "path" },
     { name = "polib" },
     { name = "pyyaml" },
@@ -782,7 +831,8 @@ name = "edx-rbac"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "django-crum" },
     { name = "django-model-utils" },
     { name = "edx-drf-extensions" },
@@ -811,7 +861,7 @@ name = "faker"
 version = "40.28.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "sys_platform == 'win32'" },
+    { name = "tzdata", marker = "sys_platform == 'win32' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cc/2d/3ead106cef42eab305e15f9c089dcc68a40387d5ce04af18585af4ebbb44/faker-40.28.1.tar.gz", hash = "sha256:2a63fb51abab8790636d4030a094cf942404cbccc9c288d1cad70e2e3e9ecd58", size = 2022717, upload-time = "2026-07-01T22:23:43.763Z" }
 wheels = [
@@ -973,7 +1023,8 @@ name = "jsonfield2"
 version = "4.0.0.post0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ea/7e/9b093453c62a9599eef02274e12eb9d327519812288cad283494c4035ec1/jsonfield2-4.0.0.post0.tar.gz", hash = "sha256:cbce2d7c52563550cd2048fcf3a57631019d3547f5ed142f42141d1d2dc53283", size = 12632, upload-time = "2020-03-02T10:48:01.822Z" }
 wheels = [
@@ -1248,7 +1299,8 @@ version = "11.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "edx-ccx-keys" },
     { name = "edx-django-utils" },
     { name = "edx-opaque-keys" },
@@ -1264,9 +1316,11 @@ wheels = [
 name = "openedx-ledger"
 source = { editable = "." }
 dependencies = [
-    { name = "django" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "django-extensions" },
-    { name = "django-filter" },
+    { name = "django-filter", version = "25.1", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-django42'" },
+    { name = "django-filter", version = "25.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-14-openedx-ledger-dev' or extra != 'group-14-openedx-ledger-django42' or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "django-object-actions" },
     { name = "django-simple-history" },
     { name = "djangoql" },
@@ -1290,6 +1344,7 @@ dev = [
     { name = "code-annotations" },
     { name = "ddt" },
     { name = "diff-cover" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
     { name = "edx-i18n-tools" },
     { name = "edx-lint" },
     { name = "factory-boy" },
@@ -1301,10 +1356,19 @@ dev = [
     { name = "tox" },
     { name = "tox-uv" },
 ]
+django42 = [
+    { name = "code-annotations" },
+    { name = "ddt" },
+    { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" } },
+    { name = "factory-boy" },
+    { name = "pytest-cov" },
+    { name = "pytest-django" },
+]
 doc = [
     { name = "build" },
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
     { name = "doc8" },
     { name = "factory-boy" },
     { name = "pytest-cov" },
@@ -1316,6 +1380,7 @@ doc = [
 quality = [
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
     { name = "edx-lint" },
     { name = "factory-boy" },
     { name = "isort" },
@@ -1327,6 +1392,7 @@ quality = [
 test = [
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
     { name = "factory-boy" },
     { name = "pytest-cov" },
     { name = "pytest-django" },
@@ -1367,6 +1433,7 @@ dev = [
     { name = "code-annotations" },
     { name = "ddt" },
     { name = "diff-cover" },
+    { name = "django", specifier = ">=5.2,<6.0" },
     { name = "edx-i18n-tools" },
     { name = "edx-lint" },
     { name = "factory-boy" },
@@ -1378,10 +1445,19 @@ dev = [
     { name = "tox" },
     { name = "tox-uv" },
 ]
+django42 = [
+    { name = "code-annotations" },
+    { name = "ddt" },
+    { name = "django", specifier = ">=4.2,<4.3" },
+    { name = "factory-boy" },
+    { name = "pytest-cov" },
+    { name = "pytest-django" },
+]
 doc = [
     { name = "build" },
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", specifier = ">=5.2,<6.0" },
     { name = "doc8" },
     { name = "factory-boy" },
     { name = "pytest-cov" },
@@ -1393,6 +1469,7 @@ doc = [
 quality = [
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", specifier = ">=5.2,<6.0" },
     { name = "edx-lint" },
     { name = "factory-boy" },
     { name = "isort" },
@@ -1404,6 +1481,7 @@ quality = [
 test = [
     { name = "code-annotations" },
     { name = "ddt" },
+    { name = "django", specifier = ">=5.2,<6.0" },
     { name = "factory-boy" },
     { name = "pytest-cov" },
     { name = "pytest-django" },
@@ -1678,7 +1756,7 @@ name = "pynacl"
 version = "1.6.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d9/9a/4019b524b03a13438637b11538c82781a5eda427394380381af8f04f467a/pynacl-1.6.2.tar.gz", hash = "sha256:018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c", size = 3511692, upload-time = "2026-01-01T17:48:10.851Z" }
 wheels = [
@@ -1734,7 +1812,7 @@ name = "pytest"
 version = "9.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'group-14-openedx-ledger-dev' and extra == 'group-14-openedx-ledger-django42') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-doc') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-quality') or (extra == 'group-14-openedx-ledger-django42' and extra == 'group-14-openedx-ledger-test')" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
