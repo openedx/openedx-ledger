@@ -20,7 +20,7 @@ certifi==2026.7.22
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==2.1.0
+cffi==2.1.1
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -42,11 +42,11 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.15.2
+coverage[toml]==7.15.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==49.0.0
+cryptography==50.0.0
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -54,7 +54,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.16
+django==5.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.35.0
+faker==40.36.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -172,7 +172,7 @@ mysqlclient==2.2.8
     # via -r requirements/test.txt
 openedx-events==11.2.0
     # via -r requirements/test.txt
-packaging==26.2
+packaging==26.3
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -243,14 +243,14 @@ python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2026.2
+pytz==2026.3.post1
     # via -r requirements/test.txt
 pyyaml==6.0.3
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   edx-django-release-util
-redis==8.0.1
+redis==8.1.0
     # via -r requirements/test.txt
 requests==2.34.2
     # via
