@@ -10,3 +10,13 @@
 
 # Common constraints for edx repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+
+# pip 26.2+ is incompatible with pip-tools 7.6.0 (latest pip-tools release only
+# supports pip up to 26.1), which breaks `make upgrade`. Remove this once a
+# newer pip-tools release restores pip 26.2+ compatibility.
+pip<26.2
+
+# Pin pip-tools to the version verified compatible with the pip<26.2 constraint
+# above; a newer pip-tools release could require a newer pip and reintroduce
+# the `make upgrade` breakage this constraint set was added to fix.
+pip-tools==7.6.0
