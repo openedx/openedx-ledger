@@ -58,7 +58,7 @@ django-waffle==5.0.0
     #   edx-drf-extensions
 djangoql==0.19.1
     # via -r requirements/base.in
-djangorestframework==3.17.1
+djangorestframework==3.17.2
     # via
     #   drf-jwt
     #   edx-drf-extensions
