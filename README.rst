@@ -47,12 +47,11 @@ Every time you develop something in this repo
    # inside the container shell now
    # TODO find a better permanent place to put this git config call
    git config --global --add safe.directory /edx/src/openedx-ledger
-   pip install -e /edx/src/openedx-ledger
-   pip freeze | grep ledger # should give output pointing at a file and git hash
+   pushd /edx/src/openedx-ledger
+   make requirements # installs dependencies via uv into this repo's own .venv
+   uv pip show openedx-ledger # should give output pointing at a file and git hash
 
    # Now, to run tests and validation against openedx-ledger:
-   pushd /edx/src/openedx-ledger
-   source venv/bin/activate
    make validate
 
 
