@@ -1,0 +1,33 @@
+requirements/ci.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 13,22,30,36,38-40
+requirements/pip-tools.txt
+  s_6e1b7b3f9e9480::t_8a6358bf89c829 15-16,21
+requirements/base.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 17,61,78,89,128,130
+requirements/quality.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 28,99,123,127,147,179,202,211,240,274,278
+requirements/test.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 24,84,108,128,162,183,212,216
+requirements/dev.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 37,39,76,129,153,159,179,185,204,234-236,269,279,323,325,365,369,388,392,395,400,404
+requirements/pip.txt
+  s_6e1b7b3f9e9480::t_8a6358bf89c829 9,15,18
+requirements/doc.txt
+  s_6e1b7b3f9e9480::t_7c34db2e8017ff 36,99,132,156,226,258,328,332
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "f73fc6499e8dbc28a637bb77e2732da669dce880",
+  "prompts": {},
+  "sessions": {
+    "s_6e1b7b3f9e9480": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ef763ffc-801c-41c5-b52f-2727f2dd22f8",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Hamzah Ullah <hamzahullah@yahoo.com>"
+    }
+  }
+}
