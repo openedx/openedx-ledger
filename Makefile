@@ -26,7 +26,14 @@ coverage: clean ## generate and view HTML coverage report
 	$(BROWSER)htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	uv run tox -e docs
+	uv sync --group doc
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) SPHINXOPTS=-W uv run doc8 --ignore-path docs/_build README.rst docs
+	rm -f docs/openedx_ledger.rst
+	rm -f docs/modules.rst
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) SPHINXOPTS=-W uv run make -e -C docs clean
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) SPHINXOPTS=-W uv run make -e -C docs html
+	uv run python -m build --wheel
+	uv run twine check dist/*
 	$(BROWSER)docs/_build/html/index.html
 
 compile-requirements: ## generate the uv.lock file without upgrading packages
@@ -37,10 +44,16 @@ upgrade: ## upgrade all packages in uv.lock and sync constraints from edx-lint
 	uv lock --upgrade
 
 quality: ## check coding style with pycodestyle and pylint
-	uv run tox -e quality
+	uv sync --group quality
+	touch tests/__init__.py
+	uv run pylint src/openedx_ledger tests manage.py
+	rm tests/__init__.py
+	uv run pycodestyle src/openedx_ledger tests manage.py
+	uv run isort --check-only --diff tests src/openedx_ledger manage.py test_settings.py
+	$(MAKE) selfcheck
 
 pii_check: ## check for PII annotations on all Django models
-	uv run tox -e pii_check
+	DJANGO_SETTINGS_MODULE=test_settings uv run code_annotations django_find_annotations --config_file .pii_annotations.yml --lint --report --coverage
 
 requirements: ## install development environment requirements
 	uv sync --group dev
@@ -51,9 +64,8 @@ test: clean ## run tests in the current virtualenv
 diff_cover: test ## find diff lines that need test coverage
 	diff-cover coverage.xml
 
-test-all: quality pii_check ## run tests on every supported Python/Django combination
+test-all: quality pii_check docs ## run tests on every supported Python/Django combination
 	uv run tox
-	uv run tox -e docs
 
 validate: quality pii_check test ## run tests and quality checks
 
