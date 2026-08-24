@@ -334,7 +334,9 @@ class Transaction(BaseTransaction):
     Relatedly, we intentionally avoid persisting aggregates, reinforcing the transactions themselves as the
     only source of truth.
 
-    .. no_pii:
+    .. pii: Stores the email of the Open edX LMS user associated with the Transaction.
+    .. pii_types: email_address
+    .. pii_retirement: retained
     """
 
     class Meta:
