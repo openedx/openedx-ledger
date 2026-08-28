@@ -16,9 +16,9 @@ cffi==2.1.1
     #   pynacl
 charset-normalizer==3.5.1
     # via requests
-click==8.4.2
+click==8.5.0
     # via edx-django-utils
-cryptography==50.0.0
+cryptography==50.0.1
     # via pyjwt
 django==5.2.17
     # via

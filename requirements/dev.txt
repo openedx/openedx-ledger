@@ -17,7 +17,7 @@ attrs==26.1.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-build==1.5.0
+build==1.6.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -40,7 +40,7 @@ charset-normalizer==3.5.1
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.4.2
+click==8.5.0
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -65,7 +65,7 @@ coverage[toml]==7.15.4
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==50.0.0
+cryptography==50.0.1
     # via
     #   -r requirements/quality.txt
     #   pyjwt
@@ -168,7 +168,7 @@ edx-rbac==3.0.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==40.36.0
+faker==40.37.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -176,7 +176,7 @@ fastavro==1.12.2
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-filelock==3.32.3
+filelock==3.32.4
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -233,7 +233,7 @@ path==16.16.0
     # via edx-i18n-tools
 pip-tools==7.6.1
     # via -r requirements/pip-tools.txt
-platformdirs==4.11.3
+platformdirs==4.11.5
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -322,7 +322,7 @@ pytest-cov==7.1.0
     # via -r requirements/quality.txt
 pytest-django==4.14.0
     # via -r requirements/quality.txt
-python-discovery==1.5.2
+python-discovery==1.5.3
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -385,7 +385,7 @@ tomlkit==0.15.1
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint
-tox==4.60.0
+tox==4.60.1
     # via -r requirements/ci.txt
 typing-extensions==4.16.0
     # via
@@ -397,7 +397,7 @@ urllib3==2.7.0
     # via
     #   -r requirements/quality.txt
     #   requests
-virtualenv==21.7.4
+virtualenv==21.7.5
     # via
     #   -r requirements/ci.txt
     #   tox
