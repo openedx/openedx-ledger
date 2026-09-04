@@ -29,7 +29,7 @@ charset-normalizer==3.5.1
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.4.2
+click==8.5.0
     # via
     #   -r requirements/test.txt
     #   click-log
@@ -42,11 +42,11 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.15.4
+coverage[toml]==7.16.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==50.0.0
+cryptography==50.0.1
     # via
     #   -r requirements/test.txt
     #   pyjwt
@@ -115,12 +115,12 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-django-release-util==1.5.0
     # via -r requirements/test.txt
-edx-django-utils==8.0.1
+edx-django-utils==8.0.2
     # via
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.7.0
+edx-drf-extensions==10.8.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.36.0
+faker==40.38.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -152,7 +152,7 @@ iniconfig==2.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==8.0.1
+isort==9.0.1
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -168,6 +168,8 @@ markupsafe==3.0.3
     #   jinja2
 mccabe==0.7.0
     # via pylint
+mypy-extensions==1.1.0
+    # via isort
 mysqlclient==2.2.8
     # via -r requirements/test.txt
 openedx-events==11.2.0
@@ -176,7 +178,7 @@ packaging==26.3
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.11.3
+platformdirs==4.11.7
     # via pylint
 pluggy==1.6.0
     # via
@@ -208,7 +210,7 @@ pyjwt[crypto]==2.13.0
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==4.0.7
+pylint==4.0.8
     # via
     #   edx-lint
     #   pylint-celery
@@ -222,7 +224,7 @@ pylint-plugin-utils==0.9.0
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==4.17.0
+pymongo==4.18.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
