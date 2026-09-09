@@ -39,7 +39,7 @@ INSTALLED_APPS = (
 )
 
 LOCALE_PATHS = [
-    root('openedx_ledger', 'conf', 'locale'),
+    root('src', 'openedx_ledger', 'conf', 'locale'),
 ]
 
 ROOT_URLCONF = 'openedx_ledger.urls'
