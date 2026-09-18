@@ -75,7 +75,7 @@ edx-django-utils==8.0.2
     #   -r requirements/base.in
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.8.0
+edx-drf-extensions==10.9.0
     # via edx-rbac
 edx-opaque-keys[django]==4.0.0
     # via
@@ -86,11 +86,11 @@ edx-rbac==3.0.0
     # via -r requirements/base.in
 fastavro==1.12.2
     # via openedx-events
-idna==3.19
+idna==3.20
     # via requests
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
-mysqlclient==2.2.8
+mysqlclient==2.3.0
     # via -r requirements/base.in
 openedx-events==11.2.0
     # via -r requirements/base.in
@@ -100,7 +100,7 @@ psutil==7.2.2
     # via edx-django-utils
 pycparser==3.0
     # via cffi
-pyjwt[crypto]==2.13.0
+pyjwt[crypto]==2.14.0
     # via
     #   drf-jwt
     #   edx-drf-extensions
@@ -133,7 +133,7 @@ stevedore==5.9.1
     #   edx-opaque-keys
 typing-extensions==4.16.0
     # via edx-opaque-keys
-urllib3==2.7.0
+urllib3==2.8.0
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
