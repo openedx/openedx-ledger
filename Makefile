@@ -34,7 +34,6 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) SPHINXOPTS=-W uv run make -e -C docs html
 	uv run python -m build --wheel
 	uv run twine check dist/*
-	$(BROWSER)docs/_build/html/index.html
 
 compile-requirements: ## generate the uv.lock file without upgrading packages
 	uv lock
