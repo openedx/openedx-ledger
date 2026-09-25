@@ -42,7 +42,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.16.0
+coverage[toml]==7.16.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -120,7 +120,7 @@ edx-django-utils==8.0.2
     #   -r requirements/test.txt
     #   edx-drf-extensions
     #   openedx-events
-edx-drf-extensions==10.8.0
+edx-drf-extensions==10.9.0
     # via
     #   -r requirements/test.txt
     #   edx-rbac
@@ -136,7 +136,7 @@ edx-rbac==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.38.0
+faker==40.39.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -144,7 +144,7 @@ fastavro==1.12.2
     # via
     #   -r requirements/test.txt
     #   openedx-events
-idna==3.19
+idna==3.20
     # via
     #   -r requirements/test.txt
     #   requests
@@ -170,7 +170,7 @@ mccabe==0.7.0
     # via pylint
 mypy-extensions==1.1.0
     # via isort
-mysqlclient==2.2.8
+mysqlclient==2.3.0
     # via -r requirements/test.txt
 openedx-events==11.2.0
     # via -r requirements/test.txt
@@ -178,7 +178,7 @@ packaging==26.3
     # via
     #   -r requirements/test.txt
     #   pytest
-platformdirs==4.11.8
+platformdirs==4.11.12
     # via pylint
 pluggy==1.6.0
     # via
@@ -193,7 +193,7 @@ psutil==7.2.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pycodestyle==2.14.0
+pycodestyle==2.15.0
     # via -r requirements/quality.in
 pycparser==3.0
     # via
@@ -205,12 +205,12 @@ pygments==2.21.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pyjwt[crypto]==2.13.0
+pyjwt[crypto]==2.15.0
     # via
     #   -r requirements/test.txt
     #   drf-jwt
     #   edx-drf-extensions
-pylint==4.0.8
+pylint==4.0.9
     # via
     #   edx-lint
     #   pylint-celery
@@ -224,7 +224,7 @@ pylint-plugin-utils==0.9.0
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==4.18.1
+pymongo==4.18.2
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -241,11 +241,11 @@ pytest-cov==7.1.0
     # via -r requirements/test.txt
 pytest-django==4.14.0
     # via -r requirements/test.txt
-python-slugify==9.0.0
+python-slugify==9.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2026.3.post1
+pytz==2026.4
     # via -r requirements/test.txt
 pyyaml==6.0.3
     # via
@@ -295,7 +295,7 @@ typing-extensions==4.16.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
-urllib3==2.7.0
+urllib3==2.8.0
     # via
     #   -r requirements/test.txt
     #   requests
