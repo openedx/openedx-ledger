@@ -49,6 +49,7 @@ Every time you develop something in this repo
    git config --global --add safe.directory /edx/src/openedx-ledger
    pushd /edx/src/openedx-ledger
    make requirements # installs dependencies via uv into this repo's own .venv
+   source .venv/bin/activate
    uv pip show openedx-ledger # should give output pointing at a file and git hash
 
    # Now, to run tests and validation against openedx-ledger:

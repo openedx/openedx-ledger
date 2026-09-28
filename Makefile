@@ -26,7 +26,6 @@ coverage: clean ## generate and view HTML coverage report
 	$(BROWSER)htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	uv sync --group doc
 	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) SPHINXOPTS=-W doc8 --ignore-path docs/_build README.rst docs
 	rm -f docs/openedx_ledger.rst
 	rm -f docs/modules.rst
@@ -43,7 +42,6 @@ upgrade: ## upgrade all packages in uv.lock and sync constraints from edx-lint
 	uv lock --upgrade
 
 quality: ## check coding style with pycodestyle and pylint
-	uv sync --group quality
 	touch tests/__init__.py
 	pylint src/openedx_ledger tests manage.py
 	rm tests/__init__.py

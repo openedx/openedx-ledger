@@ -72,12 +72,17 @@ WORKDIR /edx/app/openedx-ledger
 RUN python3.12 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Copy the requirements explicitly even though we copy everything below
+# Copy the lockfile explicitly even though we copy everything below
 # this prevents the image cache from busting unless the dependencies have changed.
-COPY requirements/ /edx/app/openedx-ledger/requirements/
+COPY pyproject.toml uv.lock /edx/app/openedx-ledger/
 
 # Dependencies are installed as root so they cannot be modified by the application user.
-RUN pip install -r requirements/dev.txt
+# --no-install-project: only third-party deps at this point, matching the old
+# requirements.txt-based install -- the local package was never pip-installed
+# either, tests run straight from the source tree copied in below.
+RUN pip install uv
+ENV UV_PROJECT_ENVIRONMENT=$VIRTUAL_ENV
+RUN uv sync --locked --no-install-project --group dev
 RUN pip install nodeenv
 
 # Set up a Node environment and install Node requirements.
