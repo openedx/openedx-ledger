@@ -6,10 +6,10 @@ conflicts = [[
     { package = "openedx-ledger", group = "test" },
 ], [
     { package = "openedx-ledger", group = "django42" },
-    { package = "openedx-ledger", group = "doc" },
+    { package = "openedx-ledger", group = "quality" },
 ], [
     { package = "openedx-ledger", group = "django42" },
-    { package = "openedx-ledger", group = "quality" },
+    { package = "openedx-ledger", group = "doc" },
 ], [
     { package = "openedx-ledger", group = "dev" },
     { package = "openedx-ledger", group = "django42" },
