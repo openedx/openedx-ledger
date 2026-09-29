@@ -98,7 +98,7 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["openedx_ledger", "openedx_ledger.*"]
-exclude = ["*tests"]
+exclude = ["*tests*"]
 
 [tool.setuptools.exclude-package-data]
 # `packages.find.exclude` above only stops setuptools from *registering* the
