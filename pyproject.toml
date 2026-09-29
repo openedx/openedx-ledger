@@ -112,9 +112,7 @@ local_scheme = "no-local-version"
 fallback_version = "0.0.0"
 
 [tool.semantic_release]
-# Explicit for clarity, even though it matches python-semantic-release's own
-# default -- a completed bridging release (v2.0.0, same commit as the old
-# bare 2.0.0 tag) already exists, so PSR will pick up from there.
+# Explicitly set the tag format (same as default).
 tag_format = "v{version}"
 build_command = "pip install build && SETUPTOOLS_SCM_PRETEND_VERSION=$NEW_VERSION python -m build"
 # Already past 1.0 (1.8.x), so major_on_zero is a no-op today -- it only governs
