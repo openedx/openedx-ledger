@@ -6,10 +6,10 @@ conflicts = [[
     { package = "openedx-ledger", group = "test" },
 ], [
     { package = "openedx-ledger", group = "django42" },
-    { package = "openedx-ledger", group = "quality" },
+    { package = "openedx-ledger", group = "doc" },
 ], [
     { package = "openedx-ledger", group = "django42" },
-    { package = "openedx-ledger", group = "doc" },
+    { package = "openedx-ledger", group = "quality" },
 ], [
     { package = "openedx-ledger", group = "dev" },
     { package = "openedx-ledger", group = "django42" },
@@ -1341,10 +1341,12 @@ ci = [
     { name = "tox-uv" },
 ]
 dev = [
+    { name = "build" },
     { name = "code-annotations" },
     { name = "ddt" },
     { name = "diff-cover" },
     { name = "django", version = "5.2.16", source = { registry = "https://pypi.org/simple" } },
+    { name = "doc8" },
     { name = "edx-i18n-tools" },
     { name = "edx-lint" },
     { name = "factory-boy" },
@@ -1353,8 +1355,11 @@ dev = [
     { name = "pydocstyle" },
     { name = "pytest-cov" },
     { name = "pytest-django" },
+    { name = "sphinx" },
+    { name = "sphinx-book-theme" },
     { name = "tox" },
     { name = "tox-uv" },
+    { name = "twine" },
 ]
 django42 = [
     { name = "code-annotations" },
@@ -1430,10 +1435,12 @@ ci = [
     { name = "tox-uv" },
 ]
 dev = [
+    { name = "build" },
     { name = "code-annotations" },
     { name = "ddt" },
     { name = "diff-cover" },
     { name = "django", specifier = ">=5.2,<6.0" },
+    { name = "doc8" },
     { name = "edx-i18n-tools" },
     { name = "edx-lint" },
     { name = "factory-boy" },
@@ -1442,8 +1449,11 @@ dev = [
     { name = "pydocstyle" },
     { name = "pytest-cov" },
     { name = "pytest-django" },
+    { name = "sphinx" },
+    { name = "sphinx-book-theme" },
     { name = "tox" },
     { name = "tox-uv" },
+    { name = "twine" },
 ]
 django42 = [
     { name = "code-annotations" },
