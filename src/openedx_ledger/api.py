@@ -136,6 +136,7 @@ def reverse_full_transaction(transaction, idempotency_key, **metadata):
     Idempotency of reversals - reversing the same transaction twice
     produces the same output and has no side effect on the second invocation.
     Support idempotency key here, too.
+
     openedx_ledger.api.NonCommittedTransactionError:
         Raises this if the transaction is not in a COMMITTED state.
     """
@@ -182,7 +183,8 @@ def create_ledger(
     """
     Primary interface for creating a Ledger record.
 
-    params:
+    params::
+
       unit: Optional unit for the ledger, defaults to the model default of USD_CENTS.
       idempotency_key: Optional idempotency key, defaults to result of
         the utility function for creating ledger idempotency key

@@ -1,4 +1,6 @@
 """
 A library that records transactions against a ledger, denominated in units of value.
 """
-__version__ = "2.0.0"
+from importlib.metadata import version
+
+__version__ = version("openedx-ledger")

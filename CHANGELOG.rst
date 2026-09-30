@@ -1,3 +1,7 @@
+.. DEPRECATED: This changelog is no longer maintained. Release notes are
+   published only on the GitHub Releases page:
+   https://github.com/openedx/openedx-ledger/releases
+
 Change Log
 ##########
 
@@ -14,11 +18,6 @@ Change Log
 Unreleased
 **********
 * Nothing unreleased
-
-[2.0.0]
-********
-* chore: Upgrade Python requirements
-
 
 [1.8.0]
 ********
