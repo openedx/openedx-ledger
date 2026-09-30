@@ -144,11 +144,17 @@ constraint-dependencies = [
 # Django version for the whole project and the "other" version's tox env
 # would just force-override the Django package via `deps=` afterward, while
 # every transitive dependency stayed resolved against the one locked graph.
+# Every other group includes `test` (directly or via `quality`/`doc`/`dev`), so
+# each is listed explicitly here too -- otherwise uv has to derive the full set
+# of conflicting pairs itself, and the order it derives them in varies between
+# uv versions, making `uv lock --check`/`uv sync --locked` pass or fail
+# depending on which uv version wrote the lockfile. Listing them explicitly
+# removes the ambiguity: there's nothing left for uv to derive or reorder.
 conflicts = [
-    [
-        { group = "test" },
-        { group = "django42" },
-    ],
+    [{ group = "test" }, { group = "django42" }],
+    [{ group = "quality" }, { group = "django42" }],
+    [{ group = "doc" }, { group = "django42" }],
+    [{ group = "dev" }, { group = "django42" }],
 ]
 
 [tool.edx_lint]

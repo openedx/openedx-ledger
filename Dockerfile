@@ -1,6 +1,6 @@
 # Docker in this repo is only supported for running tests locally
 # as an alternative to virtualenv natively
-FROM ubuntu:focal as app
+FROM ubuntu:noble as app
 MAINTAINER sre@edx.org
 
 
@@ -46,7 +46,12 @@ RUN apt-get update && apt-get -qy install --no-install-recommends \
  curl
 
 
-RUN pip install --upgrade pip setuptools
+# No system-wide `pip install --upgrade pip setuptools` here: on 24.04,
+# python3-pip is a debian-packaged pip that pip itself cannot cleanly
+# uninstall/upgrade in place (and PEP 668 blocks touching it without
+# --break-system-packages anyway). Nothing runs against this system Python --
+# the venv created below gets its own pip, and that's what everything else
+# in this image uses.
 # delete apt package lists because we do not need them inflating our image
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -77,9 +82,11 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY pyproject.toml uv.lock /edx/app/openedx-ledger/
 
 # Dependencies are installed as root so they cannot be modified by the application user.
-# --no-install-project: only third-party deps at this point, matching the old
-# requirements.txt-based install -- the local package was never pip-installed
-# either, tests run straight from the source tree copied in below.
+# --no-install-project: only third-party deps at this point -- the local
+# `openedx_ledger` package itself lives under src/ and can't be installed
+# from just these two files, so it's installed separately below once the
+# full source tree is present. This keeps this (slow, third-party) layer
+# cached as long as pyproject.toml/uv.lock don't change.
 RUN pip install uv
 ENV UV_PROJECT_ENVIRONMENT=$VIRTUAL_ENV
 RUN uv sync --locked --no-install-project --group dev
@@ -93,11 +100,24 @@ RUN nodeenv /edx/app/nodeenv --node=20.17.0 --prebuilt
 
 RUN mkdir -p /edx/var/log
 
-# Code is owned by root so it cannot be modified by the application user.
-# So we copy it before changing users.
-USER app
-
-# This line is after the requirements so that changes to the code will not
-# bust the image cache
+# This line is after the dependency install so that unrelated code changes
+# don't bust the third-party-dependency layer above, and it happens before
+# the final `uv sync` (and before switching users) because that sync needs
+# the full checkout to install the local `openedx_ledger` package from
+# src/, and code/dependencies are installed as root so they cannot be
+# modified by the application user.
 COPY . /edx/app/openedx-ledger
+
+# Install the local project itself now that its full source tree (src/) is
+# present -- `[tool.setuptools.packages.find]`'s `where = ["src"]` picks it
+# up automatically. This is fast: all third-party deps were already synced
+# above, so this only adds the one local package. Trade-off versus the
+# previous single-stage sync: this step (unlike the dependency layer above)
+# reruns on every source change, since it has to -- the local package itself
+# changed -- so source edits no longer get the full layer-cache benefit that
+# a dependency-only change does.
+RUN uv sync --locked --group dev
+
+# Code is owned by root so it cannot be modified by the application user.
+USER app
 
